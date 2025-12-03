@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nursing Decision Game</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+  #game-box { background: white; padding: 20px; border-radius: 12px; max-width: 600px; margin: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  h2 { margin-top: 0; }
+  .option { margin: 10px 0; padding: 12px; background: #e8ecff; border-radius: 8px; cursor: pointer; }
+  .option:hover { background: #d7ddff; }
+  #outcome { margin-top: 20px; padding: 15px; border-radius: 8px; background: #fff3cd; }
+</style>
+</head>
+<body>
+<div id="game-box">
+  <h2>Nursing Decision Game</h2>
+  <p><strong>Select a scenario:</strong></p>
+  <div id="scenario-menu"></div>
+  <hr>
+  <p id="scenario">A patient tells you, "I don't feel right." You notice they're slightly pale and restless. What do you do first?</p>
+
+  <div id="options"></div>
+  <div id="outcome"></div>
+  <div id="debrief"></div>
+</div>
+
+<script>
+const scenarios = {
+  start: {
+    text: "A patient tells you, 'I don't feel right.' You notice they're slightly pale and restless. What do you do first?",
+    options: [
+      { text: "Reassure them and come back later", next: "delay" },
+      { text: "Complete a focused assessment", next: "assess" },
+      { text: "Give water and adjust pillows", next: "comfort" }
+    ]
+  },
+  delay: {
+    text: "You return 20 minutes later. The patient is now more pale and short of breath. RR 28. What do you do now?",
+    options: [
+      { text: "Call the RN / MD and report changes", next: "latehelp" },
+      { text: "Keep observing without acting", next: "bad" }
+    ]
+  },
+  assess: {
+    text: "You assess: RR 24, O2 sat 90%, cool skin, patient restless. What is your next action?",
+    options: [
+      { text: "Escalate findings to RN / MD", next: "good" },
+      { text: "Ignore the signs and continue tasks", next: "bad" }
+    ]
+  },
+  comfort: {
+    text: "Comfort helps slightly, but the patient's restlessness continues. You still haven't assessed. What now?",
+    options: [
+      { text: "Do a focused assessment", next: "assess" },
+      { text: "Continue giving comfort without assessing", next: "bad" }
+    ]
+  },
+
+  // Scenario 2: Post-op pain & vitals before meds
+  postop_start: {
+    text: "Post-op day 1 abdominal surgery. The patient reports pain 8/10, looks pale and slightly diaphoretic. What is your first action?",
+    options: [
+      { text: "Check pain score, full vitals, and inspect the surgical site", next: "postop_assess" },
+      { text: "Immediately give the ordered PRN opioid without assessment", next: "postop_noassess" },
+      { text: "Tell them to wait until the next scheduled round", next: "postop_delay" }
+    ]
+  },
+  postop_assess: {
+    text: "You assess: HR 110, BP 90/60, RR 24, cool skin, increasing abdominal pain. What do you do next?",
+    options: [
+      { text: "Hold the opioid and escalate to RN / MD with full assessment findings", next: "postop_good" },
+      { text: "Give the opioid anyway to treat the pain", next: "postop_bad" }
+    ]
+  },
+  postop_noassess: {
+    text: "You give the opioid without checking vitals. Thirty minutes later, the patient is more hypotensive and drowsy.",
+    options: [
+      { text: "Now check vitals and call the RN / MD", next: "postop_bad" }
+    ],
+    outcome: "Outcome: Pain is masked while hypotension worsens. Lack of assessment before meds increased risk."
+  },
+  postop_delay: {
+    text: "You delay responding. When you return, the patient's pain is 9/10 and they appear more unwell.",
+    options: [
+      { text: "Complete a focused assessment now", next: "postop_assess" },
+      { text: "Offer more reassurance without assessing", next: "postop_bad" }
+    ]
+  },
+  postop_good: {
+    text: "You report hypotension, tachycardia, and severe pain. The team suspects bleeding and responds quickly.",
+    options: [],
+    outcome: "Outcome: Your assessment before giving opioids helped detect a serious complication early."
+  },
+  postop_bad: {
+    text: "The patient's condition deteriorates further before the team is alerted.",
+    options: [],
+    outcome: "Outcome: Delayed or incomplete assessment around pain meds contributed to worsening hypotension."
+  },
+
+  // Scenario 3: Hypoglycemia & checks before insulin
+  hypo_start: {
+    text: "A patient with diabetes says they feel shaky and sweaty. They look pale and anxious. What do you do first?",
+    options: [
+      { text: "Check a capillary blood glucose (CBG) immediately", next: "hypo_check" },
+      { text: "Offer their usual insulin dose because they are 'diabetic'", next: "hypo_insulin" },
+      { text: "Assume it's anxiety and encourage deep breathing only", next: "hypo_ignore" }
+    ]
+  },
+  hypo_check: {
+    text: "CBG result is 3.0 mmol/L. What is your next action?",
+    options: [
+      { text: "Follow hypoglycemia protocol: give fast-acting carbohydrate and recheck in 15 minutes", next: "hypo_good" },
+      { text: "Do nothing because they 'aren't that low'", next: "hypo_bad" }
+    ]
+  },
+  hypo_insulin: {
+    text: "You give insulin without checking CBG. The patient becomes more drowsy and difficult to rouse.",
+    options: [],
+    outcome: "Outcome: Giving insulin without assessment worsened unrecognized hypoglycemia."
+  },
+  hypo_ignore: {
+    text: "You assume it's anxiety and do not check CBG. Symptoms continue to worsen.",
+    options: [],
+    outcome: "Outcome: Missing assessment delayed recognition of hypoglycemia and increased risk."
+  },
+  hypo_good: {
+    text: "Symptoms improve after treatment, and repeat CBG is 4.5 mmol/L. You document and inform the RN / MD.",
+    options: [],
+    outcome: "Outcome: Early assessment and protocol-based action prevented progression of hypoglycemia."
+  },
+  hypo_bad: {
+    text: "Without treatment, the patient's hypoglycemia worsens and requires urgent intervention.",
+    options: [],
+    outcome: "Outcome: Not acting on assessment findings led to avoidable deterioration."
+  },
+
+  // Scenario 4: Fever & deciding about antipyretics
+  fever_start: {
+    text: "Post-op patient has a temp of 38.9°C, HR 104, and says they feel 'hot and achy.' A PRN acetaminophen order is available. What do you do?",
+    options: [
+      { text: "Complete a focused assessment (vitals, wound, pain, other symptoms) and then give acetaminophen if appropriate", next: "fever_assess" },
+      { text: "Give acetaminophen right away without further assessment", next: "fever_mask" },
+      { text: "Ignore the fever because 'it's normal after surgery'", next: "fever_bad" }
+    ]
+  },
+  fever_assess: {
+    text: "You assess: surgical site slightly red with new drainage, patient feels more short of breath on exertion.",
+    options: [
+      { text: "Give acetaminophen, then report your full assessment to RN / MD", next: "fever_good" },
+      { text: "Only give acetaminophen and do not report findings", next: "fever_mask" }
+    ]
+  },
+  fever_good: {
+    text: "The team orders further investigations. Possible infection is caught early while the patient is still stable.",
+    options: [],
+    outcome: "Outcome: Assessment before and after giving antipyretics helped identify a developing infection."
+  },
+  fever_mask: {
+    text: "Fever temporarily improves, but underlying infection is not communicated or investigated.",
+    options: [],
+    outcome: "Outcome: Treating the number without full assessment can mask serious issues and delay diagnosis."
+  },
+  fever_bad: {
+    text: "The fever and other symptoms worsen without any assessment or intervention.",
+    options: [],
+    outcome: "Outcome: Ignoring abnormal findings increases the risk of sepsis and poor outcomes."
+  },
+
+  // Generic end states for the first scenario
+  good: {
+    text: "You escalated early. The team intervenes, O2 is applied, diagnostics ordered, and the patient stabilizes.",
+    options: [],
+    outcome: "Outcome: Your timely assessment and critical thinking prevented deterioration."
+  },
+  bad: {
+    text: "The patient's condition worsens due to missed early cues.",
+    options: [],
+    outcome: "Outcome: Delayed assessment led to preventable deterioration."
+  },
+  latehelp: {
+    text: "You escalated late. The team intervenes, but the patient required rapid response activation.",
+    options: [],
+    outcome: "Outcome: Delay increased risk, showing early assessment is crucial."
+  }
+};
+
+const scenarioMeta = [
+  { key: "start", label: "Early deterioration ("I don't feel right")" },
+  { key: "postop_start", label: "Post-op pain & opioids" },
+  { key: "hypo_start", label: "Hypoglycemia vs anxiety" },
+  { key: "fever_start", label: "Fever, infection & Tylenol" }
+];
+
+function buildMenu() {
+  const menu = document.getElementById("scenario-menu");
+  menu.innerHTML = "";
+  scenarioMeta.forEach(item => {
+    const btn = document.createElement("button");
+    btn.textContent = item.label;
+    btn.style.margin = "4px";
+    btn.style.padding = "6px 10px";
+    btn.style.borderRadius = "6px";
+    btn.style.border = "1px solid #ccc";
+    btn.style.cursor = "pointer";
+    btn.onclick = () => loadScenario(item.key);
+    menu.appendChild(btn);
+  });
+}
+
+function loadScenario(key) {
+  const sc = scenarios[key];
+  document.getElementById("scenario").textContent = sc.text;
+  const optBox = document.getElementById("options");
+  optBox.innerHTML = "";
+  const outcomeBox = document.getElementById("outcome");
+  const debriefBox = document.getElementById("debrief");
+  outcomeBox.textContent = sc.outcome || "";
+
+  // simple debrief text based on whether it's a good or bad outcome
+  if (sc.outcome) {
+    if (sc.outcome.toLowerCase().includes("prevented") || sc.outcome.toLowerCase().includes("early")) {
+      debriefBox.textContent = "Debrief: Strong assessment and early escalation improved the patient's outcome.";
+    } else if (sc.outcome.toLowerCase().includes("delayed") || sc.outcome.toLowerCase().includes("worsens") || sc.outcome.toLowerCase().includes("increased risk")) {
+      debriefBox.textContent = "Debrief: Missed or delayed assessment increased risk. Early vitals, focused assessment, and communication with the team are critical.";
+    } else {
+      debriefBox.textContent = "Debrief: Nursing assessments, vitals, and critical thinking directly shape what happens next for the patient.";
+    }
+  } else {
+    debriefBox.textContent = "";
+  }
+
+  sc.options.forEach(o => {
+    const btn = document.createElement("div");
+    btn.className = "option";
+    btn.textContent = o.text;
+    btn.onclick = () => loadScenario(o.next);
+    optBox.appendChild(btn);
+  });
+}
+
+buildMenu();
+loadScenario("start");("start");
+</script>
+</body>
+</html>
