@@ -1,765 +1,1850 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete GI Disorders Study Guide - BIOL 253</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1400px; margin: 0 auto; }
-        header { background: white; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center; }
-        h1 { color: #667eea; font-size: 2.5em; margin-bottom: 10px; }
-        .subtitle { color: #666; font-size: 1.1em; }
-        .nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
-        .tab-btn { background: white; border: none; padding: 15px 25px; border-radius: 10px; cursor: pointer; font-size: 1em; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        .tab-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
-        .tab-btn.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .content-area { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); min-height: 500px; max-height: 80vh; overflow-y: auto; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .disorder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
-        .disorder-card { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 10px; padding: 18px; cursor: pointer; transition: all 0.3s; border: 2px solid transparent; }
-        .disorder-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); border-color: #667eea; }
-        .disorder-card h3 { color: #667eea; margin-bottom: 10px; font-size: 1.2em; }
-        .disorder-card p { color: #555; line-height: 1.5; font-size: 0.95em; }
-        .location-badge { display: inline-block; background: #667eea; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.8em; margin-top: 8px; font-weight: 600; }
-        .back-btn { background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1em; margin-bottom: 20px; transition: all 0.3s; }
-        .back-btn:hover { background: #764ba2; }
-        .detail-view { animation: slideIn 0.3s; }
-        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
-        .detail-section { margin-bottom: 20px; background: #f8f9fa; padding: 15px; border-radius: 8px; }
-        .detail-section h5 { color: #764ba2; margin-bottom: 10px; font-size: 1.1em; }
-        .detail-section ul { list-style-position: inside; color: #555; line-height: 1.8; margin-left: 10px; }
-        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9em; }
-        .comparison-table th, .comparison-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        .comparison-table th { background: #667eea; color: white; position: sticky; top: 0; }
-        .comparison-table tr:nth-child(even) { background: #f8f9fa; }
-        .key-point { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; border-radius: 5px; }
-        .warning-box { background: #f8d7da; border-left: 4px solid #dc3545; padding: 15px; margin: 15px 0; border-radius: 5px; }
-        .info-box { background: #d1ecf1; border-left: 4px solid #17a2b8; padding: 15px; margin: 15px 0; border-radius: 5px; }
-        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; border-radius: 5px; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #667eea; border-radius: 10px; font-size: 1em; margin-bottom: 20px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complete GI Disorders Study Guide - BIOL 253</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    header {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    h1 { color: #667eea; font-size: 2.5em; margin-bottom: 10px; }
+    .subtitle { color: #666; font-size: 1.1em; }
+
+    .nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
+    .tab-btn {
+      background: white;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .tab-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
+    .tab-btn.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+
+    .content-area {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      min-height: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.5s; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .disorder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .disorder-card {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 10px;
+      padding: 18px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+    .disorder-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); border-color: #667eea; }
+    .disorder-card h3 { color: #667eea; margin-bottom: 10px; font-size: 1.2em; }
+    .disorder-card p { color: #555; line-height: 1.5; font-size: 0.95em; }
+
+    .location-badge {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8em;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .back-btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+    }
+    .back-btn:hover { background: #764ba2; }
+
+    .detail-view { animation: slideIn 0.3s; }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
+    .detail-section { margin-bottom: 20px; background: #f8f9fa; padding: 15px; border-radius: 8px; }
+    .detail-section h5 { color: #764ba2; margin-bottom: 10px; font-size: 1.1em; }
+    .detail-section ul { list-style-position: inside; color: #555; line-height: 1.8; margin-left: 10px; }
+    .detail-section p { color:#555; line-height: 1.6; margin-bottom: 8px; }
+
+    .comparison-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9em; }
+    .comparison-table th, .comparison-table td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+    .comparison-table th { background: #667eea; color: white; position: sticky; top: 0; }
+    .comparison-table tr:nth-child(even) { background: #f8f9fa; }
+
+    .key-point { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; border-radius: 5px; }
+    .warning-box { background: #f8d7da; border-left: 4px solid #dc3545; padding: 15px; margin: 15px 0; border-radius: 5px; }
+    .info-box { background: #d1ecf1; border-left: 4px solid #17a2b8; padding: 15px; margin: 15px 0; border-radius: 5px; }
+    .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; border-radius: 5px; }
+
+    .search-box { width: 100%; padding: 15px; border: 2px solid #667eea; border-radius: 10px; font-size: 1em; margin-bottom: 20px; }
+
+    /* NEW: detail title + pills */
+    .detail-title { font-size: 1.8em; color:#667eea; margin-bottom: 6px; }
+    .pill-row { display:flex; flex-wrap:wrap; gap:10px; margin: 10px 0 18px; }
+    .pill {
+      display:inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.9em;
+      background: #eef2ff;
+      color:#3b4cca;
+      border: 1px solid #d9defd;
+      font-weight: 600;
+    }
+    .mini { font-size: 0.95em; color:#666; margin-bottom: 12px; }
+
+    /* responsive */
+    @media (max-width: 520px){
+      h1{ font-size: 2em; }
+      .tab-btn{ width:100%; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🏥 Complete GI Disorders Study Guide</h1>
-            <p class="subtitle">BIOL 253 - Winter 2026 | All Topics Covered</p>
-            <p style="color: #999; margin-top: 10px;">📚 Chapters 36, 37, 38 | Camosun College</p>
-        </header>
+  <div class="container">
+    <header>
+      <h1>🏥 Complete GI Disorders Study Guide</h1>
+      <p class="subtitle">BIOL 253 - Winter 2026 | All Topics Covered</p>
+      <p style="color: #999; margin-top: 10px;">📚 Chapters 36, 37, 38 | Camosun College</p>
+    </header>
 
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchTab('all-disorders')">📋 All Disorders</button>
-            <button class="tab-btn" onclick="switchTab('compare')">⚖️ Comparisons</button>
-            <button class="tab-btn" onclick="switchTab('quick-ref')">⚡ Quick Reference</button>
-        </div>
-
-        <div class="content-area">
-            <!-- ALL DISORDERS TAB -->
-            <div id="all-disorders" class="tab-content active">
-                <h2>Complete Disorder Index</h2>
-                <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search any disorder..." onkeyup="filterAll()">
-                
-                <div class="disorder-grid" id="allDisordersGrid">
-                    <!-- ESOPHAGUS -->
-                    <div class="disorder-card searchable" data-name="dysphagia gerd esophagus swallowing">
-                        <h3>Dysphagia</h3>
-                        <p>Difficulty swallowing - coordinated action failure</p>
-                        <span class="location-badge">📍 Esophagus</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="gerd reflux esophagus heartburn">
-                        <h3>GERD</h3>
-                        <p>Gastric reflux into esophagus - LES weakness</p>
-                        <span class="location-badge">📍 Esophagus/LES</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="esophageal varices portal hypertension bleeding">
-                        <h3>Esophageal Varices</h3>
-                        <p>Dilated veins from portal hypertension - life-threatening bleeding risk</p>
-                        <span class="location-badge">📍 Esophagus</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="barrett esophagus precancer gerd">
-                        <h3>Barrett Esophagus</h3>
-                        <p>Columnar epithelium replaces squamous - precancerous from GERD</p>
-                        <span class="location-badge">📍 Esophagus</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="esophageal cancer adenocarcinoma squamous">
-                        <h3>Esophageal Cancer</h3>
-                        <p>Squamous cell (alcohol/tobacco) or adenocarcinoma (Barrett) - 1% cancers</p>
-                        <span class="location-badge">📍 Esophagus</span>
-                    </div>
-
-                    <!-- STOMACH -->
-                    <div class="disorder-card searchable" data-name="gastritis inflammation stomach acute chronic">
-                        <h3>Gastritis (Acute/Chronic)</h3>
-                        <p>Stomach inflammation - alcohol, aspirin, H. pylori</p>
-                        <span class="location-badge">📍 Stomach</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="peptic ulcer stomach duodenum h pylori nsaids">
-                        <h3>Peptic Ulcer Disease</h3>
-                        <p>Ulcers in stomach/duodenum - H. pylori (50%) or NSAIDs (50%)</p>
-                        <span class="location-badge">📍 Stomach/Duodenum</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="h pylori helicobacter bacteria ulcer gastritis">
-                        <h3>H. pylori Infection</h3>
-                        <p>Bacterial infection disrupting mucosal barrier - produces urease</p>
-                        <span class="location-badge">📍 Stomach</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="stress ulcer trauma burns">
-                        <h3>Stress Ulcers</h3>
-                        <p>Ulcers from major physiological stress - burns, trauma, sepsis</p>
-                        <span class="location-badge">📍 Stomach</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="zollinger ellison gastrinoma tumor">
-                        <h3>Zollinger-Ellison Syndrome</h3>
-                        <p>Gastrin-secreting tumor - extreme acid production, inevitable ulcers</p>
-                        <span class="location-badge">📍 Pancreas/Duodenum</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="gastric cancer stomach adenocarcinoma h pylori">
-                        <h3>Gastric Cancer</h3>
-                        <p>2nd most common worldwide - H. pylori link, often late detection</p>
-                        <span class="location-badge">📍 Stomach</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="hiatal hernia diaphragm sliding paraesophageal">
-                        <h3>Hiatal Hernia</h3>
-                        <p>Stomach through diaphragm - sliding (common) or paraesophageal</p>
-                        <span class="location-badge">📍 Diaphragm</span>
-                    </div>
-
-                    <!-- SMALL INTESTINE -->
-                    <div class="disorder-card searchable" data-name="crohn disease ibd inflammatory bowel">
-                        <h3>Crohn's Disease</h3>
-                        <p>Granulomatous inflammation - skip lesions, cobblestone, any GI location</p>
-                        <span class="location-badge">📍 Distal SI/Proximal Colon</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="celiac disease gluten autoimmune villi">
-                        <h3>Celiac Disease</h3>
-                        <p>Autoimmune villi destruction from gluten - 1% population</p>
-                        <span class="location-badge">📍 Small Intestine</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="malabsorption steatorrhea">
-                        <h3>Intestinal Malabsorption</h3>
-                        <p>Failed nutrient transport - diarrhea, steatorrhea, weight loss</p>
-                        <span class="location-badge">📍 Small Intestine</span>
-                    </div>
-
-                    <!-- COLON -->
-                    <div class="disorder-card searchable" data-name="ulcerative colitis uc ibd inflammatory bowel">
-                        <h3>Ulcerative Colitis</h3>
-                        <p>Continuous mucosal inflammation - rectum/colon only, bloody diarrhea</p>
-                        <span class="location-badge">📍 Rectum/Colon</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="ibs irritable bowel syndrome functional">
-                        <h3>IBS (Irritable Bowel Syndrome)</h3>
-                        <p>Functional disorder - abdominal pain, altered bowels, no inflammation</p>
-                        <span class="location-badge">📍 Intestines</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="diverticulitis diverticulosis pouches sigmoid">
-                        <h3>Diverticulitis</h3>
-                        <p>Inflamed colon pouches - low fiber, increased pressure, 80% over 85</p>
-                        <span class="location-badge">📍 Sigmoid Colon</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="diarrhea large small volume secretory osmotic">
-                        <h3>Diarrhea</h3>
-                        <p>Large-volume (non-inflammatory) or small-volume (inflammatory/bloody)</p>
-                        <span class="location-badge">📍 Intestines</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="constipation fecal impaction">
-                        <h3>Constipation</h3>
-                        <p>Infrequent/difficult stools - low fiber, dehydration, immobility</p>
-                        <span class="location-badge">📍 Colon</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="colorectal cancer colon polyps screening">
-                        <h3>Colorectal Cancer</h3>
-                        <p>High mortality - age, IBD, family history, screening essential</p>
-                        <span class="location-badge">📍 Colon/Rectum</span>
-                    </div>
-
-                    <!-- APPENDIX -->
-                    <div class="disorder-card searchable" data-name="appendicitis mcburney fecalith obstruction">
-                        <h3>Appendicitis</h3>
-                        <p>Inflamed appendix from obstruction - McBurney's sign, peritonitis risk</p>
-                        <span class="location-badge">📍 Appendix</span>
-                    </div>
-
-                    <!-- PERITONEUM -->
-                    <div class="disorder-card searchable" data-name="peritonitis perforation rupture inflammation">
-                        <h3>Peritonitis</h3>
-                        <p>Peritoneal inflammation - perforation, rupture, fluid shift, NPO</p>
-                        <span class="location-badge">📍 Peritoneal Cavity</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="ascites fluid portal hypertension cirrhosis">
-                        <h3>Ascites</h3>
-                        <p>Abdominal fluid accumulation - portal HTN + low albumin, massive volume</p>
-                        <span class="location-badge">📍 Peritoneal Cavity</span>
-                    </div>
-
-                    <!-- LIVER -->
-                    <div class="disorder-card searchable" data-name="jaundice bilirubin prehepatic intrahepatic posthepatic">
-                        <h3>Jaundice (3 Types)</h3>
-                        <p>Elevated bilirubin - prehepatic (hemolysis), intrahepatic (liver), posthepatic (obstruction)</p>
-                        <span class="location-badge">📍 Liver/Blood</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="hepatitis a b c viral liver inflammation">
-                        <h3>Hepatitis A</h3>
-                        <p>Fecal-oral transmission - 28 days incubation, self-limiting, NO chronic</p>
-                        <span class="location-badge">📍 Liver</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="hepatitis b vaccine blood sexual chronic">
-                        <h3>Hepatitis B</h3>
-                        <p>Blood/sexual transmission - 5-10% chronic, vaccine available, nearly eliminated Canada</p>
-                        <span class="location-badge">📍 Liver</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="hepatitis c blood chronic cirrhosis cancer">
-                        <h3>Hepatitis C</h3>
-                        <p>Blood transmission - 50-80% chronic, most common cause cirrhosis/HCC, DAA cure >90%</p>
-                        <span class="location-badge">📍 Liver</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="alcohol liver disease fatty hepatitis cirrhosis">
-                        <h3>Alcohol-Induced Liver Disease</h3>
-                        <p>Fatty liver → alcoholic hepatitis → cirrhosis - acetaldehyde toxicity, NADH excess</p>
-                        <span class="location-badge">📍 Liver</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="drug induced liver acetaminophen tylenol toxic">
-                        <h3>Drug-Induced Liver Disease</h3>
-                        <p>Acetaminophen #1 cause acute failure USA - glutathione depletion, worse with alcohol</p>
-                        <span class="location-badge">📍 Liver</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="cirrhosis fibrosis end stage liver alcoholic">
-                        <h3>Cirrhosis</h3>
-                        <p>Fibrosis replacing functional tissue - 80-90% damage → failure, irreversible</p>
-                        <span class="location-badge">📍 Liver</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="portal hypertension varices splenomegaly ascites">
-                        <h3>Portal Hypertension</h3>
-                        <p>Increased portal vein pressure - cirrhosis obstruction → varices, ascites, splenomegaly</p>
-                        <span class="location-badge">📍 Portal Vein</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="liver failure encephalopathy ammonia hepatorenal">
-                        <h3>Liver Failure</h3>
-                        <p>Loss of function - encephalopathy, bleeding, jaundice, hepatorenal syndrome</p>
-                        <span class="location-badge">📍 Liver</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="hepatocellular carcinoma hcc liver cancer chronic">
-                        <h3>Hepatocellular Carcinoma</h3>
-                        <p>Primary liver cancer - 80% of liver cancers, HBV/HCV link, 20× risk with cirrhosis</p>
-                        <span class="location-badge">📍 Liver</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="cholangiocarcinoma bile duct cancer parasitic">
-                        <h3>Cholangiocarcinoma</h3>
-                        <p>Bile duct cancer - rare, parasitic infection link (schistosomiasis)</p>
-                        <span class="location-badge">📍 Bile Ducts</span>
-                    </div>
-
-                    <!-- GALLBLADDER -->
-                    <div class="disorder-card searchable" data-name="cholelithiasis gallstones cholesterol bile">
-                        <h3>Cholelithiasis (Gallstones)</h3>
-                        <p>Stone formation - abnormal bile (cholesterol ↑), stasis, estrogen, obesity</p>
-                        <span class="location-badge">📍 Gallbladder</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="cholecystitis gallbladder inflammation acute chronic">
-                        <h3>Cholecystitis</h3>
-                        <p>Gallbladder inflammation - acute (obstruction) or chronic (repeated episodes)</p>
-                        <span class="location-badge">📍 Gallbladder</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="cholangitis bile duct inflammation">
-                        <h3>Cholangitis</h3>
-                        <p>Common bile duct inflammation - obstruction and infection</p>
-                        <span class="location-badge">📍 Common Bile Duct</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="cholestasis bile flow decreased">
-                        <h3>Cholestasis</h3>
-                        <p>Decreased bile flow through intrahepatic canaliculi - reduced water, bilirubin, bile acids</p>
-                        <span class="location-badge">📍 Liver</span>
-                    </div>
-
-                    <!-- PANCREAS -->
-                    <div class="disorder-card searchable" data-name="acute pancreatitis trypsin gallstones alcohol reversible">
-                        <h3>Acute Pancreatitis</h3>
-                        <p>REVERSIBLE inflammation - premature trypsin activation, gallstones/alcohol most common</p>
-                        <span class="location-badge">📍 Pancreas</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="chronic pancreatitis fibrosis irreversible destruction">
-                        <h3>Chronic Pancreatitis</h3>
-                        <p>IRREVERSIBLE destruction - progressive fibrosis, endocrine loss late-stage</p>
-                        <span class="location-badge">📍 Pancreas</span>
-                    </div>
-                    
-                    <div class="disorder-card searchable" data-name="pancreatic cancer adenocarcinoma smoking survival">
-                        <h3>Pancreatic Cancer</h3>
-                        <p>4th leading cancer death - 5yr survival 8%, early detection difficult, smoking major risk</p>
-                        <span class="location-badge">📍 Pancreas</span>
-                    </div>
-
-                    <!-- HERNIAS -->
-                    <div class="disorder-card searchable" data-name="inguinal hernia groin intestine canal">
-                        <h3>Inguinal Hernia</h3>
-                        <p>Intestine through inguinal canal - weak aperture + pressure, surgery required</p>
-                        <span class="location-badge">📍 Groin/Inguinal</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- COMPARISONS TAB -->
-            <div id="compare" class="tab-content">
-                <h2>Side-by-Side Comparisons</h2>
-                
-                <h3 style="color: #667eea; margin-top: 30px;">Crohn's vs Ulcerative Colitis</h3>
-                <table class="comparison-table">
-                    <tr>
-                        <th>Feature</th>
-                        <th>Crohn's Disease</th>
-                        <th>Ulcerative Colitis</th>
-                    </tr>
-                    <tr><td><strong>Location</strong></td><td>ANY part of GI tract (mouth to anus)<br>Most common: distal SI & proximal colon</td><td>Rectum and colon ONLY</td></tr>
-                    <tr><td><strong>Pattern</strong></td><td>SKIP lesions (patchy)</td><td>CONTINUOUS lesions</td></tr>
-                    <tr><td><strong>Layer</strong></td><td>Primarily SUBMUCOSA</td><td>MUCOSAL layer (crypts of Lieberkühn)</td></tr>
-                    <tr><td><strong>Appearance</strong></td><td>"Cobblestone" with fissures/crevices</td><td>Mucosal ulceration with pseudopolyps</td></tr>
-                    <tr><td><strong>Bleeding</strong></td><td>LESS bloody (submucosal)</td><td>MORE bloody (mucosal, rectal location)</td></tr>
-                    <tr><td><strong>Wall</strong></td><td>Thickened, inflexible</td><td>Mucosal changes mainly</td></tr>
-                    <tr><td><strong>Smoking</strong></td><td>More common IN smokers</td><td>More common in NON-smokers/quit</td></tr>
-                    <tr><td><strong>Twin concordance</strong></td><td>50%</td><td>16%</td></tr>
-                    <tr><td><strong>Cancer risk</strong></td><td>Increased</td><td>SIGNIFICANTLY increased</td></tr>
-                    <tr><td><strong>Nutritional issues</strong></td><td>Common deficiencies</td><td>Less common</td></tr>
-                </table>
-
-                <h3 style="color: #667eea; margin-top: 40px;">Hepatitis A vs B vs C</h3>
-                <table class="comparison-table">
-                    <tr><th>Feature</th><th>Hepatitis A</th><th>Hepatitis B</th><th>Hepatitis C</th></tr>
-                    <tr><td><strong>Transmission</strong></td><td>Fecal-oral (water, shellfish)</td><td>Blood, serum, oral, sexual</td><td>Blood, sexual</td></tr>
-                    <tr><td><strong>Incubation</strong></td><td>Avg 28 days</td><td>Varies</td><td>2-26 weeks</td></tr>
-                    <tr><td><strong>Chronic</strong></td><td>NO - never chronic</td><td>5-10% adults</td><td>50-80% cases</td></tr>
-                    <tr><td><strong>Carrier state</strong></td><td>NO</td><td>YES</td><td>YES</td></tr>
-                    <tr><td><strong>Course</strong></td><td>Benign, self-limiting, ~2 months</td><td>Acute & chronic → cirrhosis</td><td>Most common cause chronic hepatitis, cirrhosis, HCC</td></tr>
-                    <tr><td><strong>Mechanism</strong></td><td>Direct + immune</td><td>AGGRESSIVE immune response</td><td>Intracellular replication → lysis (CPE)</td></tr>
-                    <tr><td><strong>Symptoms</strong></td><td>Kids <6 asymptomatic, adults 70% jaundice</td><td>Variable</td><td>Often asymptomatic initially</td></tr>
-                    <tr><td><strong>Treatment</strong></td><td>Supportive</td><td>Antivirals</td><td>DAA tablets (>90% cure)</td></tr>
-                    <tr><td><strong>Prevention</strong></td><td>Hygiene</td><td>Vaccine (Canada 1990s - nearly eliminated)</td><td>No vaccine</td></tr>
-                    <tr><td><strong>HCC risk</strong></td><td>No</td><td>Yes if chronic</td><td>20× higher with cirrhosis</td></tr>
-                </table>
-
-                <h3 style="color: #667eea; margin-top: 40px;">Acute vs Chronic Pancreatitis</h3>
-                <table class="comparison-table">
-                    <tr><th>Feature</th><th>Acute Pancreatitis</th><th>Chronic Pancreatitis</th></tr>
-                    <tr><td><strong>Reversibility</strong></td><td><strong>REVERSIBLE</strong></td><td><strong>IRREVERSIBLE</strong></td></tr>
-                    <tr><td><strong>Pathology</strong></td><td>Inflammation, premature trypsin activation, autodigestion</td><td>Progressive destruction, fibrosis</td></tr>
-                    <tr><td><strong>Exocrine</strong></td><td>Inflammation</td><td>Progressive destruction</td></tr>
-                    <tr><td><strong>Endocrine</strong></td><td>Usually preserved</td><td>Late-stage destruction</td></tr>
-                    <tr><td><strong>Severity</strong></td><td>Mild → life-threatening</td><td>Progressive deterioration</td></tr>
-                    <tr><td><strong>Prognosis</strong></td><td>Can fully recover if cause removed</td><td>Permanent damage, ongoing dysfunction</td></tr>
-                </table>
-
-                <h3 style="color: #667eea; margin-top: 40px;">Three Categories of Jaundice</h3>
-                <table class="comparison-table">
-                    <tr><th>Feature</th><th>Prehepatic</th><th>Intrahepatic</th><th>Posthepatic (Obstructive)</th></tr>
-                    <tr><td><strong>Problem</strong></td><td>BEFORE liver</td><td>IN liver</td><td>AFTER liver</td></tr>
-                    <tr><td><strong>Main cause</strong></td><td>Excessive RBC hemolysis</td><td>Liver dysfunction</td><td>Bile duct obstruction (stones, tumors)</td></tr>
-                    <tr><td><strong>Bilirubin type</strong></td><td>↑ Unconjugated</td><td>Both elevated</td><td>↑ Conjugated</td></tr>
-                    <tr><td><strong>Urine</strong></td><td>Normal (NO bilirubin)</td><td>Dark (bilirubin present)</td><td>Dark (bilirubin present)</td></tr>
-                    <tr><td><strong>Stool</strong></td><td>Normal color</td><td>May be light</td><td>CLAY-colored (no bilirubin)</td></tr>
-                    <tr><td><strong>Severity</strong></td><td>Mild jaundice</td><td>Variable</td><td>Can be severe</td></tr>
-                    <tr><td><strong>Pruritus</strong></td><td>Rare</td><td>Possible</td><td>COMMON (bile acids in blood)</td></tr>
-                    <tr><td><strong>Alk phos</strong></td><td>Normal</td><td>Elevated</td><td>Elevated</td></tr>
-                </table>
-
-                <h3 style="color: #667eea; margin-top: 40px;">IBS vs IBD</h3>
-                <table class="comparison-table">
-                    <tr><th>Feature</th><th>IBS (Irritable Bowel Syndrome)</th><th>IBD (Inflammatory Bowel Disease)</th></tr>
-                    <tr><td><strong>Type</strong></td><td>FUNCTIONAL disorder</td><td>INFLAMMATORY disease</td></tr>
-                    <tr><td><strong>Inflammation</strong></td><td>NO inflammation</td><td>YES - chronic inflammation</td></tr>
-                    <tr><td><strong>Structural damage</strong></td><td>NO visible damage</td><td>YES - tissue destruction</td></tr>
-                    <tr><td><strong>Diagnosis</strong></td><td>Diagnosis of EXCLUSION</td><td>Confirmed by endoscopy/biopsy</td></tr>
-                    <tr><td><strong>Causes</strong></td><td>Serotonin disruption, FODMAPs, bacterial overgrowth</td><td>Autoimmune (Crohn's, UC)</td></tr>
-                    <tr><td><strong>Symptoms</strong></td><td>Abdominal pain, bloating, diarrhea/constipation</td><td>Diarrhea (often bloody), weight loss, fecal urgency</td></tr>
-                    <tr><td><strong>Cancer risk</strong></td><td>NO increased risk</td><td>YES - increased colorectal cancer risk</td></tr>
-                    <tr><td><strong>Treatment</strong></td><td>Diet (FODMAPs), stress management, possible antibiotics</td><td>Immunosuppression, steroids, anti-inflammatories, surgery</td></tr>
-                </table>
-
-                <h3 style="color: #667eea; margin-top: 40px;">Diarrhea Types</h3>
-                <table class="comparison-table">
-                    <tr><th>Feature</th><th>Large-Volume (Non-inflammatory)</th><th>Small-Volume (Inflammatory)</th></tr>
-                    <tr><td><strong>Volume</strong></td><td>LARGE, watery</td><td>SMALL volume</td></tr>
-                    <tr><td><strong>Blood</strong></td><td>NON-bloody</td><td>BLOODY (dysentery)</td></tr>
-                    <tr><td><strong>Fever</strong></td><td>Usually absent</td><td>Present</td></tr>
-                    <tr><td><strong>Mechanism</strong></td><td>Osmotic or secretory imbalance</td><td>Inflammation targeting colon</td></tr>
-                    <tr><td><strong>Causes</strong></td><td>Toxin-producing bacteria, lactose intolerance, bile acids</td><td>IBD (Crohn's, UC), infectious colitis</td></tr>
-                    <tr><td><strong>Associated Sx</strong></td><td>Bloating, cramps, nausea, vomiting</td><td>Fever, urgency, tenesmus</td></tr>
-                </table>
-            </div>
-
-            <!-- QUICK REFERENCE TAB -->
-            <div id="quick-ref" class="tab-content">
-                <h2>⚡ Quick Reference Guide</h2>
-
-                <div class="key-point">
-                    <strong>🎯 EXAM TIP: Know these KEY DISTINCTIONS</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li><strong>Reversible vs Irreversible:</strong> Acute pancreatitis (reversible) vs Chronic pancreatitis (irreversible)</li>
-                        <li><strong>Skip vs Continuous:</strong> Crohn's (skip) vs UC (continuous)</li>
-                        <li><strong>Chronic hepatitis:</strong> Hep A NEVER, Hep B 5-10%, Hep C 50-80%</li>
-                        <li><strong>Most common ulcer causes:</strong> H. pylori 50%, NSAIDs 50%</li>
-                        <li><strong>Cirrhosis = 80-90% damaged</strong> → liver failure</li>
-                    </ul>
-                </div>
-
-                <h3 style="color: #667eea; margin-top: 30px;">📍 Disorders by Location</h3>
-                
-                <div class="detail-section">
-                    <h5>ESOPHAGUS</h5>
-                    <ul>
-                        <li>Dysphagia, GERD, Esophageal varices, Barrett esophagus, Esophageal cancer</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>STOMACH</h5>
-                    <ul>
-                        <li>Gastritis (acute/chronic), Peptic ulcers, H. pylori, Stress ulcers, Gastric cancer</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>DUODENUM</h5>
-                    <ul>
-                        <li>Peptic ulcers (most common site), Zollinger-Ellison</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>SMALL INTESTINE</h5>
-                    <ul>
-                        <li>Crohn's disease (distal), Celiac disease, Malabsorption</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>COLON</h5>
-                    <ul>
-                        <li>Crohn's (proximal), Ulcerative colitis, IBS, Diverticulitis (sigmoid), Colorectal cancer</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>LIVER</h5>
-                    <ul>
-                        <li>Jaundice (3 types), Hepatitis (A/B/C), Alcohol liver disease, Drug-induced, Cirrhosis, Portal HTN, Liver failure, HCC, Cholangiocarcinoma</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>GALLBLADDER</h5>
-                    <ul>
-                        <li>Cholelithiasis (stones), Cholecystitis, Cholangitis</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>PANCREAS</h5>
-                    <ul>
-                        <li>Acute pancreatitis (reversible), Chronic pancreatitis (irreversible), Pancreatic cancer</li>
-                    </ul>
-                </div>
-
-                <h3 style="color: #667eea; margin-top: 30px;">🔬 Diagnostic Tests Quick Guide</h3>
-                
-                <div class="info-box">
-                    <strong>Liver Function Tests:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li><strong>ALT/AST:</strong> ↑ = liver cell injury (transamination)</li>
-                        <li><strong>Bilirubin, GGT, Alk Phos:</strong> Hepatic excretory function of bile</li>
-                        <li><strong>Imaging:</strong> US, CT, MRI (structure)</li>
-                        <li><strong>Angiography:</strong> Visualize hepatic/portal circulation</li>
-                        <li><strong>Biopsy:</strong> Microscopic examination</li>
-                    </ul>
-                </div>
-
-                <div class="info-box">
-                    <strong>H. pylori Detection:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li><sup>14</sup>C urea breath test</li>
-                        <li>Stool antigen test</li>
-                        <li>Endoscopic biopsy for urease</li>
-                        <li>Blood tests for antibodies</li>
-                    </ul>
-                </div>
-
-                <div class="info-box">
-                    <strong>IBD Diagnosis:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>Colonoscopy + biopsies</li>
-                        <li>Sigmoidoscopy</li>
-                        <li>Exclude GI infections first</li>
-                    </ul>
-                </div>
-
-                <h3 style="color: #667eea; margin-top: 30px;">💊 Treatment Quick Reference</h3>
-
-                <div class="success-box">
-                    <strong>GERD Treatment:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>Lifestyle: avoid large meals, alcohol, smoking; elevate head; weight loss</li>
-                        <li>Meds: Antacids (symptom relief), PPIs (acid suppression)</li>
-                    </ul>
-                </div>
-
-                <div class="success-box">
-                    <strong>Peptic Ulcer Treatment:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>Eradicate H. pylori (antibiotics + PPI)</li>
-                        <li>Stop NSAIDs</li>
-                        <li>PPIs, antacids, mucosal protectants</li>
-                    </ul>
-                </div>
-
-                <div class="success-box">
-                    <strong>Hepatitis C Treatment:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>Direct-acting antivirals (DAA) - >90% cure rate!</li>
-                        <li>Block virus replication</li>
-                    </ul>
-                </div>
-
-                <div class="success-box">
-                    <strong>Cirrhosis Treatment:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>Cannot cure - transplant best option</li>
-                        <li>Supportive: albumin (edema/ascites), paracentesis, clotting factors, antibiotics (encephalopathy)</li>
-                    </ul>
-                </div>
-
-                <div class="success-box">
-                    <strong>IBD Treatment:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>Lifestyle: smoking cessation (Crohn's), diet, exercise</li>
-                        <li>Antibiotics (control flora)</li>
-                        <li>Immunosuppression (methotrexate)</li>
-                        <li>Anti-inflammatories (steroids)</li>
-                        <li>Surgery if needed (fistulas, obstructions, resections)</li>
-                    </ul>
-                </div>
-
-                <h3 style="color: #667eea; margin-top: 30px;">⚠️ Critical Complications to Know</h3>
-
-                <div class="warning-box">
-                    <strong>Peptic Ulcer Complications:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li><strong>Hemorrhage:</strong> Hematemesis (vomit), melena (stool)</li>
-                        <li><strong>Obstruction:</strong> Edema/scarring blocks passage</li>
-                        <li><strong>Perforation:</strong> Through all layers → PERITONITIS</li>
-                    </ul>
-                </div>
-
-                <div class="warning-box">
-                    <strong>Cirrhosis Consequences:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li><strong>Loss of function:</strong> Jaundice, bleeding, edema, encephalopathy, sexual dysfunction</li>
-                        <li><strong>Impaired bile flow:</strong> Obstructive jaundice, malnutrition</li>
-                        <li><strong>Impaired blood flow:</strong> Portal HTN → varices, ascites, splenomegaly</li>
-                    </ul>
-                </div>
-
-                <div class="warning-box">
-                    <strong>Portal Hypertension Consequences:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li><strong>Esophageal varices:</strong> Life-threatening bleeding risk</li>
-                        <li><strong>Ascites:</strong> Massive fluid accumulation</li>
-                        <li><strong>Splenomegaly:</strong> Hemolytic jaundice, ↓ platelets</li>
-                        <li><strong>Malnutrition:</strong> GI congestion</li>
-                    </ul>
-                </div>
-
-                <div class="warning-box">
-                    <strong>Liver Failure Manifestations:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li><strong>Hepatic encephalopathy:</strong> Ammonia buildup → confusion, asterixis, coma</li>
-                        <li><strong>Hepatorenal syndrome:</strong> Kidney failure</li>
-                        <li>Hematologic, endocrine, skin disorders</li>
-                    </ul>
-                </div>
-
-                <div class="warning-box">
-                    <strong>Acute Pancreatitis:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>Premature trypsin activation → autodigestion</li>
-                        <li>Range: mild → life-threatening organ dysfunction</li>
-                        <li>Most common: gallstones or alcohol</li>
-                    </ul>
-                </div>
-
-                <h3 style="color: #667eea; margin-top: 30px;">📊 Important Statistics</h3>
-
-                <div class="info-box">
-                    <ul style="margin-left: 20px;">
-                        <li><strong>Liver weight:</strong> 1.3 kg in adults</li>
-                        <li><strong>Bile production:</strong> 500-600 mL daily</li>
-                        <li><strong>Liver functions:</strong> 200+ functions</li>
-                        <li><strong>Cirrhosis → failure:</strong> After 80-90% damaged</li>
-                        <li><strong>Alcoholic cirrhosis:</strong> 50% of all cirrhosis cases</li>
-                        <li><strong>Hep C chronic rate:</strong> 50-80%</li>
-                        <li><strong>Hep B chronic rate:</strong> 5-10% adults</li>
-                        <li><strong>HCC risk with HCV/cirrhosis:</strong> 20× higher</li>
-                        <li><strong>Celiac disease:</strong> 1% global population</li>
-                        <li><strong>Diverticulosis in elderly:</strong> 80% over age 85</li>
-                        <li><strong>IBD in Canada:</strong> 200,000+ people, highest rates globally</li>
-                        <li><strong>Crohn's twin concordance:</strong> 50%</li>
-                        <li><strong>UC twin concordance:</strong> 16%</li>
-                        <li><strong>Pancreatic cancer 5yr survival:</strong> Only 8%</li>
-                        <li><strong>Hep C DAA cure rate:</strong> >90%</li>
-                    </ul>
-                </div>
-
-                <h3 style="color: #667eea; margin-top: 30px;">🧬 Mechanisms to Understand</h3>
-
-                <div class="detail-section">
-                    <h5>Liver Drug Metabolism (Phase 1 & 2)</h5>
-                    <p><strong>Phase 1:</strong> Chemical modification/inactivation (microsomal enzymes in smooth ER)</p>
-                    <ul>
-                        <li>Alcohol can accelerate drug metabolism → ↓ half-life</li>
-                    </ul>
-                    <p style="margin-top: 10px;"><strong>Phase 2:</strong> Lipid-soluble → water-soluble derivatives</p>
-                    <ul>
-                        <li>Glutathione conjugates toxic products (e.g., Tylenol/acetaminophen)</li>
-                        <li>Glutathione depleted during detox</li>
-                        <li>Chronic alcohol depletes glutathione → Tylenol becomes VERY toxic</li>
-                        <li>Treatment: N-acetylcysteine (NAC) - replenishes glutathione</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>Alcohol Metabolism & Liver Damage</h5>
-                    <ul>
-                        <li><strong>ADH system:</strong> Alcohol → acetaldehyde (TOXIC) + free radicals</li>
-                        <li>Generates excess NADH → liver damage</li>
-                        <li>Alcohol competes for NAD → ↑ lactic acid</li>
-                        <li>↓ NAD → impairs gluconeogenesis</li>
-                        <li><strong>MEOS pathway:</strong> Smooth ER - induces enzymes → ↑ toxicity</li>
-                        <li>Progression: Fatty liver → alcoholic hepatitis → cirrhosis</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>Gastric Mucosal Barrier Protection</h5>
-                    <ul>
-                        <li>Impermeable epithelial cells with tight junctions</li>
-                        <li>Hydrophobic mucus/lipid covering</li>
-                        <li>Bicarbonate layer (alkaline interface)</li>
-                        <li>Mucus protects from pepsin digestion + provides lubrication</li>
-                        <li><strong>Aspirin:</strong> Non-ionized/lipid-soluble → passes through, damages epithelium, ↓ mucus (inhibits prostaglandins)</li>
-                        <li><strong>Prostaglandins:</strong> Inhibit gastrin, stimulate bicarbonate + mucus, ↑ blood flow</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>Pancreatic Enzyme Safety Mechanism</h5>
-                    <ul>
-                        <li><strong>Normal:</strong> Enzymes secreted INACTIVE (zymogens)</li>
-                        <li>Trypsinogen, chymotrypsinogen, etc.</li>
-                        <li>Activated in DUODENUM (not pancreas)</li>
-                        <li><strong>Acute pancreatitis:</strong> Premature activation INSIDE pancreas → AUTODIGESTION</li>
-                    </ul>
-                </div>
-
-                <div class="detail-section">
-                    <h5>Portal Hypertension Mechanism</h5>
-                    <ul>
-                        <li>Cirrhotic liver = obstruction to blood flow</li>
-                        <li>↑ Resistance → ↑ back pressure in portal vein</li>
-                        <li>Blood seeks alternate routes → collateral channels (varices)</li>
-                        <li>↓ Albumin + ↑ pressure → fluid shifts → ascites</li>
-                        <li>Spleen congestion → splenomegaly</li>
-                    </ul>
-                </div>
-
-                <h3 style="color: #667eea; margin-top: 30px;">🎓 Study Tips</h3>
-
-                <div class="key-point">
-                    <strong>How to Use This Guide:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>Start with "All Disorders" tab - click each card for full details</li>
-                        <li>Use "Comparisons" tab to distinguish similar conditions</li>
-                        <li>This "Quick Reference" is your final review before exam</li>
-                        <li>Search function works across ALL disorders</li>
-                        <li>Focus on: etiology, pathophysiology, key features, complications, treatments</li>
-                        <li>Know the DISTINCTIONS (reversible vs irreversible, skip vs continuous, etc.)</li>
-                        <li>Understand MECHANISMS (why does it happen?)</li>
-                        <li>Connect anatomy to pathology (location determines symptoms)</li>
-                    </ul>
-                </div>
-
-                <div class="success-box">
-                    <strong>✅ Before the Exam, Make Sure You Can:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>Explain the pathophysiology of each major disorder</li>
-                        <li>Compare and contrast similar conditions (Crohn's vs UC, Hep A vs B vs C, etc.)</li>
-                        <li>Identify complications and their mechanisms</li>
-                        <li>Understand diagnostic tests and what they measure</li>
-                        <li>Know treatment strategies and their rationale</li>
-                        <li>Connect liver functions to cirrhosis manifestations</li>
-                        <li>Explain drug metabolism and alcohol's effects on the liver</li>
-                        <li>Describe the gastric mucosal barrier and how NSAIDs/aspirin damage it</li>
-                        <li>Understand portal hypertension and its consequences</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab(event, 'all-disorders')">📋 All Disorders</button>
+      <button class="tab-btn" onclick="switchTab(event, 'compare')">⚖️ Comparisons</button>
+      <button class="tab-btn" onclick="switchTab(event, 'quick-ref')">⚡ Quick Reference</button>
     </div>
 
-    <script>
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
+    <div class="content-area">
+
+      <!-- ALL DISORDERS TAB -->
+      <div id="all-disorders" class="tab-content active">
+        <div id="listView">
+          <h2>Complete Disorder Index</h2>
+          <input
+            type="text"
+            class="search-box"
+            id="searchBox"
+            placeholder="🔍 Search any disorder..."
+            onkeyup="filterAll()"
+          />
+
+          <div class="disorder-grid" id="allDisordersGrid">
+
+            <!-- ESOPHAGUS -->
+            <div class="disorder-card searchable" data-id="dysphagia" data-name="dysphagia esophagus swallowing odynophagia aspiration">
+              <h3>Dysphagia</h3>
+              <p>Difficulty swallowing (food/liquid doesn’t move down normally).</p>
+              <span class="location-badge">📍 Esophagus</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="gerd" data-name="gerd reflux heartburn les esophagitis">
+              <h3>GERD</h3>
+              <p>Acid reflux into the esophagus from a weak LES → heartburn.</p>
+              <span class="location-badge">📍 Esophagus/LES</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="varices" data-name="esophageal varices portal hypertension cirrhosis bleeding hematemesis">
+              <h3>Esophageal Varices</h3>
+              <p>Swollen esophageal veins from portal HTN → rupture/bleed risk.</p>
+              <span class="location-badge">📍 Esophagus</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="barrett" data-name="barrett esophagus metaplasia gerd precancer adenocarcinoma">
+              <h3>Barrett Esophagus</h3>
+              <p>Chronic GERD causes cell change → ↑ adenocarcinoma risk.</p>
+              <span class="location-badge">📍 Esophagus</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="esophca" data-name="esophageal cancer squamous adenocarcinoma dysphagia weight loss">
+              <h3>Esophageal Cancer</h3>
+              <p>Often presents late (progressive dysphagia + weight loss).</p>
+              <span class="location-badge">📍 Esophagus</span>
+            </div>
+
+            <!-- STOMACH -->
+            <div class="disorder-card searchable" data-id="gastritis" data-name="gastritis stomach inflammation acute chronic h pylori nsaids alcohol">
+              <h3>Gastritis (Acute/Chronic)</h3>
+              <p>Inflammation of stomach lining (H. pylori, NSAIDs, alcohol).</p>
+              <span class="location-badge">📍 Stomach</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="pud" data-name="peptic ulcer disease pud stomach duodenum h pylori nsaids melena">
+              <h3>Peptic Ulcer Disease</h3>
+              <p>Open sores in stomach/duodenum from acid + weak protection.</p>
+              <span class="location-badge">📍 Stomach/Duodenum</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="hpylori" data-name="h pylori helicobacter urease ulcer gastritis">
+              <h3>H. pylori Infection</h3>
+              <p>Bacteria that weakens mucosal defenses → gastritis/ulcers.</p>
+              <span class="location-badge">📍 Stomach</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="stressulcers" data-name="stress ulcers burns trauma sepsis icu ischemia stomach">
+              <h3>Stress Ulcers</h3>
+              <p>Ulcers after major body stress (burns, trauma, ICU illness).</p>
+              <span class="location-badge">📍 Stomach</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="zes" data-name="zollinger ellison gastrinoma tumor acid hypersecretion ulcers">
+              <h3>Zollinger-Ellison Syndrome</h3>
+              <p>Gastrin tumor → extreme acid → recurrent hard-to-treat ulcers.</p>
+              <span class="location-badge">📍 Pancreas/Duodenum</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="gastricca" data-name="gastric cancer stomach adenocarcinoma h pylori weight loss early satiety">
+              <h3>Gastric Cancer</h3>
+              <p>Often subtle early; later: weight loss, early fullness, anemia.</p>
+              <span class="location-badge">📍 Stomach</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="hiatal" data-name="hiatal hernia sliding paraesophageal gerd diaphragm">
+              <h3>Hiatal Hernia</h3>
+              <p>Part of stomach moves above diaphragm → can worsen reflux.</p>
+              <span class="location-badge">📍 Diaphragm</span>
+            </div>
+
+            <!-- SMALL INTESTINE -->
+            <div class="disorder-card searchable" data-id="crohn" data-name="crohn disease ibd skip lesions transmural fistula stricture">
+              <h3>Crohn's Disease</h3>
+              <p>IBD with “skip” areas; can affect deeper bowel layers.</p>
+              <span class="location-badge">📍 Distal SI/Proximal Colon</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="celiac" data-name="celiac disease gluten autoimmune villi malabsorption diarrhea">
+              <h3>Celiac Disease</h3>
+              <p>Gluten triggers immune damage to villi → malabsorption.</p>
+              <span class="location-badge">📍 Small Intestine</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="malabsorption" data-name="malabsorption steatorrhea diarrhea weight loss vitamin deficiencies">
+              <h3>Intestinal Malabsorption</h3>
+              <p>Can’t absorb nutrients properly → diarrhea, weight loss, deficits.</p>
+              <span class="location-badge">📍 Small Intestine</span>
+            </div>
+
+            <!-- COLON -->
+            <div class="disorder-card searchable" data-id="uc" data-name="ulcerative colitis uc ibd continuous rectum bloody diarrhea">
+              <h3>Ulcerative Colitis</h3>
+              <p>IBD limited to colon/rectum; continuous inflammation; bloody diarrhea.</p>
+              <span class="location-badge">📍 Rectum/Colon</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="ibs" data-name="ibs irritable bowel syndrome functional pain constipation diarrhea bloating">
+              <h3>IBS (Irritable Bowel Syndrome)</h3>
+              <p>Functional bowel problem (real symptoms, no tissue damage).</p>
+              <span class="location-badge">📍 Intestines</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="diverticulitis" data-name="diverticulitis diverticulosis pouches sigmoid llq fever">
+              <h3>Diverticulitis</h3>
+              <p>Inflamed colon pouches → LLQ pain, fever; can perforate.</p>
+              <span class="location-badge">📍 Sigmoid Colon</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="diarrhea" data-name="diarrhea watery inflammatory bloody dysentery osmotic secretory">
+              <h3>Diarrhea</h3>
+              <p>Too much water in stool; watery vs inflammatory/bloody types.</p>
+              <span class="location-badge">📍 Intestines</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="constipation" data-name="constipation fecal impaction slow transit dehydration low fiber">
+              <h3>Constipation</h3>
+              <p>Hard/infrequent stools from slow transit or hard stool mass.</p>
+              <span class="location-badge">📍 Colon</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="crc" data-name="colorectal cancer colon polyps screening anemia blood stool">
+              <h3>Colorectal Cancer</h3>
+              <p>Often silent early; screening finds polyps before cancer develops.</p>
+              <span class="location-badge">📍 Colon/Rectum</span>
+            </div>
+
+            <!-- APPENDIX -->
+            <div class="disorder-card searchable" data-id="appendicitis" data-name="appendicitis mcburney rlq rebound fever perforation">
+              <h3>Appendicitis</h3>
+              <p>Blocked appendix → inflammation; rupture causes peritonitis.</p>
+              <span class="location-badge">📍 Appendix</span>
+            </div>
+
+            <!-- PERITONEUM -->
+            <div class="disorder-card searchable" data-id="peritonitis" data-name="peritonitis perforation rupture guarding rigidity sepsis">
+              <h3>Peritonitis</h3>
+              <p>Inflamed peritoneum after perforation → rigid abdomen, sepsis risk.</p>
+              <span class="location-badge">📍 Peritoneal Cavity</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="ascites" data-name="ascites fluid portal hypertension cirrhosis albumin edema">
+              <h3>Ascites</h3>
+              <p>Fluid buildup in abdomen from portal HTN + low albumin.</p>
+              <span class="location-badge">📍 Peritoneal Cavity</span>
+            </div>
+
+            <!-- LIVER -->
+            <div class="disorder-card searchable" data-id="jaundice" data-name="jaundice bilirubin prehepatic intrahepatic posthepatic obstructive">
+              <h3>Jaundice (3 Types)</h3>
+              <p>Yellowing from high bilirubin: before liver / in liver / after liver.</p>
+              <span class="location-badge">📍 Liver/Blood</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="hepa" data-name="hepatitis a hav fecal oral acute jaundice">
+              <h3>Hepatitis A</h3>
+              <p>Fecal-oral infection; acute only (does not become chronic).</p>
+              <span class="location-badge">📍 Liver</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="hepb" data-name="hepatitis b hbv blood sexual vaccine chronic carrier">
+              <h3>Hepatitis B</h3>
+              <p>Blood/sexual spread; some chronic; vaccine prevents infection.</p>
+              <span class="location-badge">📍 Liver</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="hepc" data-name="hepatitis c hcv blood chronic cirrhosis hcc daa cure">
+              <h3>Hepatitis C</h3>
+              <p>Often becomes chronic; can progress to cirrhosis/HCC; DAAs cure most.</p>
+              <span class="location-badge">📍 Liver</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="alcliver" data-name="alcohol liver disease fatty liver alcoholic hepatitis cirrhosis">
+              <h3>Alcohol-Induced Liver Disease</h3>
+              <p>Fat buildup → inflammation → scarring (cirrhosis) over time.</p>
+              <span class="location-badge">📍 Liver</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="druginduced" data-name="drug induced liver acetaminophen tylenol toxicity nac glutathione">
+              <h3>Drug-Induced Liver Disease</h3>
+              <p>Acetaminophen overdose → toxic metabolite; NAC is antidote early.</p>
+              <span class="location-badge">📍 Liver</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="cirrhosis" data-name="cirrhosis fibrosis end stage liver portal hypertension ascites varices">
+              <h3>Cirrhosis</h3>
+              <p>Permanent scarring replaces working liver tissue → failure risk.</p>
+              <span class="location-badge">📍 Liver</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="portalhtn" data-name="portal hypertension varices ascites splenomegaly collateral">
+              <h3>Portal Hypertension</h3>
+              <p>High pressure in portal vein from liver scarring → varices/ascites.</p>
+              <span class="location-badge">📍 Portal Vein</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="liverfailure" data-name="liver failure encephalopathy ammonia bleeding jaundice hepatorenal">
+              <h3>Liver Failure</h3>
+              <p>Liver can’t detox/make proteins → confusion, bleeding, jaundice.</p>
+              <span class="location-badge">📍 Liver</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="hcc" data-name="hepatocellular carcinoma hcc liver cancer cirrhosis hbv hcv">
+              <h3>Hepatocellular Carcinoma</h3>
+              <p>Primary liver cancer, usually after chronic hepatitis/cirrhosis.</p>
+              <span class="location-badge">📍 Liver</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="cholangioca" data-name="cholangiocarcinoma bile duct cancer cholestasis jaundice">
+              <h3>Cholangiocarcinoma</h3>
+              <p>Bile-duct cancer → obstructive jaundice, itching, pale stools.</p>
+              <span class="location-badge">📍 Bile Ducts</span>
+            </div>
+
+            <!-- GALLBLADDER -->
+            <div class="disorder-card searchable" data-id="cholelithiasis" data-name="cholelithiasis gallstones biliary colic cholesterol estrogen obesity">
+              <h3>Cholelithiasis (Gallstones)</h3>
+              <p>Stones form in gallbladder → RUQ pain after fatty meals.</p>
+              <span class="location-badge">📍 Gallbladder</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="cholecystitis" data-name="cholecystitis gallbladder inflammation murphy fever">
+              <h3>Cholecystitis</h3>
+              <p>Gallbladder inflammation (often from blocked cystic duct).</p>
+              <span class="location-badge">📍 Gallbladder</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="cholangitis" data-name="cholangitis bile duct infection obstruction charcot triad">
+              <h3>Cholangitis</h3>
+              <p>Infected, obstructed bile duct (can be emergency).</p>
+              <span class="location-badge">📍 Common Bile Duct</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="cholestasis" data-name="cholestasis decreased bile flow itching bilirubin alk phos">
+              <h3>Cholestasis</h3>
+              <p>Bile flow slows/stops → itching, high bilirubin, pale stools.</p>
+              <span class="location-badge">📍 Liver</span>
+            </div>
+
+            <!-- PANCREAS -->
+            <div class="disorder-card searchable" data-id="acute-pancreatitis" data-name="acute pancreatitis gallstones alcohol epigastric pain lipase">
+              <h3>Acute Pancreatitis</h3>
+              <p>Sudden pancreatic inflammation; enzymes activate too early.</p>
+              <span class="location-badge">📍 Pancreas</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="chronic-pancreatitis" data-name="chronic pancreatitis fibrosis malabsorption diabetes pain alcohol">
+              <h3>Chronic Pancreatitis</h3>
+              <p>Long-term damage/scarring → malabsorption + diabetes risk.</p>
+              <span class="location-badge">📍 Pancreas</span>
+            </div>
+
+            <div class="disorder-card searchable" data-id="pancreatic-cancer" data-name="pancreatic cancer adenocarcinoma painless jaundice weight loss">
+              <h3>Pancreatic Cancer</h3>
+              <p>Often late diagnosis; can cause painless jaundice + weight loss.</p>
+              <span class="location-badge">📍 Pancreas</span>
+            </div>
+
+            <!-- HERNIAS -->
+            <div class="disorder-card searchable" data-id="inguinal-hernia" data-name="inguinal hernia groin bulge strangulation incarceration">
+              <h3>Inguinal Hernia</h3>
+              <p>Bowel pushes through groin weakness → bulge, pain; surgery often needed.</p>
+              <span class="location-badge">📍 Groin/Inguinal</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DETAIL VIEW (hidden until a card is clicked) -->
+        <div id="detailView" style="display:none;" class="detail-view"></div>
+      </div>
+
+      <!-- COMPARISONS TAB (unchanged from your file; kept as-is) -->
+      <div id="compare" class="tab-content">
+        <h2>Side-by-Side Comparisons</h2>
+
+        <h3 style="color: #667eea; margin-top: 30px;">Crohn's vs Ulcerative Colitis</h3>
+        <table class="comparison-table">
+          <tr><th>Feature</th><th>Crohn's Disease</th><th>Ulcerative Colitis</th></tr>
+          <tr><td><strong>Location</strong></td><td>ANY part of GI tract (mouth to anus)<br>Most common: distal SI & proximal colon</td><td>Rectum and colon ONLY</td></tr>
+          <tr><td><strong>Pattern</strong></td><td>SKIP lesions (patchy)</td><td>CONTINUOUS lesions</td></tr>
+          <tr><td><strong>Layer</strong></td><td>Primarily SUBMUCOSA</td><td>MUCOSAL layer (crypts of Lieberkühn)</td></tr>
+          <tr><td><strong>Appearance</strong></td><td>"Cobblestone" with fissures/crevices</td><td>Mucosal ulceration with pseudopolyps</td></tr>
+          <tr><td><strong>Bleeding</strong></td><td>LESS bloody (submucosal)</td><td>MORE bloody (mucosal, rectal location)</td></tr>
+          <tr><td><strong>Wall</strong></td><td>Thickened, inflexible</td><td>Mucosal changes mainly</td></tr>
+          <tr><td><strong>Smoking</strong></td><td>More common IN smokers</td><td>More common in NON-smokers/quit</td></tr>
+          <tr><td><strong>Twin concordance</strong></td><td>50%</td><td>16%</td></tr>
+          <tr><td><strong>Cancer risk</strong></td><td>Increased</td><td>SIGNIFICANTLY increased</td></tr>
+          <tr><td><strong>Nutritional issues</strong></td><td>Common deficiencies</td><td>Less common</td></tr>
+        </table>
+
+        <h3 style="color: #667eea; margin-top: 40px;">Hepatitis A vs B vs C</h3>
+        <table class="comparison-table">
+          <tr><th>Feature</th><th>Hepatitis A</th><th>Hepatitis B</th><th>Hepatitis C</th></tr>
+          <tr><td><strong>Transmission</strong></td><td>Fecal-oral (water, shellfish)</td><td>Blood, serum, oral, sexual</td><td>Blood, sexual</td></tr>
+          <tr><td><strong>Incubation</strong></td><td>Avg 28 days</td><td>Varies</td><td>2-26 weeks</td></tr>
+          <tr><td><strong>Chronic</strong></td><td>NO - never chronic</td><td>5-10% adults</td><td>50-80% cases</td></tr>
+          <tr><td><strong>Carrier state</strong></td><td>NO</td><td>YES</td><td>YES</td></tr>
+          <tr><td><strong>Course</strong></td><td>Benign, self-limiting, ~2 months</td><td>Acute & chronic → cirrhosis</td><td>Most common cause chronic hepatitis, cirrhosis, HCC</td></tr>
+          <tr><td><strong>Mechanism</strong></td><td>Direct + immune</td><td>AGGRESSIVE immune response</td><td>Intracellular replication → lysis (CPE)</td></tr>
+          <tr><td><strong>Symptoms</strong></td><td>Kids &lt;6 asymptomatic, adults 70% jaundice</td><td>Variable</td><td>Often asymptomatic initially</td></tr>
+          <tr><td><strong>Treatment</strong></td><td>Supportive</td><td>Antivirals</td><td>DAA tablets (&gt;90% cure)</td></tr>
+          <tr><td><strong>Prevention</strong></td><td>Hygiene</td><td>Vaccine (Canada 1990s - nearly eliminated)</td><td>No vaccine</td></tr>
+          <tr><td><strong>HCC risk</strong></td><td>No</td><td>Yes if chronic</td><td>20× higher with cirrhosis</td></tr>
+        </table>
+
+        <h3 style="color: #667eea; margin-top: 40px;">Acute vs Chronic Pancreatitis</h3>
+        <table class="comparison-table">
+          <tr><th>Feature</th><th>Acute Pancreatitis</th><th>Chronic Pancreatitis</th></tr>
+          <tr><td><strong>Reversibility</strong></td><td><strong>REVERSIBLE</strong></td><td><strong>IRREVERSIBLE</strong></td></tr>
+          <tr><td><strong>Pathology</strong></td><td>Inflammation, premature trypsin activation, autodigestion</td><td>Progressive destruction, fibrosis</td></tr>
+          <tr><td><strong>Exocrine</strong></td><td>Inflammation</td><td>Progressive destruction</td></tr>
+          <tr><td><strong>Endocrine</strong></td><td>Usually preserved</td><td>Late-stage destruction</td></tr>
+          <tr><td><strong>Severity</strong></td><td>Mild → life-threatening</td><td>Progressive deterioration</td></tr>
+          <tr><td><strong>Prognosis</strong></td><td>Can fully recover if cause removed</td><td>Permanent damage, ongoing dysfunction</td></tr>
+        </table>
+
+        <h3 style="color: #667eea; margin-top: 40px;">Three Categories of Jaundice</h3>
+        <table class="comparison-table">
+          <tr><th>Feature</th><th>Prehepatic</th><th>Intrahepatic</th><th>Posthepatic (Obstructive)</th></tr>
+          <tr><td><strong>Problem</strong></td><td>BEFORE liver</td><td>IN liver</td><td>AFTER liver</td></tr>
+          <tr><td><strong>Main cause</strong></td><td>Excessive RBC hemolysis</td><td>Liver dysfunction</td><td>Bile duct obstruction (stones, tumors)</td></tr>
+          <tr><td><strong>Bilirubin type</strong></td><td>↑ Unconjugated</td><td>Both elevated</td><td>↑ Conjugated</td></tr>
+          <tr><td><strong>Urine</strong></td><td>Normal (NO bilirubin)</td><td>Dark (bilirubin present)</td><td>Dark (bilirubin present)</td></tr>
+          <tr><td><strong>Stool</strong></td><td>Normal color</td><td>May be light</td><td>CLAY-colored (no bilirubin)</td></tr>
+          <tr><td><strong>Severity</strong></td><td>Mild jaundice</td><td>Variable</td><td>Can be severe</td></tr>
+          <tr><td><strong>Pruritus</strong></td><td>Rare</td><td>Possible</td><td>COMMON (bile acids in blood)</td></tr>
+          <tr><td><strong>Alk phos</strong></td><td>Normal</td><td>Elevated</td><td>Elevated</td></tr>
+        </table>
+
+        <h3 style="color: #667eea; margin-top: 40px;">IBS vs IBD</h3>
+        <table class="comparison-table">
+          <tr><th>Feature</th><th>IBS (Irritable Bowel Syndrome)</th><th>IBD (Inflammatory Bowel Disease)</th></tr>
+          <tr><td><strong>Type</strong></td><td>FUNCTIONAL disorder</td><td>INFLAMMATORY disease</td></tr>
+          <tr><td><strong>Inflammation</strong></td><td>NO inflammation</td><td>YES - chronic inflammation</td></tr>
+          <tr><td><strong>Structural damage</strong></td><td>NO visible damage</td><td>YES - tissue destruction</td></tr>
+          <tr><td><strong>Diagnosis</strong></td><td>Diagnosis of EXCLUSION</td><td>Confirmed by endoscopy/biopsy</td></tr>
+          <tr><td><strong>Causes</strong></td><td>Serotonin disruption, FODMAPs, bacterial overgrowth</td><td>Autoimmune (Crohn's, UC)</td></tr>
+          <tr><td><strong>Symptoms</strong></td><td>Abdominal pain, bloating, diarrhea/constipation</td><td>Diarrhea (often bloody), weight loss, fecal urgency</td></tr>
+          <tr><td><strong>Cancer risk</strong></td><td>NO increased risk</td><td>YES - increased colorectal cancer risk</td></tr>
+          <tr><td><strong>Treatment</strong></td><td>Diet (FODMAPs), stress management, possible antibiotics</td><td>Immunosuppression, steroids, anti-inflammatories, surgery</td></tr>
+        </table>
+
+        <h3 style="color: #667eea; margin-top: 40px;">Diarrhea Types</h3>
+        <table class="comparison-table">
+          <tr><th>Feature</th><th>Large-Volume (Non-inflammatory)</th><th>Small-Volume (Inflammatory)</th></tr>
+          <tr><td><strong>Volume</strong></td><td>LARGE, watery</td><td>SMALL volume</td></tr>
+          <tr><td><strong>Blood</strong></td><td>NON-bloody</td><td>BLOODY (dysentery)</td></tr>
+          <tr><td><strong>Fever</strong></td><td>Usually absent</td><td>Present</td></tr>
+          <tr><td><strong>Mechanism</strong></td><td>Osmotic or secretory imbalance</td><td>Inflammation targeting colon</td></tr>
+          <tr><td><strong>Causes</strong></td><td>Toxin-producing bacteria, lactose intolerance, bile acids</td><td>IBD (Crohn's, UC), infectious colitis</td></tr>
+          <tr><td><strong>Associated Sx</strong></td><td>Bloating, cramps, nausea, vomiting</td><td>Fever, urgency, tenesmus</td></tr>
+        </table>
+      </div>
+
+      <!-- QUICK REFERENCE TAB (kept as you wrote; unchanged) -->
+      <div id="quick-ref" class="tab-content">
+        <!-- your quick-ref content exactly as you provided -->
+        <!-- (I’m leaving it intact so you don’t lose anything) -->
+        <h2>⚡ Quick Reference Guide</h2>
+
+        <div class="key-point">
+          <strong>🎯 EXAM TIP: Know these KEY DISTINCTIONS</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li><strong>Reversible vs Irreversible:</strong> Acute pancreatitis (reversible) vs Chronic pancreatitis (irreversible)</li>
+            <li><strong>Skip vs Continuous:</strong> Crohn's (skip) vs UC (continuous)</li>
+            <li><strong>Chronic hepatitis:</strong> Hep A NEVER, Hep B 5-10%, Hep C 50-80%</li>
+            <li><strong>Most common ulcer causes:</strong> H. pylori 50%, NSAIDs 50%</li>
+            <li><strong>Cirrhosis = 80-90% damaged</strong> → liver failure</li>
+          </ul>
+        </div>
+
+        <h3 style="color: #667eea; margin-top: 30px;">📍 Disorders by Location</h3>
+
+        <div class="detail-section">
+          <h5>ESOPHAGUS</h5>
+          <ul><li>Dysphagia, GERD, Esophageal varices, Barrett esophagus, Esophageal cancer</li></ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>STOMACH</h5>
+          <ul><li>Gastritis (acute/chronic), Peptic ulcers, H. pylori, Stress ulcers, Gastric cancer</li></ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>DUODENUM</h5>
+          <ul><li>Peptic ulcers (most common site), Zollinger-Ellison</li></ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>SMALL INTESTINE</h5>
+          <ul><li>Crohn's disease (distal), Celiac disease, Malabsorption</li></ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>COLON</h5>
+          <ul><li>Crohn's (proximal), Ulcerative colitis, IBS, Diverticulitis (sigmoid), Colorectal cancer</li></ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>LIVER</h5>
+          <ul><li>Jaundice (3 types), Hepatitis (A/B/C), Alcohol liver disease, Drug-induced, Cirrhosis, Portal HTN, Liver failure, HCC, Cholangiocarcinoma</li></ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>GALLBLADDER</h5>
+          <ul><li>Cholelithiasis (stones), Cholecystitis, Cholangitis</li></ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>PANCREAS</h5>
+          <ul><li>Acute pancreatitis (reversible), Chronic pancreatitis (irreversible), Pancreatic cancer</li></ul>
+        </div>
+
+        <h3 style="color: #667eea; margin-top: 30px;">🔬 Diagnostic Tests Quick Guide</h3>
+
+        <div class="info-box">
+          <strong>Liver Function Tests:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li><strong>ALT/AST:</strong> ↑ = liver cell injury (transamination)</li>
+            <li><strong>Bilirubin, GGT, Alk Phos:</strong> Hepatic excretory function of bile</li>
+            <li><strong>Imaging:</strong> US, CT, MRI (structure)</li>
+            <li><strong>Angiography:</strong> Visualize hepatic/portal circulation</li>
+            <li><strong>Biopsy:</strong> Microscopic examination</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <strong>H. pylori Detection:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li><sup>14</sup>C urea breath test</li>
+            <li>Stool antigen test</li>
+            <li>Endoscopic biopsy for urease</li>
+            <li>Blood tests for antibodies</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <strong>IBD Diagnosis:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li>Colonoscopy + biopsies</li>
+            <li>Sigmoidoscopy</li>
+            <li>Exclude GI infections first</li>
+          </ul>
+        </div>
+
+        <h3 style="color: #667eea; margin-top: 30px;">💊 Treatment Quick Reference</h3>
+
+        <div class="success-box">
+          <strong>GERD Treatment:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li>Lifestyle: avoid large meals, alcohol, smoking; elevate head; weight loss</li>
+            <li>Meds: Antacids (symptom relief), PPIs (acid suppression)</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <strong>Peptic Ulcer Treatment:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li>Eradicate H. pylori (antibiotics + PPI)</li>
+            <li>Stop NSAIDs</li>
+            <li>PPIs, antacids, mucosal protectants</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <strong>Hepatitis C Treatment:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li>Direct-acting antivirals (DAA) - &gt;90% cure rate!</li>
+            <li>Block virus replication</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <strong>Cirrhosis Treatment:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li>Cannot cure - transplant best option</li>
+            <li>Supportive: albumin (edema/ascites), paracentesis, clotting factors, antibiotics (encephalopathy)</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <strong>IBD Treatment:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li>Lifestyle: smoking cessation (Crohn's), diet, exercise</li>
+            <li>Antibiotics (control flora)</li>
+            <li>Immunosuppression (methotrexate)</li>
+            <li>Anti-inflammatories (steroids)</li>
+            <li>Surgery if needed (fistulas, obstructions, resections)</li>
+          </ul>
+        </div>
+
+        <h3 style="color: #667eea; margin-top: 30px;">⚠️ Critical Complications to Know</h3>
+
+        <div class="warning-box">
+          <strong>Peptic Ulcer Complications:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li><strong>Hemorrhage:</strong> Hematemesis (vomit), melena (stool)</li>
+            <li><strong>Obstruction:</strong> Edema/scarring blocks passage</li>
+            <li><strong>Perforation:</strong> Through all layers → PERITONITIS</li>
+          </ul>
+        </div>
+
+        <div class="warning-box">
+          <strong>Cirrhosis Consequences:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li><strong>Loss of function:</strong> Jaundice, bleeding, edema, encephalopathy, sexual dysfunction</li>
+            <li><strong>Impaired bile flow:</strong> Obstructive jaundice, malnutrition</li>
+            <li><strong>Impaired blood flow:</strong> Portal HTN → varices, ascites, splenomegaly</li>
+          </ul>
+        </div>
+
+        <div class="warning-box">
+          <strong>Portal Hypertension Consequences:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li><strong>Esophageal varices:</strong> Life-threatening bleeding risk</li>
+            <li><strong>Ascites:</strong> Massive fluid accumulation</li>
+            <li><strong>Splenomegaly:</strong> Hemolytic jaundice, ↓ platelets</li>
+            <li><strong>Malnutrition:</strong> GI congestion</li>
+          </ul>
+        </div>
+
+        <div class="warning-box">
+          <strong>Liver Failure Manifestations:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li><strong>Hepatic encephalopathy:</strong> Ammonia buildup → confusion, asterixis, coma</li>
+            <li><strong>Hepatorenal syndrome:</strong> Kidney failure</li>
+            <li>Hematologic, endocrine, skin disorders</li>
+          </ul>
+        </div>
+
+        <div class="warning-box">
+          <strong>Acute Pancreatitis:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li>Premature trypsin activation → autodigestion</li>
+            <li>Range: mild → life-threatening organ dysfunction</li>
+            <li>Most common: gallstones or alcohol</li>
+          </ul>
+        </div>
+
+        <h3 style="color: #667eea; margin-top: 30px;">📊 Important Statistics</h3>
+
+        <div class="info-box">
+          <ul style="margin-left: 20px;">
+            <li><strong>Liver weight:</strong> 1.3 kg in adults</li>
+            <li><strong>Bile production:</strong> 500-600 mL daily</li>
+            <li><strong>Liver functions:</strong> 200+ functions</li>
+            <li><strong>Cirrhosis → failure:</strong> After 80-90% damaged</li>
+            <li><strong>Alcoholic cirrhosis:</strong> 50% of all cirrhosis cases</li>
+            <li><strong>Hep C chronic rate:</strong> 50-80%</li>
+            <li><strong>Hep B chronic rate:</strong> 5-10% adults</li>
+            <li><strong>HCC risk with HCV/cirrhosis:</strong> 20× higher</li>
+            <li><strong>Celiac disease:</strong> 1% global population</li>
+            <li><strong>Diverticulosis in elderly:</strong> 80% over age 85</li>
+            <li><strong>IBD in Canada:</strong> 200,000+ people, highest rates globally</li>
+            <li><strong>Crohn's twin concordance:</strong> 50%</li>
+            <li><strong>UC twin concordance:</strong> 16%</li>
+            <li><strong>Pancreatic cancer 5yr survival:</strong> Only 8%</li>
+            <li><strong>Hep C DAA cure rate:</strong> &gt;90%</li>
+          </ul>
+        </div>
+
+        <h3 style="color: #667eea; margin-top: 30px;">🧬 Mechanisms to Understand</h3>
+
+        <div class="detail-section">
+          <h5>Liver Drug Metabolism (Phase 1 & 2)</h5>
+          <p><strong>Phase 1:</strong> The liver chemically changes a drug (often makes it less active). This mainly happens in the smooth ER.</p>
+          <ul><li>Alcohol can change how fast drugs are broken down → some drugs wear off faster or become more toxic.</li></ul>
+          <p style="margin-top: 10px;"><strong>Phase 2:</strong> The liver “packages” the drug/toxins to make them water-soluble so you can pee/poop them out.</p>
+          <ul>
+            <li><strong>Glutathione</strong> helps neutralize toxins (important for acetaminophen).</li>
+            <li>Chronic alcohol can lower glutathione → acetaminophen becomes more dangerous.</li>
+            <li><strong>N-acetylcysteine (NAC)</strong> helps rebuild glutathione (antidote early).</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>Alcohol Metabolism & Liver Damage</h5>
+          <ul>
+            <li>Alcohol → <strong>acetaldehyde</strong> (toxic) + free radicals → inflammation/scarring over time.</li>
+            <li>Progression: <strong>fatty liver → alcoholic hepatitis → cirrhosis</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>Gastric Mucosal Barrier Protection</h5>
+          <ul>
+            <li>The stomach protects itself using mucus + bicarbonate + good blood flow.</li>
+            <li><strong>NSAIDs/aspirin</strong> reduce prostaglandins → less mucus/bicarb → higher ulcer risk.</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>Pancreatic Enzyme Safety Mechanism</h5>
+          <ul>
+            <li>Pancreatic enzymes are stored “off” (inactive) and turn “on” in the duodenum.</li>
+            <li>In acute pancreatitis, they turn on too early inside the pancreas → self-digestion.</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h5>Portal Hypertension Mechanism</h5>
+          <ul>
+            <li>Scarred liver blocks blood flow → pressure backs up in portal vein.</li>
+            <li>Blood finds detours → varices; fluid shifts into belly → ascites.</li>
+          </ul>
+        </div>
+
+        <h3 style="color: #667eea; margin-top: 30px;">🎓 Study Tips</h3>
+
+        <div class="key-point">
+          <strong>How to Use This Guide:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li>Start with "All Disorders" tab - click each card for full details</li>
+            <li>Use "Comparisons" tab to distinguish similar conditions</li>
+            <li>This "Quick Reference" is your final review before exam</li>
+            <li>Search function works across ALL disorders</li>
+            <li>Focus on: causes, what’s happening in the body, key signs, complications, treatments</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <strong>✅ Before the Exam, Make Sure You Can:</strong>
+          <ul style="margin-top: 10px; margin-left: 20px;">
+            <li>Explain the pathophysiology of each major disorder</li>
+            <li>Compare Crohn's vs UC; Hep A vs B vs C</li>
+            <li>Identify complications and what they lead to (bleed, perforation, obstruction, cancer risk)</li>
+            <li>Match tests to diseases (e.g., colonoscopy for IBD, breath test for H. pylori)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // 1) Make tab switching reliable: pass event into function
+    function switchTab(evt, tabName) {
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+      if (evt && evt.target) evt.target.classList.add('active');
+    }
+
+    // 2) Search filter for cards
+    function filterAll() {
+      const searchText = document.getElementById('searchBox').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.searchable');
+
+      cards.forEach(card => {
+        const searchData = (card.getAttribute('data-name') || '').toLowerCase();
+        const cardText = (card.textContent || '').toLowerCase();
+        const match = (searchData.includes(searchText) || cardText.includes(searchText));
+        card.style.display = match ? 'block' : 'none';
+      });
+    }
+
+    // 3) Full-detail info in plain terms (this is the "missing" part)
+    //    Add/edit any bullets here—this is the master content source for detail pages.
+    const disorderDetails = {
+      dysphagia: {
+        title: "Dysphagia",
+        location: "Esophagus / swallowing pathway",
+        plain: "Dysphagia means swallowing is not working smoothly. Food or liquids may feel like they get stuck, go down slowly, or go the wrong way (aspiration).",
+        sections: {
+          "What it is": [
+            "Trouble moving food/liquid from mouth → stomach.",
+            "Can be oropharyngeal (start of swallow) or esophageal (down the chest)."
+          ],
+          "Common causes": [
+            "Neurologic problems (stroke, Parkinson’s, MS).",
+            "Structural narrowing (tumor, strictures from GERD).",
+            "Motility problems (muscle/nerve coordination issues)."
+          ],
+          "Key features": [
+            "Coughing/choking during meals, wet/gurgly voice.",
+            "Food sticking in throat/chest.",
+            "Aspiration risk → pneumonia."
+          ],
+          "Complications": [
+            "Aspiration pneumonia.",
+            "Malnutrition and dehydration."
+          ],
+          "Diagnosis": [
+            "Swallow study (videofluoroscopy) or bedside swallow screen.",
+            "Endoscopy/barium swallow if esophageal cause suspected."
+          ],
+          "Treatment (basic)": [
+            "Treat the cause (e.g., dilation for stricture).",
+            "Texture modifications, swallow strategies, speech-language pathology.",
+            "If severe: feeding tube temporarily or long-term."
+          ]
+        }
+      },
+
+      gerd: {
+        title: "GERD",
+        location: "Esophagus / lower esophageal sphincter (LES)",
+        plain: "GERD is when stomach acid flows backward into the esophagus because the LES (the ‘valve’) is weak or relaxes when it shouldn’t.",
+        sections: {
+          "What it is": [
+            "Chronic acid reflux causing irritation (esophagitis)."
+          ],
+          "Why it happens": [
+            "Weak LES, hiatal hernia, obesity/pregnancy, large meals, certain foods.",
+            "Smoking/alcohol can worsen LES function."
+          ],
+          "Key features": [
+            "Heartburn, regurgitation (sour taste), chest discomfort.",
+            "Worse after meals or lying down.",
+            "Chronic cough/hoarseness can happen."
+          ],
+          "Complications": [
+            "Esophagitis (inflammation), strictures (narrowing).",
+            "Barrett esophagus (precancerous change)."
+          ],
+          "Diagnosis": [
+            "Often clinical based on symptoms + response to treatment.",
+            "Endoscopy if alarm symptoms (weight loss, bleeding, trouble swallowing)."
+          ],
+          "Treatment (basic)": [
+            "Lifestyle: smaller meals, avoid triggers, no late meals, elevate head of bed, weight loss.",
+            "Meds: antacids for quick relief; PPIs/H2 blockers for acid suppression.",
+            "Surgery (fundoplication) if severe/refractory."
+          ]
+        }
+      },
+
+      varices: {
+        title: "Esophageal Varices",
+        location: "Esophagus (veins) from portal hypertension",
+        plain: "Varices are enlarged veins in the esophagus caused by high pressure in the portal vein system (usually from cirrhosis). They can rupture and bleed heavily.",
+        sections: {
+          "What it is": [
+            "Dilated esophageal veins due to portal hypertension."
+          ],
+          "Why it happens": [
+            "Cirrhosis scars the liver → blood can’t flow through easily → pressure backs up.",
+            "Blood reroutes through smaller veins → varices form."
+          ],
+          "Key features": [
+            "Often no symptoms until bleeding happens.",
+            "Bleeding signs: vomiting blood (hematemesis), black tarry stools (melena), shock signs."
+          ],
+          "Complications": [
+            "Massive GI hemorrhage (life-threatening)."
+          ],
+          "Diagnosis": [
+            "Endoscopy (also used to treat)."
+          ],
+          "Treatment (basic)": [
+            "Prevention: non-selective beta blockers; endoscopic banding in some cases.",
+            "Acute bleed: stabilize, endoscopic band ligation, vasoactive meds, antibiotics (often used), possible TIPS."
+          ]
+        }
+      },
+
+      barrett: {
+        title: "Barrett Esophagus",
+        location: "Lower esophagus",
+        plain: "Barrett’s happens after long-term GERD. The esophagus changes its lining to protect itself, but that change raises cancer risk.",
+        sections: {
+          "What it is": [
+            "Cell change (metaplasia): squamous lining → columnar-type lining."
+          ],
+          "Main risk factor": [
+            "Long-standing GERD."
+          ],
+          "Key features": [
+            "Often same symptoms as GERD (or none)."
+          ],
+          "Why it matters": [
+            "Increases risk of esophageal adenocarcinoma."
+          ],
+          "Diagnosis": [
+            "Endoscopy with biopsy."
+          ],
+          "Treatment (basic)": [
+            "Strong GERD control (PPIs + lifestyle).",
+            "Surveillance endoscopy; ablation if dysplasia."
+          ]
+        }
+      },
+
+      esophca: {
+        title: "Esophageal Cancer",
+        location: "Esophagus",
+        plain: "Esophageal cancer often shows up as progressive swallowing difficulty (first solids, then liquids) plus weight loss.",
+        sections: {
+          "Main types": [
+            "Squamous cell (upper/mid): linked to tobacco + alcohol.",
+            "Adenocarcinoma (lower): linked to Barrett/GERD."
+          ],
+          "Key features": [
+            "Progressive dysphagia, weight loss, chest pain/pressure, anemia.",
+            "Hoarseness/cough if advanced."
+          ],
+          "Diagnosis": [
+            "Endoscopy + biopsy; imaging for staging."
+          ],
+          "Treatment (basic)": [
+            "Surgery, chemo, radiation depending on stage.",
+            "Nutrition support is often needed."
+          ],
+          "Red flags": [
+            "New dysphagia, unexplained weight loss, GI bleeding → needs evaluation."
+          ]
+        }
+      },
+
+      gastritis: {
+        title: "Gastritis",
+        location: "Stomach lining",
+        plain: "Gastritis is inflammation of the stomach lining. It can be short-term (acute) or long-term (chronic).",
+        sections: {
+          "Common causes": [
+            "H. pylori infection.",
+            "NSAIDs/aspirin, alcohol, severe stress/illness, bile reflux."
+          ],
+          "Key features": [
+            "Epigastric pain/burning, nausea, vomiting, bloating.",
+            "Can bleed → black stools or anemia."
+          ],
+          "Complications": [
+            "Ulcers, bleeding, chronic inflammation → atrophy/metaplasia in some cases."
+          ],
+          "Diagnosis": [
+            "History + H. pylori testing; endoscopy if severe or bleeding."
+          ],
+          "Treatment (basic)": [
+            "Stop irritants (NSAIDs/alcohol).",
+            "PPIs/H2 blockers.",
+            "Treat H. pylori if present."
+          ]
+        }
+      },
+
+      pud: {
+        title: "Peptic Ulcer Disease",
+        location: "Stomach or duodenum",
+        plain: "Peptic ulcers are open sores caused when acid/pepsin overpower the stomach/duodenum’s protective barrier.",
+        sections: {
+          "Top causes": [
+            "H. pylori infection.",
+            "NSAIDs/aspirin (reduce prostaglandins → less mucus/bicarb)."
+          ],
+          "Key features": [
+            "Gnawing/burning epigastric pain, sometimes related to meals.",
+            "Nausea; possible weight loss or early satiety."
+          ],
+          "Major complications": [
+            "Bleeding (hematemesis, melena, anemia).",
+            "Perforation → sudden severe pain + peritonitis.",
+            "Obstruction from swelling/scar tissue."
+          ],
+          "Diagnosis": [
+            "Endoscopy; test for H. pylori."
+          ],
+          "Treatment (basic)": [
+            "Eradicate H. pylori (combo antibiotics + PPI).",
+            "Stop NSAIDs if possible.",
+            "PPIs to heal the ulcer; treat complications urgently."
+          ]
+        }
+      },
+
+      hpylori: {
+        title: "H. pylori Infection",
+        location: "Stomach",
+        plain: "H. pylori is a bacteria that lives in the stomach and damages the protective lining, leading to gastritis and ulcers.",
+        sections: {
+          "How it survives": [
+            "Makes urease → creates a safer (less acidic) micro-environment."
+          ],
+          "Key features": [
+            "May cause no symptoms, or dyspepsia/ulcers."
+          ],
+          "Tests": [
+            "Urea breath test, stool antigen, biopsy urease testing."
+          ],
+          "Treatment (basic)": [
+            "Combination antibiotics + PPI (and sometimes bismuth).",
+            "Test-of-cure after treatment (often breath or stool test)."
+          ]
+        }
+      },
+
+      stressulcers: {
+        title: "Stress Ulcers",
+        location: "Stomach",
+        plain: "Stress ulcers can form during severe illness (ICU, burns, sepsis) because blood flow to the stomach lining drops and the barrier breaks down.",
+        sections: {
+          "Common triggers": [
+            "Severe burns (Curling ulcers), head injury, sepsis, shock, major trauma."
+          ],
+          "Why they happen": [
+            "Low perfusion/ischemia → weak mucosal barrier."
+          ],
+          "Key features": [
+            "May be silent until bleeding occurs."
+          ],
+          "Prevention/treatment (basic)": [
+            "Acid suppression (PPI/H2) in high-risk ICU patients.",
+            "Treat underlying shock/illness."
+          ]
+        }
+      },
+
+      zes: {
+        title: "Zollinger–Ellison Syndrome",
+        location: "Pancreas/duodenum (gastrinoma)",
+        plain: "A tumor makes too much gastrin → the stomach produces way too much acid → multiple recurring ulcers.",
+        sections: {
+          "Key features": [
+            "Refractory ulcers, diarrhea, severe GERD symptoms."
+          ],
+          "Diagnosis": [
+            "High gastrin levels; imaging to find the tumor."
+          ],
+          "Treatment (basic)": [
+            "High-dose PPIs to control acid.",
+            "Treat/remove tumor if possible."
+          ]
+        }
+      },
+
+      gastricca: {
+        title: "Gastric Cancer",
+        location: "Stomach",
+        plain: "Stomach cancer can be hard to catch early because early symptoms are vague. Later symptoms include weight loss, anemia, and early fullness.",
+        sections: {
+          "Risk factors": [
+            "H. pylori, chronic gastritis, smoking, certain diets (high salt/smoked foods), family history."
+          ],
+          "Key features": [
+            "Early: indigestion, mild pain, nausea.",
+            "Later: weight loss, early satiety, vomiting, anemia/bleeding."
+          ],
+          "Diagnosis": [
+            "Endoscopy + biopsy."
+          ],
+          "Treatment (basic)": [
+            "Surgery + chemo/radiation depending on stage."
+          ]
+        }
+      },
+
+      hiatal: {
+        title: "Hiatal Hernia",
+        location: "Diaphragm / stomach",
+        plain: "Part of the stomach slides up through the diaphragm. This often makes reflux worse because the LES zone is displaced.",
+        sections: {
+          "Types": [
+            "Sliding (most common): GE junction moves up.",
+            "Paraesophageal: stomach herniates beside esophagus (strangulation risk)."
+          ],
+          "Key features": [
+            "Often GERD-like symptoms; chest discomfort."
+          ],
+          "Treatment (basic)": [
+            "Treat reflux; surgery if severe or paraesophageal complications."
+          ]
+        }
+      },
+
+      crohn: {
+        title: "Crohn’s Disease",
+        location: "Any GI tract; commonly distal ileum + proximal colon",
+        plain: "Crohn’s is an inflammatory bowel disease where inflammation occurs in patches (‘skip lesions’) and can go deep through the bowel wall.",
+        sections: {
+          "What’s happening": [
+            "Immune-driven chronic inflammation; can be transmural (deep)."
+          ],
+          "Key features": [
+            "Crampy abdominal pain, diarrhea (sometimes non-bloody), weight loss.",
+            "May have mouth ulcers; fatigue."
+          ],
+          "Common complications": [
+            "Strictures/obstruction, fistulas, abscesses.",
+            "Nutrient deficiencies (B12/iron) if ileum involved."
+          ],
+          "Diagnosis": [
+            "Colonoscopy + biopsies; imaging for small bowel."
+          ],
+          "Treatment (basic)": [
+            "Anti-inflammatories, steroids for flares, immunomodulators/biologics.",
+            "Smoking cessation helps (smoking worsens Crohn’s).",
+            "Surgery for complications (but disease can recur)."
+          ]
+        }
+      },
+
+      celiac: {
+        title: "Celiac Disease",
+        location: "Small intestine",
+        plain: "Gluten triggers an autoimmune reaction that damages the villi (absorbing surface). This causes malabsorption.",
+        sections: {
+          "Key features": [
+            "Diarrhea, bloating, weight loss, iron-deficiency anemia.",
+            "Can also present with fatigue, bone issues, dermatitis herpetiformis."
+          ],
+          "Diagnosis": [
+            "Blood tests (tTG-IgA etc.) + biopsy; must be eating gluten for accurate testing."
+          ],
+          "Treatment (basic)": [
+            "Strict lifelong gluten-free diet.",
+            "Replace deficiencies (iron, folate, B12, vitamin D, calcium)."
+          ]
+        }
+      },
+
+      malabsorption: {
+        title: "Intestinal Malabsorption",
+        location: "Small intestine (most often)",
+        plain: "Malabsorption means nutrients aren’t being absorbed. The cause can be damaged villi, low enzymes, or transport problems.",
+        sections: {
+          "Clues": [
+            "Weight loss, diarrhea, fatigue, vitamin/mineral deficiencies."
+          ],
+          "Steatorrhea": [
+            "Greasy, floating, foul-smelling stool suggests fat malabsorption."
+          ],
+          "Common causes": [
+            "Celiac disease, Crohn’s, pancreatic insufficiency, bile problems."
+          ],
+          "Treatment (basic)": [
+            "Treat cause; nutrition support; vitamin replacement."
+          ]
+        }
+      },
+
+      uc: {
+        title: "Ulcerative Colitis",
+        location: "Colon + rectum only",
+        plain: "UC is an inflammatory bowel disease that starts in the rectum and spreads continuously through the colon lining (more superficial than Crohn’s).",
+        sections: {
+          "Key features": [
+            "Bloody diarrhea, urgency, tenesmus (feels like you still need to go).",
+            "Abdominal cramping; fatigue."
+          ],
+          "Complications": [
+            "Severe bleeding, dehydration, toxic megacolon (emergency).",
+            "Long-term ↑ colorectal cancer risk."
+          ],
+          "Diagnosis": [
+            "Colonoscopy + biopsies; rule out infection."
+          ],
+          "Treatment (basic)": [
+            "5-ASA/anti-inflammatory meds, steroids for flares, immunomodulators/biologics.",
+            "Surgery (colectomy) can be curative for UC."
+          ]
+        }
+      },
+
+      ibs: {
+        title: "IBS (Irritable Bowel Syndrome)",
+        location: "Intestines (functional)",
+        plain: "IBS is a functional disorder: the bowel looks normal, but its movement and sensitivity are off. Symptoms are real, but there’s no tissue destruction.",
+        sections: {
+          "Key features": [
+            "Abdominal pain linked to bowel movements.",
+            "Diarrhea, constipation, or mixed pattern; bloating."
+          ],
+          "Triggers": [
+            "Stress, certain foods (FODMAPs), gut–brain signaling changes."
+          ],
+          "Diagnosis": [
+            "Based on symptoms + ruling out red flags (bleeding, weight loss, fever, anemia)."
+          ],
+          "Treatment (basic)": [
+            "Diet changes (low FODMAP trial), fiber (if constipation), hydration.",
+            "Stress management; meds for symptom control when needed."
+          ]
+        }
+      },
+
+      diverticulitis: {
+        title: "Diverticulitis",
+        location: "Usually sigmoid colon",
+        plain: "Diverticula are small pouches in the colon wall. Diverticulitis happens when a pouch becomes inflamed/infected.",
+        sections: {
+          "Key features": [
+            "LLQ pain, fever, tenderness; sometimes nausea/constipation."
+          ],
+          "Why it happens": [
+            "High pressure in colon + weak spots → pouches form; stool can get trapped."
+          ],
+          "Complications": [
+            "Abscess, perforation, peritonitis, fistula, obstruction."
+          ],
+          "Diagnosis": [
+            "CT scan often used; labs may show inflammation."
+          ],
+          "Treatment (basic)": [
+            "Rest bowel/fluids; antibiotics depending on severity; surgery if complications."
+          ]
+        }
+      },
+
+      diarrhea: {
+        title: "Diarrhea",
+        location: "Intestines",
+        plain: "Diarrhea happens when too much water stays in the stool. It can be watery (non-inflammatory) or inflammatory (often smaller volume + blood).",
+        sections: {
+          "Watery (non-inflammatory)": [
+            "Osmotic: unabsorbed stuff pulls water in (lactose intolerance).",
+            "Secretory: toxins/ions push water out (some infections)."
+          ],
+          "Inflammatory (colitis)": [
+            "Smaller volume, bloody/mucus, fever, urgency (IBD or invasive infection)."
+          ],
+          "Risks": [
+            "Dehydration, electrolyte imbalance (especially in older adults)."
+          ],
+          "Treatment (basic)": [
+            "Oral rehydration; treat cause.",
+            "Avoid anti-motility meds if bloody diarrhea/fever until assessed."
+          ]
+        }
+      },
+
+      constipation: {
+        title: "Constipation",
+        location: "Colon/rectum",
+        plain: "Constipation is difficult or infrequent stools, usually from slow movement, dehydration, low fiber, or medications.",
+        sections: {
+          "Common causes": [
+            "Low fiber, low fluid, inactivity, opioids, iron, anticholinergics."
+          ],
+          "Key features": [
+            "Straining, hard stools, incomplete emptying."
+          ],
+          "Complications": [
+            "Hemorrhoids, fissures, fecal impaction."
+          ],
+          "Treatment (basic)": [
+            "Fluids + fiber + movement; stool softeners/laxatives if needed.",
+            "Treat underlying cause; consider impaction if overflow diarrhea."
+          ]
+        }
+      },
+
+      crc: {
+        title: "Colorectal Cancer",
+        location: "Colon/rectum",
+        plain: "Colorectal cancer often starts as a polyp. Screening finds and removes polyps before they turn into cancer.",
+        sections: {
+          "Risk factors": [
+            "Age, family history, polyps, IBD, diet/lifestyle factors."
+          ],
+          "Key features": [
+            "Often none early.",
+            "Later: blood in stool, anemia, change in bowel habits, weight loss."
+          ],
+          "Diagnosis": [
+            "FIT/FOBT screening; colonoscopy confirms and removes polyps."
+          ],
+          "Treatment (basic)": [
+            "Surgery; chemo/radiation depending on stage/location."
+          ]
+        }
+      },
+
+      appendicitis: {
+        title: "Appendicitis",
+        location: "Appendix (RLQ)",
+        plain: "Appendicitis is inflammation from blockage (often stool). It can rupture and cause peritonitis if untreated.",
+        sections: {
+          "Key features": [
+            "Pain often starts near belly button → moves to RLQ.",
+            "Fever, nausea/vomiting, rebound tenderness."
+          ],
+          "Complications": [
+            "Perforation/rupture → peritonitis, abscess."
+          ],
+          "Diagnosis": [
+            "Clinical exam + imaging (US/CT) depending on patient."
+          ],
+          "Treatment (basic)": [
+            "Appendectomy; antibiotics; urgent if rupture suspected."
+          ]
+        }
+      },
+
+      peritonitis: {
+        title: "Peritonitis",
+        location: "Peritoneal cavity",
+        plain: "Peritonitis is inflammation/infection of the lining of the abdomen—usually after a perforation (ulcer, appendix, diverticulitis). It can cause sepsis.",
+        sections: {
+          "Key features": [
+            "Severe abdominal pain, rigid/board-like abdomen, guarding, fever.",
+            "May have low BP/tachycardia if septic."
+          ],
+          "Why it’s dangerous": [
+            "Huge inflammation + fluid shifts + bacteria → shock/sepsis."
+          ],
+          "Treatment (basic)": [
+            "Emergency: IV fluids, antibiotics, source control (surgery).",
+            "NPO; pain control; monitor closely."
+          ]
+        }
+      },
+
+      ascites: {
+        title: "Ascites",
+        location: "Peritoneal cavity",
+        plain: "Ascites is fluid in the abdomen. The main cause is cirrhosis, where portal pressure rises and albumin drops so fluid leaks out of vessels.",
+        sections: {
+          "Clues": [
+            "Increasing abdominal girth, shifting dullness, shortness of breath."
+          ],
+          "Main mechanisms": [
+            "Portal hypertension pushes fluid out.",
+            "Low albumin reduces ‘pull’ of fluid back into blood.",
+            "Kidneys retain sodium/water due to low effective volume."
+          ],
+          "Complications": [
+            "Spontaneous bacterial peritonitis (SBP), hernias, breathing difficulty."
+          ],
+          "Treatment (basic)": [
+            "Salt restriction, diuretics, paracentesis, treat liver disease.",
+            "Albumin sometimes given around large paracentesis."
+          ]
+        }
+      },
+
+      jaundice: {
+        title: "Jaundice (Prehepatic / Intrahepatic / Posthepatic)",
+        location: "Bilirubin pathway (blood → liver → bile → gut)",
+        plain: "Jaundice is yellowing caused by high bilirubin. The problem can be before the liver, in the liver, or after the liver (blocked bile flow).",
+        sections: {
+          "Prehepatic (before liver)": [
+            "Too much bilirubin made (often hemolysis).",
+            "Mostly unconjugated bilirubin; urine usually normal color."
+          ],
+          "Intrahepatic (in liver)": [
+            "Liver cells can’t process/excrete bilirubin (hepatitis, cirrhosis).",
+            "Both types may rise; urine can darken."
+          ],
+          "Posthepatic (after liver)": [
+            "Bile duct blocked (gallstones, tumor).",
+            "Conjugated bilirubin rises → dark urine, pale/clay stool, itching."
+          ]
+        }
+      },
+
+      hepa: {
+        title: "Hepatitis A",
+        location: "Liver",
+        plain: "Hepatitis A spreads by fecal-oral route (contaminated food/water). It is acute only and does not become chronic.",
+        sections: {
+          "Transmission": [
+            "Fecal-oral (travel, outbreaks, contaminated food/water)."
+          ],
+          "Course": [
+            "Self-limited; fatigue/jaundice can last weeks."
+          ],
+          "Treatment": [
+            "Supportive care (fluids, rest)."
+          ],
+          "Prevention": [
+            "Vaccination, hand hygiene."
+          ]
+        }
+      },
+
+      hepb: {
+        title: "Hepatitis B",
+        location: "Liver",
+        plain: "Hepatitis B spreads through blood and body fluids. Some people clear it; some become chronic carriers (risk of cirrhosis/HCC). Vaccination prevents it.",
+        sections: {
+          "Transmission": [
+            "Blood exposure, sex, perinatal (mother → baby)."
+          ],
+          "Chronic risk": [
+            "Adults: smaller % become chronic; higher in infants/children."
+          ],
+          "Treatment (basic)": [
+            "Antivirals for chronic disease when indicated; monitor liver."
+          ],
+          "Prevention": [
+            "Vaccination, safe sex, needle safety."
+          ]
+        }
+      },
+
+      hepc: {
+        title: "Hepatitis C",
+        location: "Liver",
+        plain: "Hepatitis C is mainly blood-borne. It often becomes chronic, but modern direct-acting antivirals (DAAs) cure most people.",
+        sections: {
+          "Transmission": [
+            "Blood exposure (needles, past transfusions in older eras), sometimes sexual."
+          ],
+          "Why it matters": [
+            "High chronic rate → cirrhosis and hepatocellular carcinoma risk."
+          ],
+          "Treatment (basic)": [
+            "DAA tablets for weeks-months; cure rates are very high."
+          ],
+          "Prevention": [
+            "No vaccine; reduce blood exposure risks."
+          ]
+        }
+      },
+
+      alcliver: {
+        title: "Alcohol-Induced Liver Disease",
+        location: "Liver",
+        plain: "Alcohol can injure liver cells and cause fat buildup. With time, inflammation and scarring can lead to cirrhosis.",
+        sections: {
+          "Progression": [
+            "Fatty liver (reversible) → alcoholic hepatitis → cirrhosis (irreversible)."
+          ],
+          "Key features": [
+            "Fatty liver: often no symptoms.",
+            "Hepatitis: jaundice, fever, tender liver.",
+            "Cirrhosis: ascites, varices, easy bruising, encephalopathy."
+          ],
+          "Treatment (basic)": [
+            "Stop alcohol (most important).",
+            "Nutrition support; manage complications."
+          ]
+        }
+      },
+
+      druginduced: {
+        title: "Drug-Induced Liver Disease (Acetaminophen)",
+        location: "Liver",
+        plain: "High doses of acetaminophen can overwhelm glutathione and create toxic metabolites that kill liver cells. Early NAC can prevent severe damage.",
+        sections: {
+          "Why worse with alcohol": [
+            "Alcohol can change enzyme activity and lower glutathione stores."
+          ],
+          "Key features": [
+            "Early may be vague; later severe liver injury signs."
+          ],
+          "Treatment (basic)": [
+            "N-acetylcysteine (NAC) ASAP; supportive care."
+          ],
+          "Prevention": [
+            "Stay under safe daily dosing; avoid mixing multiple acetaminophen products."
+          ]
+        }
+      },
+
+      cirrhosis: {
+        title: "Cirrhosis",
+        location: "Liver",
+        plain: "Cirrhosis is permanent scarring that distorts the liver and blocks blood flow. The liver can compensate for a while, then failure occurs.",
+        sections: {
+          "Main causes": [
+            "Alcohol, chronic hepatitis B/C, fatty liver disease, others."
+          ],
+          "What it causes": [
+            "Portal hypertension (varices, ascites, splenomegaly).",
+            "Low albumin → edema/ascites.",
+            "Low clotting factors → bleeding/bruising.",
+            "Toxin buildup → encephalopathy."
+          ],
+          "Key features": [
+            "Jaundice, fatigue, ascites, spider angiomas, easy bruising."
+          ],
+          "Treatment (basic)": [
+            "Treat cause; manage complications (diuretics, lactulose, banding).",
+            "Transplant is definitive for end-stage disease."
+          ]
+        }
+      },
+
+      portalhtn: {
+        title: "Portal Hypertension",
+        location: "Portal vein system",
+        plain: "Portal hypertension is high pressure in the portal vein system because blood can’t pass through a scarred liver easily.",
+        sections: {
+          "Leads to": [
+            "Varices (esophagus/stomach) → bleeding.",
+            "Ascites (fluid in belly).",
+            "Splenomegaly → low platelets."
+          ],
+          "Treatment (basic)": [
+            "Treat cirrhosis; beta blockers; endoscopic banding; TIPS for refractory cases."
+          ]
+        }
+      },
+
+      liverfailure: {
+        title: "Liver Failure",
+        location: "Liver",
+        plain: "Liver failure means the liver cannot detoxify, make proteins, or process bile properly—causing confusion, bleeding, swelling, and jaundice.",
+        sections: {
+          "Key features": [
+            "Encephalopathy (confusion, asterixis) from toxins (ammonia).",
+            "Bleeding tendency (low clotting factors).",
+            "Jaundice/itching; fluid overload."
+          ],
+          "Serious complications": [
+            "Hepatorenal syndrome (kidney failure).",
+            "Severe infections."
+          ],
+          "Treatment (basic)": [
+            "Treat cause; manage encephalopathy (lactulose/rifaximin), support circulation, transplant evaluation if end-stage."
+          ]
+        }
+      },
+
+      hcc: {
+        title: "Hepatocellular Carcinoma (HCC)",
+        location: "Liver",
+        plain: "HCC is the main primary liver cancer. It usually develops after long-term liver injury (especially cirrhosis from HBV/HCV).",
+        sections: {
+          "Risk factors": [
+            "Cirrhosis, chronic hepatitis B or C."
+          ],
+          "Key features": [
+            "Often silent early; later weight loss, pain, worsening liver function."
+          ],
+          "Diagnosis": [
+            "Imaging + tumor markers; biopsy sometimes."
+          ],
+          "Treatment (basic)": [
+            "Surgery, ablation, transplant, systemic therapy depending on stage."
+          ]
+        }
+      },
+
+      cholangioca: {
+        title: "Cholangiocarcinoma",
+        location: "Bile ducts",
+        plain: "Cancer of the bile ducts can block bile flow and cause obstructive jaundice (dark urine, pale stool, intense itching).",
+        sections: {
+          "Key features": [
+            "Jaundice, pruritus, pale stools, dark urine, weight loss."
+          ],
+          "Diagnosis": [
+            "Imaging (US/CT/MRI) + duct evaluation; biopsy."
+          ],
+          "Treatment (basic)": [
+            "Surgery when possible; stenting to relieve obstruction; chemo/radiation as needed."
+          ]
+        }
+      },
+
+      cholelithiasis: {
+        title: "Cholelithiasis (Gallstones)",
+        location: "Gallbladder",
+        plain: "Gallstones form when bile is unbalanced (often too much cholesterol). They can cause biliary colic or block ducts.",
+        sections: {
+          "Risk factors": [
+            "Female/estrogen, obesity, rapid weight loss, age, family history."
+          ],
+          "Key features": [
+            "RUQ pain after fatty meals; may radiate to right shoulder/back; nausea."
+          ],
+          "Complications": [
+            "Cholecystitis, cholangitis, pancreatitis (if stone blocks common channel)."
+          ],
+          "Treatment (basic)": [
+            "Pain control; cholecystectomy if symptomatic or complicated."
+          ]
+        }
+      },
+
+      cholecystitis: {
+        title: "Cholecystitis",
+        location: "Gallbladder",
+        plain: "Cholecystitis is gallbladder inflammation, usually because a stone blocks the cystic duct.",
+        sections: {
+          "Key features": [
+            "RUQ pain, fever, nausea; positive Murphy’s sign."
+          ],
+          "Complications": [
+            "Gangrene/perforation in severe cases."
+          ],
+          "Treatment (basic)": [
+            "IV fluids, pain control, antibiotics if infected; surgery often."
+          ]
+        }
+      },
+
+      cholangitis: {
+        title: "Cholangitis",
+        location: "Common bile duct",
+        plain: "Cholangitis is an infected bile duct, typically from obstruction (like a stone). It can become septic fast.",
+        sections: {
+          "Key features (classic)": [
+            "Fever, RUQ pain, jaundice (Charcot triad).",
+            "Severe cases may add low BP + confusion."
+          ],
+          "Why dangerous": [
+            "Blocked duct + infection → bacteria enter bloodstream."
+          ],
+          "Treatment (basic)": [
+            "Antibiotics + urgent relief of obstruction (ERCP/stent)."
+          ]
+        }
+      },
+
+      cholestasis: {
+        title: "Cholestasis",
+        location: "Liver bile flow",
+        plain: "Cholestasis means bile isn’t flowing normally. Bile components back up in blood → itching and high bilirubin/alk phos.",
+        sections: {
+          "Key features": [
+            "Itching (pruritus), jaundice, dark urine, pale stools."
+          ],
+          "Causes": [
+            "Inside liver (intrahepatic): hepatitis, meds, pregnancy cholestasis.",
+            "Outside liver (extrahepatic): stones, tumors, strictures."
+          ],
+          "Diagnosis": [
+            "Labs: ↑ alk phos/GGT; imaging to find obstruction."
+          ],
+          "Treatment (basic)": [
+            "Treat underlying cause; relieve obstruction if present; symptom relief for itching."
+          ]
+        }
+      },
+
+      "acute-pancreatitis": {
+        title: "Acute Pancreatitis",
+        location: "Pancreas",
+plain: "Acute pancreatitis is sudden inflammation of the pancreas caused by early activation of digestive enzymes, which begin digesting the pancreas itself.",
+        sections: {
+          "Main causes": [
+            "Gallstones blocking the pancreatic duct.",
+            "Alcohol use (most common overall)."
+          ],
+          "Key features": [
+            "Severe epigastric pain radiating to the back.",
+            "Nausea and vomiting.",
+            "Pain worse after eating and when lying flat."
+          ],
+          "What’s happening": [
+            "Trypsin activates too early inside the pancreas.",
+            "Leads to autodigestion, inflammation, edema."
+          ],
+          "Complications": [
+            "Shock, ARDS, kidney failure.",
+            "Pseudocysts, infection, necrosis."
+          ],
+          "Diagnosis": [
+            "↑ Lipase (most specific).",
+            "CT scan to assess severity."
+          ],
+          "Treatment (basic)": [
+            "NPO, IV fluids, pain control.",
+            "Treat cause (remove gallstones, stop alcohol)."
+          ]
+        }
+      },
+
+      "chronic-pancreatitis": {
+        title: "Chronic Pancreatitis",
+        location: "Pancreas",
+        plain: "Chronic pancreatitis is long-term, irreversible damage to the pancreas, usually from repeated inflammation.",
+        sections: {
+          "Main cause": [
+            "Chronic alcohol use."
+          ],
+          "Key features": [
+            "Chronic abdominal pain.",
+            "Steatorrhea (fatty stools).",
+            "Weight loss."
+          ],
+          "What’s happening": [
+            "Progressive fibrosis destroys exocrine tissue.",
+            "Endocrine damage later → diabetes."
+          ],
+          "Complications": [
+            "Malnutrition.",
+            "Diabetes mellitus."
+          ],
+          "Diagnosis": [
+            "Imaging shows calcifications and duct changes."
+          ],
+          "Treatment (basic)": [
+            "Stop alcohol.",
+            "Pancreatic enzyme replacement.",
+            "Pain management."
+          ]
+        }
+      },
+
+      "pancreatic-cancer": {
+        title: "Pancreatic Cancer",
+        location: "Pancreas",
+        plain: "Pancreatic cancer is aggressive and often detected late because early symptoms are vague.",
+        sections: {
+          "Risk factors": [
+            "Smoking (strongest risk factor).",
+            "Chronic pancreatitis.",
+            "Age, diabetes."
+          ],
+          "Key features": [
+            "Painless jaundice (tumor blocks bile duct).",
+            "Weight loss, fatigue, back pain."
+          ],
+          "Why prognosis is poor": [
+            "Early spread.",
+            "Symptoms appear late."
+          ],
+          "Diagnosis": [
+            "CT/MRI, biopsy."
+          ],
+          "Treatment (basic)": [
+            "Surgery if localized.",
+            "Chemo/radiation; palliative care common."
+          ]
+        }
+      },
+
+      "inguinal-hernia": {
+        title: "Inguinal Hernia",
+        location: "Groin / inguinal canal",
+        plain: "An inguinal hernia occurs when intestine pushes through a weak spot in the abdominal wall.",
+        sections: {
+          "Key features": [
+            "Bulge in groin.",
+            "Pain with lifting or coughing."
+          ],
+          "Complications": [
+            "Incarceration (stuck bowel).",
+            "Strangulation → ischemia (surgical emergency)."
+          ],
+          "Diagnosis": [
+            "Physical exam; imaging if unclear."
+          ],
+          "Treatment (basic)": [
+            "Surgical repair (especially if symptomatic)."
+          ]
+        }
+      }
+    };
+       // 4) Click card → show detailed view
+    document.querySelectorAll('.disorder-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.getAttribute('data-id');
+        const data = disorderDetails[id];
+        if (!data) return;
+
+        const detailView = document.getElementById('detailView');
+        const listView = document.getElementById('listView');
+
+        let html = `
+          <button class="back-btn" onclick="backToList()">← Back to list</button>
+          <h2 class="detail-title">${data.title}</h2>
+          <div class="mini"><strong>Location:</strong> ${data.location}</div>
+          <p>${data.plain}</p>
+          <div class="pill-row">
+            <span class="pill">Pathophysiology</span>
+            <span class="pill">Symptoms</span>
+            <span class="pill">Complications</span>
+            <span class="pill">Treatment</span>
+          </div>
+        `;
+
+        for (const section in data.sections) {
+          html += `
+            <div class="detail-section">
+              <h5>${section}</h5>
+              <ul>
+                ${data.sections[section].map(item => `<li>${item}</li>`).join("")}
+              </ul>
+            </div>
+          `;
         }
 
-        function filterAll() {
-            const searchText = document.getElementById('searchBox').value.toLowerCase();
-            const cards = document.querySelectorAll('.searchable');
-            
-            cards.forEach(card => {
-                const searchData = card.getAttribute('data-name').toLowerCase();
-                const cardText = card.textContent.toLowerCase();
-                if (searchData.includes(searchText) || cardText.includes(searchText)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
-</body>
-</html>
+        detailView.innerHTML = html;
+        listView.style.display = 'none';
+        detailView.style.display = 'block';
+      });
+    });
+
+    function backToList() {
+      document.getElementById('detailView').style.display = 'none';
+      document.getElementById('listView').style.display = 'block';
+    }
