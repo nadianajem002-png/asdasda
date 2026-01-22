@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,7 +151,6 @@
     </div>
 
     <div class="content-area">
-
       <!-- ALL DISORDERS TAB -->
       <div id="all-disorders" class="tab-content active">
         <div id="listView">
@@ -164,7 +164,6 @@
           />
 
           <div class="disorder-grid" id="allDisordersGrid">
-
             <!-- ESOPHAGUS -->
             <div class="disorder-card searchable" data-id="dysphagia" data-name="dysphagia esophagus swallowing odynophagia aspiration">
               <h3>Dysphagia</h3>
@@ -599,1091 +598,1109 @@
     // --- Master detail content ---
     // Every disorder has Pathophysiology / Symptoms / Complications / Treatment in plain terms.
     const disorderDetails = {
-    <script>
-  // --- Tabs ---
-  function switchTab(evt, tabName) {
-    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    const target = document.getElementById(tabName);
-    if (target) target.classList.add('active');
-    if (evt && evt.target) evt.target.classList.add('active');
-  }
+      dysphagia: {
+        title: "Dysphagia",
+        location: "Esophagus / swallowing pathway",
+        plain: "Dysphagia means swallowing isn’t working smoothly. Food or liquids may feel stuck, go down slowly, or go the wrong way (aspiration).",
+        sections: {
+          "Pathophysiology": [
+            "Swallowing requires coordinated nerves and muscles from mouth → throat → esophagus.",
+            "A blockage (narrowing/tumor/stricture) or poor muscle/nerve control disrupts the swallow."
+          ],
+          "Symptoms": [
+            "Trouble swallowing solids or liquids.",
+            "Coughing/choking during meals, wet/gurgly voice.",
+            "Food sticking in throat or chest."
+          ],
+          "Complications": [
+            "Aspiration pneumonia.",
+            "Malnutrition and dehydration."
+          ],
+          "Treatment": [
+            "Treat the cause (e.g., dilation for strictures, address neurologic causes).",
+            "Swallow therapy + diet texture changes (speech-language pathology).",
+            "If severe: temporary or long-term tube feeding."
+          ]
+        }
+      },
 
-  // --- Search ---
-  function filterAll() {
-    const searchText = document.getElementById('searchBox').value.toLowerCase().trim();
-    const cards = document.querySelectorAll('.searchable');
+      gerd: {
+        title: "GERD",
+        location: "Esophagus / LES",
+        plain: "GERD is when stomach acid flows backward into the esophagus because the LES valve is weak or relaxes at the wrong time.",
+        sections: {
+          "Pathophysiology": [
+            "Lower esophageal sphincter (LES) doesn’t stay closed → reflux of acid into esophagus.",
+            "Acid irritates and inflames the esophageal lining (esophagitis)."
+          ],
+          "Symptoms": [
+            "Heartburn, burning chest discomfort.",
+            "Regurgitation (sour/acid taste), worse after meals or lying down.",
+            "Chronic cough/hoarseness can happen."
+          ],
+          "Complications": [
+            "Esophagitis and strictures (narrowing).",
+            "Barrett esophagus (precancerous change)."
+          ],
+          "Treatment": [
+            "Lifestyle: smaller meals, avoid triggers, no late meals, elevate head of bed, weight loss.",
+            "Meds: antacids (quick), H2 blockers/PPIs (strong acid suppression).",
+            "Surgery (fundoplication) if severe/refractory."
+          ]
+        }
+      },
 
-    cards.forEach(card => {
-      const searchData = (card.getAttribute('data-name') || '').toLowerCase();
-      const cardText = (card.textContent || '').toLowerCase();
-      const match = (searchData.includes(searchText) || cardText.includes(searchText));
-      card.style.display = match ? 'block' : 'none';
-    });
-  }
+      varices: {
+        title: "Esophageal Varices",
+        location: "Esophagus (veins) due to portal hypertension",
+        plain: "Varices are enlarged veins in the esophagus from portal hypertension (often cirrhosis). They can rupture and cause major bleeding.",
+        sections: {
+          "Pathophysiology": [
+            "Cirrhosis scars the liver → blood can’t flow through easily.",
+            "Pressure builds in portal system → blood reroutes through esophageal veins → veins enlarge and weaken."
+          ],
+          "Symptoms": [
+            "Often no symptoms until bleeding occurs.",
+            "Bleeding signs: vomiting blood, black tarry stools, dizziness/fainting."
+          ],
+          "Complications": [
+            "Massive GI hemorrhage (life-threatening shock)."
+          ],
+          "Treatment": [
+            "Prevention: non-selective beta blockers and/or banding in selected cases.",
+            "Acute bleed: stabilize + urgent endoscopy (band ligation); treat portal HTN cause; advanced options like TIPS if needed."
+          ]
+        }
+      },
 
-  // --- Master detail content ---
-  // Every disorder has Pathophysiology / Symptoms / Complications / Treatment in plain terms.
-  const disorderDetails = {
-    dysphagia: {
-      title: "Dysphagia",
-      location: "Esophagus / swallowing pathway",
-      plain: "Dysphagia means swallowing isn’t working smoothly. Food or liquids may feel stuck, go down slowly, or go the wrong way (aspiration).",
-      sections: {
-        "Pathophysiology": [
-          "Swallowing requires coordinated nerves and muscles from mouth → throat → esophagus.",
-          "A blockage (narrowing/tumor/stricture) or poor muscle/nerve control disrupts the swallow."
-        ],
-        "Symptoms": [
-          "Trouble swallowing solids or liquids.",
-          "Coughing/choking during meals, wet/gurgly voice.",
-          "Food sticking in throat or chest."
-        ],
-        "Complications": [
-          "Aspiration pneumonia.",
-          "Malnutrition and dehydration."
-        ],
-        "Treatment": [
-          "Treat the cause (e.g., dilation for strictures, manage neurologic causes).",
-          "Swallow therapy + texture changes (speech-language pathology).",
-          "If severe: temporary or long-term tube feeding."
-        ]
+      barrett: {
+        title: "Barrett Esophagus",
+        location: "Lower esophagus",
+        plain: "Barrett’s happens after long-term GERD. The lining changes to protect itself, but that change raises cancer risk.",
+        sections: {
+          "Pathophysiology": [
+            "Chronic acid exposure triggers metaplasia: normal squamous cells change into columnar-type cells."
+          ],
+          "Symptoms": [
+            "Often same as GERD (or none)."
+          ],
+          "Complications": [
+            "Increased risk of esophageal adenocarcinoma."
+          ],
+          "Treatment": [
+            "Aggressive acid control (PPIs + lifestyle).",
+            "Surveillance endoscopy; treat dysplasia (ablation) if present."
+          ]
+        }
+      },
+
+      esophca: {
+        title: "Esophageal Cancer",
+        location: "Esophagus",
+        plain: "Esophageal cancer often presents with progressive swallowing difficulty (solids first, then liquids) and weight loss.",
+        sections: {
+          "Pathophysiology": [
+            "Cancer develops from chronic irritation/inflammation leading to abnormal cell growth.",
+            "Types: squamous cell (often upper/mid) and adenocarcinoma (often lower, linked to Barrett/GERD)."
+          ],
+          "Symptoms": [
+            "Progressive dysphagia (solids → liquids).",
+            "Weight loss, chest pain/pressure, possible anemia."
+          ],
+          "Complications": [
+            "Obstruction, malnutrition.",
+            "Spread (metastasis)."
+          ],
+          "Treatment": [
+            "Surgery, chemo, radiation depending on stage.",
+            "Nutrition support is often needed."
+          ]
+        }
+      },
+
+      gastritis: {
+        title: "Gastritis (Acute/Chronic)",
+        location: "Stomach lining",
+        plain: "Gastritis is inflammation of the stomach lining—often from H. pylori, NSAIDs, alcohol, or severe stress.",
+        sections: {
+          "Pathophysiology": [
+            "Protective mucosal barrier is damaged → acid irritates and inflames the stomach lining."
+          ],
+          "Symptoms": [
+            "Epigastric pain/burning, nausea, vomiting, bloating.",
+            "Sometimes no symptoms."
+          ],
+          "Complications": [
+            "Bleeding (black stools/anemia).",
+            "Ulcer formation; chronic changes over time in some cases."
+          ],
+          "Treatment": [
+            "Stop irritants (NSAIDs/alcohol).",
+            "PPIs/H2 blockers; treat H. pylori if present."
+          ]
+        }
+      },
+
+      pud: {
+        title: "Peptic Ulcer Disease",
+        location: "Stomach or duodenum",
+        plain: "Peptic ulcers are open sores caused when acid/pepsin overpower protective mucus—most often from H. pylori or NSAIDs.",
+        sections: {
+          "Pathophysiology": [
+            "Acid and pepsin erode the lining → ulcer forms.",
+            "H. pylori weakens defenses; NSAIDs reduce prostaglandins → less mucus/bicarbonate."
+          ],
+          "Symptoms": [
+            "Gnawing/burning epigastric pain (may relate to meals).",
+            "Nausea; possible early satiety or weight loss."
+          ],
+          "Complications": [
+            "Bleeding (vomit blood, black stools, anemia).",
+            "Perforation → sudden severe pain + peritonitis.",
+            "Obstruction from swelling/scarring."
+          ],
+          "Treatment": [
+            "Eradicate H. pylori (combo antibiotics + PPI).",
+            "Stop NSAIDs if possible; PPIs to heal.",
+            "Treat complications urgently."
+          ]
+        }
+      },
+
+      hpylori: {
+        title: "H. pylori Infection",
+        location: "Stomach",
+        plain: "H. pylori is a stomach bacteria that damages the protective lining and can cause gastritis and ulcers.",
+        sections: {
+          "Pathophysiology": [
+            "Produces urease → helps it survive in acid.",
+            "Triggers inflammation and weakens mucosal defenses."
+          ],
+          "Symptoms": [
+            "Often none, or indigestion/ulcer-type pain."
+          ],
+          "Complications": [
+            "Peptic ulcers; chronic gastritis.",
+            "Higher risk of gastric cancer in long-term infection."
+          ],
+          "Treatment": [
+            "Combination antibiotics + PPI (sometimes bismuth).",
+            "Test-of-cure after treatment (breath/stool test)."
+          ]
+        }
+      },
+
+      stressulcers: {
+        title: "Stress Ulcers",
+        location: "Stomach",
+        plain: "Stress ulcers can occur during severe illness (ICU, burns, sepsis) when stomach lining protection breaks down.",
+        sections: {
+          "Pathophysiology": [
+            "Poor blood flow to mucosa (ischemia) + stress response → barrier weakens → acid injury."
+          ],
+          "Symptoms": [
+            "Often silent until bleeding."
+          ],
+          "Complications": [
+            "GI hemorrhage."
+          ],
+          "Treatment": [
+            "Prevention in high-risk patients: acid suppression (PPI/H2).",
+            "Treat underlying shock/illness; manage bleeding if present."
+          ]
+        }
+      },
+
+      zes: {
+        title: "Zollinger–Ellison Syndrome",
+        location: "Pancreas/duodenum (gastrinoma)",
+        plain: "A tumor makes too much gastrin, so the stomach produces extreme acid, causing recurrent ulcers.",
+        sections: {
+          "Pathophysiology": [
+            "Gastrinoma → very high gastrin → massive acid secretion → multiple/refractory ulcers."
+          ],
+          "Symptoms": [
+            "Recurrent severe ulcer pain, severe GERD symptoms.",
+            "Diarrhea can occur."
+          ],
+          "Complications": [
+            "Bleeding or perforated ulcers."
+          ],
+          "Treatment": [
+            "High-dose PPIs to control acid.",
+            "Find and treat/remove tumor when possible."
+          ]
+        }
+      },
+
+      gastricca: {
+        title: "Gastric Cancer",
+        location: "Stomach",
+        plain: "Stomach cancer can be hard to catch early because symptoms can be vague. Later it causes weight loss, anemia, and early fullness.",
+        sections: {
+          "Pathophysiology": [
+            "Long-term inflammation and cell damage can lead to malignant transformation."
+          ],
+          "Symptoms": [
+            "Early: mild indigestion, vague epigastric discomfort, nausea.",
+            "Later: weight loss, early satiety, vomiting, anemia/bleeding."
+          ],
+          "Complications": [
+            "Spread (metastasis).",
+            "Obstruction/bleeding/malnutrition."
+          ],
+          "Treatment": [
+            "Surgery + chemo/radiation depending on stage."
+          ]
+        }
+      },
+
+      hiatal: {
+        title: "Hiatal Hernia",
+        location: "Diaphragm / stomach",
+        plain: "Part of the stomach moves up through the diaphragm. This often makes reflux worse because the LES region gets displaced.",
+        sections: {
+          "Pathophysiology": [
+            "Stomach/GE junction shifts upward through diaphragm opening.",
+            "LES function is weakened → reflux more likely."
+          ],
+          "Symptoms": [
+            "Often GERD symptoms (heartburn, regurgitation).",
+            "Chest discomfort after meals."
+          ],
+          "Complications": [
+            "Worsened GERD; rare strangulation in paraesophageal hernia."
+          ],
+          "Treatment": [
+            "Reflux control (lifestyle + meds).",
+            "Surgery if severe symptoms or paraesophageal complications."
+          ]
+        }
+      },
+
+      crohn: {
+        title: "Crohn’s Disease",
+        location: "Any GI tract; commonly distal ileum + proximal colon",
+        plain: "Crohn’s is an inflammatory bowel disease with patchy (‘skip’) inflammation that can go deep through the bowel wall.",
+        sections: {
+          "Pathophysiology": [
+            "Immune-driven chronic inflammation with skip lesions.",
+            "Can be transmural (full thickness), leading to scarring and tunnels (fistulas)."
+          ],
+          "Symptoms": [
+            "Crampy abdominal pain, chronic diarrhea (often non-bloody).",
+            "Weight loss, fatigue; possible mouth ulcers."
+          ],
+          "Complications": [
+            "Strictures/obstruction, fistulas, abscesses.",
+            "Nutrient deficiencies (B12/iron) especially with ileum involvement."
+          ],
+          "Treatment": [
+            "Anti-inflammatory meds, steroids for flares, immunomodulators/biologics.",
+            "Smoking cessation helps (smoking worsens Crohn’s).",
+            "Surgery for complications (disease can recur)."
+          ]
+        }
+      },
+
+      celiac: {
+        title: "Celiac Disease",
+        location: "Small intestine",
+        plain: "Gluten triggers an autoimmune reaction that damages villi (the absorbing surface), causing malabsorption.",
+        sections: {
+          "Pathophysiology": [
+            "Immune reaction to gluten damages villi → reduced nutrient absorption."
+          ],
+          "Symptoms": [
+            "Diarrhea, bloating, weight loss.",
+            "Iron-deficiency anemia, fatigue (can be the main clue)."
+          ],
+          "Complications": [
+            "Nutrient deficiencies (iron/folate/B12, vitamin D/calcium).",
+            "Bone weakness, poor growth in children."
+          ],
+          "Treatment": [
+            "Strict lifelong gluten-free diet.",
+            "Replace deficiencies as needed."
+          ]
+        }
+      },
+
+      malabsorption: {
+        title: "Intestinal Malabsorption",
+        location: "Small intestine (most often)",
+        plain: "Malabsorption means nutrients aren’t being absorbed properly—due to damaged lining, low enzymes, or transport problems.",
+        sections: {
+          "Pathophysiology": [
+            "Reduced digestion/absorption from villi damage, enzyme deficiency, or bile problems."
+          ],
+          "Symptoms": [
+            "Chronic diarrhea, weight loss, fatigue.",
+            "Greasy/floating stool (steatorrhea) suggests fat malabsorption."
+          ],
+          "Complications": [
+            "Vitamin/mineral deficiencies; malnutrition."
+          ],
+          "Treatment": [
+            "Treat the cause (celiac/Crohn’s/pancreas/bile issues).",
+            "Nutrition support and vitamin replacement."
+          ]
+        }
+      },
+
+      uc: {
+        title: "Ulcerative Colitis",
+        location: "Colon + rectum only",
+        plain: "UC is an inflammatory bowel disease that starts in the rectum and spreads continuously along the colon lining (more superficial than Crohn’s).",
+        sections: {
+          "Pathophysiology": [
+            "Continuous mucosal inflammation and ulceration of the colon/rectum."
+          ],
+          "Symptoms": [
+            "Bloody diarrhea, urgency, tenesmus (feels like you still need to go).",
+            "Abdominal cramping and fatigue."
+          ],
+          "Complications": [
+            "Severe bleeding and dehydration.",
+            "Toxic megacolon (emergency).",
+            "Long-term ↑ colorectal cancer risk."
+          ],
+          "Treatment": [
+            "5-ASA/anti-inflammatory meds; steroids for flares; immunomodulators/biologics.",
+            "Surgery (colectomy) can be curative."
+          ]
+        }
+      },
+
+      ibs: {
+        title: "IBS (Irritable Bowel Syndrome)",
+        location: "Intestines (functional)",
+        plain: "IBS is a functional disorder: the bowel looks normal, but movement and sensitivity are altered. Symptoms are real, but there’s no tissue destruction.",
+        sections: {
+          "Pathophysiology": [
+            "Altered gut–brain signaling changes motility and pain sensitivity.",
+            "Stress, certain foods, and prior infections can worsen symptoms in some people."
+          ],
+          "Symptoms": [
+            "Abdominal pain that improves after a bowel movement (common clue).",
+            "Bloating and gas.",
+            "Diarrhea, constipation, or alternating (IBS-D, IBS-C, IBS-M)."
+          ],
+          "Complications": [
+            "No structural damage or cancer risk from IBS itself.",
+            "Quality-of-life impact (diet restriction, anxiety around symptoms)."
+          ],
+          "Treatment": [
+            "Diet: trigger management; some improve with low-FODMAP approach.",
+            "Fiber for constipation-predominant IBS; hydration and activity.",
+            "Antispasmodics/antidiarrheals or laxatives depending on subtype; stress management can help."
+          ]
+        }
+      },
+
+      diverticulitis: {
+        title: "Diverticulitis",
+        location: "Sigmoid colon (most common)",
+        plain: "Diverticulitis is when small pouches in the colon wall get inflamed or infected, usually causing left-lower belly pain and fever.",
+        sections: {
+          "Pathophysiology": [
+            "Diverticula (pouches) form at weak points in colon wall.",
+            "A pouch becomes blocked → inflammation and sometimes infection."
+          ],
+          "Symptoms": [
+            "Left lower quadrant pain/tenderness.",
+            "Fever, nausea, reduced appetite.",
+            "Change in bowel habits (constipation or diarrhea)."
+          ],
+          "Complications": [
+            "Abscess, perforation → peritonitis.",
+            "Fistula formation, obstruction/stricture."
+          ],
+          "Treatment": [
+            "Bowel rest and fluids; antibiotics for more severe cases or complications.",
+            "Pain control; treat abscess if present; surgery if recurrent/complicated."
+          ]
+        }
+      },
+
+      diarrhea: {
+        title: "Diarrhea",
+        location: "Intestines",
+        plain: "Diarrhea happens when the gut moves too fast or pulls too much water into stool. It can be watery (non-inflammatory) or bloody/inflammatory.",
+        sections: {
+          "Pathophysiology": [
+            "Osmotic: unabsorbed particles pull water into bowel (e.g., lactose intolerance).",
+            "Secretory: intestine secretes water/electrolytes (some infections).",
+            "Inflammatory: mucosal damage → blood/mucus, urgency (IBD, dysentery)."
+          ],
+          "Symptoms": [
+            "Loose/watery stools, urgency.",
+            "Cramping; fever or blood suggests inflammatory cause."
+          ],
+          "Complications": [
+            "Dehydration and electrolyte imbalances.",
+            "Skin breakdown; kidney injury if severe dehydration."
+          ],
+          "Treatment": [
+            "Oral rehydration (most important).",
+            "Treat cause: stop trigger foods/meds; antibiotics only for certain infections.",
+            "Avoid antidiarrheals if bloody diarrhea/high fever (can worsen some infections)."
+          ]
+        }
+      },
+
+      constipation: {
+        title: "Constipation",
+        location: "Colon",
+        plain: "Constipation is hard, infrequent stools or difficulty passing stool—often from slow movement, dehydration, low fiber, or medications.",
+        sections: {
+          "Pathophysiology": [
+            "Colon absorbs water; if stool sits too long, it becomes very hard.",
+            "Low motility, poor intake, immobility, and opioids commonly contribute."
+          ],
+          "Symptoms": [
+            "Hard stools, straining, feeling not fully emptied.",
+            "Bloating and discomfort."
+          ],
+          "Complications": [
+            "Hemorrhoids, anal fissures.",
+            "Fecal impaction and overflow diarrhea."
+          ],
+          "Treatment": [
+            "Increase fluid + fiber (if appropriate) and physical activity.",
+            "Stool softeners/osmotic laxatives as needed; address meds (opioids).",
+            "Impaction may require suppository/enema/manual removal (clinical)."
+          ]
+        }
+      },
+
+      crc: {
+        title: "Colorectal Cancer",
+        location: "Colon/rectum",
+        plain: "Colorectal cancer often starts as a polyp that slowly turns cancerous. Screening finds polyps before they become cancer.",
+        sections: {
+          "Pathophysiology": [
+            "Stepwise mutations can transform normal lining → polyp → cancer over years."
+          ],
+          "Symptoms": [
+            "Often none early.",
+            "Later: blood in stool, change in bowel habits, anemia, weight loss."
+          ],
+          "Complications": [
+            "Obstruction, bleeding/anemia.",
+            "Metastasis (spread)."
+          ],
+          "Treatment": [
+            "Surgery is main treatment if localized.",
+            "Chemo/radiation depending on stage and location (rectal often includes radiation)."
+          ]
+        }
+      },
+
+      appendicitis: {
+        title: "Appendicitis",
+        location: "Appendix",
+        plain: "Appendicitis is inflammation of the appendix, usually from blockage. It can rupture and cause peritonitis.",
+        sections: {
+          "Pathophysiology": [
+            "Appendix gets blocked (stool/lymph swelling) → pressure builds → reduced blood flow → infection/inflammation."
+          ],
+          "Symptoms": [
+            "Pain often starts near belly button then moves to right lower quadrant.",
+            "Nausea/vomiting, loss of appetite, fever.",
+            "Rebound tenderness/guarding can occur."
+          ],
+          "Complications": [
+            "Rupture/perforation → peritonitis or abscess."
+          ],
+          "Treatment": [
+            "Surgery (appendectomy) plus antibiotics.",
+            "If abscess, may drain first depending on case."
+          ]
+        }
+      },
+
+      peritonitis: {
+        title: "Peritonitis",
+        location: "Peritoneal cavity",
+        plain: "Peritonitis is inflammation/infection of the abdominal lining, usually after a perforation (appendix, ulcer, diverticulitis). It can lead to sepsis fast.",
+        sections: {
+          "Pathophysiology": [
+            "Bacteria/contents leak into abdomen → intense inflammation.",
+            "Fluid shifts into abdomen → low blood pressure and shock risk."
+          ],
+          "Symptoms": [
+            "Severe abdominal pain, rigid/board-like abdomen, guarding.",
+            "Fever, nausea/vomiting, very unwell."
+          ],
+          "Complications": [
+            "Sepsis and shock.",
+            "Abscess and adhesions/obstruction later."
+          ],
+          "Treatment": [
+            "Emergency: IV fluids, antibiotics, source control (surgery/procedure).",
+            "Supportive care for shock and organ function."
+          ]
+        }
+      },
+
+      ascites: {
+        title: "Ascites",
+        location: "Peritoneal cavity (fluid)",
+        plain: "Ascites is fluid buildup in the abdomen, most commonly from cirrhosis (portal hypertension + low albumin).",
+        sections: {
+          "Pathophysiology": [
+            "Portal hypertension pushes fluid out of vessels.",
+            "Low albumin reduces oncotic pressure → fluid leaks into tissues/abdomen.",
+            "Kidneys retain salt/water due to low effective circulation."
+          ],
+          "Symptoms": [
+            "Abdominal swelling, weight gain.",
+            "Shortness of breath (pressure on diaphragm), early satiety."
+          ],
+          "Complications": [
+            "Spontaneous bacterial peritonitis (SBP).",
+            "Hernias, breathing difficulty."
+          ],
+          "Treatment": [
+            "Salt restriction + diuretics (e.g., spironolactone ± furosemide).",
+            "Therapeutic paracentesis for large/tense ascites.",
+            "Treat underlying liver disease; consider TIPS in selected cases."
+          ]
+        }
+      },
+
+      jaundice: {
+        title: "Jaundice (3 Types)",
+        location: "Blood/liver/bile ducts",
+        plain: "Jaundice is yellowing of skin/eyes from high bilirubin. It can be from too much breakdown (prehepatic), liver disease (intrahepatic), or blockage after the liver (posthepatic).",
+        sections: {
+          "Pathophysiology": [
+            "Prehepatic: too much RBC breakdown → liver can’t keep up → ↑ unconjugated bilirubin.",
+            "Intrahepatic: liver cells can’t process/excrete bilirubin properly (hepatitis, cirrhosis).",
+            "Posthepatic: bile can’t flow out (stones/tumor) → ↑ conjugated bilirubin backs up."
+          ],
+          "Symptoms": [
+            "Yellow skin/eyes, dark urine (esp. conjugated).",
+            "Itching (esp. obstructive), pale/clay stools with obstruction."
+          ],
+          "Complications": [
+            "Underlying cause complications (liver failure, infection, obstruction)."
+          ],
+          "Treatment": [
+            "Treat the cause: manage hemolysis, treat hepatitis/liver disease, relieve obstruction (ERCP/surgery)."
+          ]
+        }
+      },
+
+      hepa: {
+        title: "Hepatitis A",
+        location: "Liver",
+        plain: "Hep A is usually a short-term (acute) liver infection spread by fecal-oral route (contaminated food/water). It does not become chronic.",
+        sections: {
+          "Pathophysiology": [
+            "Virus infects liver cells → immune response causes inflammation and symptoms."
+          ],
+          "Symptoms": [
+            "Fatigue, nausea, abdominal discomfort, jaundice, dark urine.",
+            "Children can be mild or asymptomatic."
+          ],
+          "Complications": [
+            "Usually full recovery; rare acute liver failure."
+          ],
+          "Treatment": [
+            "Supportive (rest, fluids, avoid alcohol/hepatotoxic meds).",
+            "Prevention: vaccination, hygiene, safe food/water."
+          ]
+        }
+      },
+
+      hepb: {
+        title: "Hepatitis B",
+        location: "Liver",
+        plain: "Hep B spreads through blood and body fluids (sex, needles, perinatal). It can become chronic and lead to cirrhosis and liver cancer.",
+        sections: {
+          "Pathophysiology": [
+            "Virus infects liver cells; immune response drives liver injury.",
+            "Some people do not clear it → chronic infection."
+          ],
+          "Symptoms": [
+            "Often mild or none; can include fatigue, jaundice, RUQ discomfort.",
+            "Sometimes flu-like symptoms."
+          ],
+          "Complications": [
+            "Chronic hepatitis → cirrhosis, liver failure, hepatocellular carcinoma."
+          ],
+          "Treatment": [
+            "Acute: supportive.",
+            "Chronic: antivirals (to suppress virus) and monitoring.",
+            "Prevention: effective vaccine."
+          ]
+        }
+      },
+
+      hepc: {
+        title: "Hepatitis C",
+        location: "Liver",
+        plain: "Hep C spreads mainly through blood and often becomes chronic. Modern antiviral tablets can cure most cases.",
+        sections: {
+          "Pathophysiology": [
+            "Virus persists in many people → chronic inflammation → fibrosis/cirrhosis over time."
+          ],
+          "Symptoms": [
+            "Often asymptomatic for years.",
+            "Fatigue and mild RUQ discomfort; jaundice can occur."
+          ],
+          "Complications": [
+            "Cirrhosis, liver failure, hepatocellular carcinoma (especially with cirrhosis)."
+          ],
+          "Treatment": [
+            "Direct-acting antivirals (DAAs) can cure most cases.",
+            "No vaccine; prevent via blood safety and harm-reduction."
+          ]
+        }
+      },
+
+      alcliver: {
+        title: "Alcohol-Induced Liver Disease",
+        location: "Liver",
+        plain: "Alcohol liver disease progresses from fatty liver → alcoholic hepatitis (inflammation) → cirrhosis (scarring) if drinking continues.",
+        sections: {
+          "Pathophysiology": [
+            "Alcohol metabolism produces toxic byproducts → fat accumulation and inflammation.",
+            "Repeated injury → fibrosis and cirrhosis."
+          ],
+          "Symptoms": [
+            "Fatty liver: often none.",
+            "Alcoholic hepatitis: jaundice, RUQ pain, fever, malaise.",
+            "Cirrhosis signs if advanced (ascites, varices)."
+          ],
+          "Complications": [
+            "Cirrhosis, portal hypertension, liver failure."
+          ],
+          "Treatment": [
+            "Alcohol cessation (most important).",
+            "Nutrition support; treat complications (ascites/varices).",
+            "Severe cases may need specialized therapy and transplant evaluation."
+          ]
+        }
+      },
+
+      druginduced: {
+        title: "Drug-Induced Liver Disease",
+        location: "Liver",
+        plain: "Some drugs/overdoses can injure the liver. A key example is acetaminophen overdose, which can cause acute liver failure.",
+        sections: {
+          "Pathophysiology": [
+            "Acetaminophen overdose depletes glutathione → toxic metabolite damages liver cells.",
+            "Other meds can cause inflammation or cholestasis in susceptible people."
+          ],
+          "Symptoms": [
+            "Early acetaminophen overdose may look mild (nausea); liver injury appears later.",
+            "Jaundice, RUQ pain, confusion if severe."
+          ],
+          "Complications": [
+            "Acute liver failure; bleeding and encephalopathy."
+          ],
+          "Treatment": [
+            "N-acetylcysteine (NAC) as early as possible for acetaminophen toxicity.",
+            "Stop offending agent; supportive care."
+          ]
+        }
+      },
+
+      cirrhosis: {
+        title: "Cirrhosis",
+        location: "Liver",
+        plain: "Cirrhosis is permanent scarring of the liver. Scar tissue replaces working liver cells and blocks blood flow.",
+        sections: {
+          "Pathophysiology": [
+            "Chronic liver injury (alcohol, hepatitis, fatty liver) → fibrosis and nodules.",
+            "Blood flow resistance causes portal hypertension."
+          ],
+          "Symptoms": [
+            "Fatigue, weight loss, jaundice.",
+            "Easy bruising/bleeding, itching, swelling/ascites."
+          ],
+          "Complications": [
+            "Portal hypertension (varices, ascites, splenomegaly).",
+            "Hepatic encephalopathy, hepatorenal syndrome.",
+            "HCC risk increases."
+          ],
+          "Treatment": [
+            "Treat cause (stop alcohol, antivirals, etc.).",
+            "Manage complications (diuretics, banding, lactulose, etc.).",
+            "Transplant evaluation in advanced disease."
+          ]
+        }
+      },
+
+      portalhtn: {
+        title: "Portal Hypertension",
+        location: "Portal venous system",
+        plain: "Portal hypertension is high pressure in the portal vein, usually from cirrhosis. Blood backs up and forms collateral veins (varices) and fluid (ascites).",
+        sections: {
+          "Pathophysiology": [
+            "Scarring in liver increases resistance to portal blood flow.",
+            "Blood reroutes through collateral vessels (esophageal/gastric varices)."
+          ],
+          "Symptoms": [
+            "Often silent until complications.",
+            "Signs: ascites, enlarged spleen, variceal bleeding."
+          ],
+          "Complications": [
+            "Variceal hemorrhage.",
+            "Ascites, hepatorenal syndrome."
+          ],
+          "Treatment": [
+            "Treat underlying cirrhosis cause.",
+            "Beta blockers and endoscopic surveillance/banding for varices.",
+            "TIPS in selected refractory cases."
+          ]
+        }
+      },
+
+      liverfailure: {
+        title: "Liver Failure",
+        location: "Liver",
+        plain: "Liver failure means the liver can’t do key jobs: detoxifying, making clotting factors, regulating fluids, and processing bilirubin.",
+        sections: {
+          "Pathophysiology": [
+            "Massive acute injury (toxins/viral) or end-stage chronic damage leads to loss of liver function.",
+            "Toxins like ammonia build up → brain effects (encephalopathy)."
+          ],
+          "Symptoms": [
+            "Jaundice, confusion/sleepiness, easy bleeding/bruising.",
+            "Swelling/ascites; dark urine."
+          ],
+          "Complications": [
+            "Hepatic encephalopathy, bleeding, infection.",
+            "Kidney failure (hepatorenal) and shock."
+          ],
+          "Treatment": [
+            "Treat the cause; supportive critical care as needed.",
+            "Lactulose ± rifaximin for encephalopathy; manage bleeding/infections.",
+            "Transplant evaluation if irreversible."
+          ]
+        }
+      },
+
+      hcc: {
+        title: "Hepatocellular Carcinoma (HCC)",
+        location: "Liver",
+        plain: "HCC is a primary liver cancer that most often develops after years of chronic hepatitis or cirrhosis.",
+        sections: {
+          "Pathophysiology": [
+            "Chronic inflammation and regeneration cycles in cirrhosis increase cancer risk."
+          ],
+          "Symptoms": [
+            "Often none early.",
+            "Later: weight loss, RUQ pain, worsening jaundice/ascites."
+          ],
+          "Complications": [
+            "Liver failure progression; metastasis."
+          ],
+          "Treatment": [
+            "Depends on stage: resection, ablation, transplant, targeted/systemic therapy."
+          ]
+        }
+      },
+
+      cholangioca: {
+        title: "Cholangiocarcinoma",
+        location: "Bile ducts",
+        plain: "Cholangiocarcinoma is bile duct cancer. It often blocks bile flow and causes painless jaundice and itching.",
+        sections: {
+          "Pathophysiology": [
+            "Tumor narrows/blocks bile ducts → bile backs up into blood."
+          ],
+          "Symptoms": [
+            "Jaundice, dark urine, pale stools.",
+            "Intense itching; weight loss."
+          ],
+          "Complications": [
+            "Cholangitis (infection) if obstruction is severe.",
+            "Liver dysfunction and spread."
+          ],
+          "Treatment": [
+            "Surgery if resectable; chemo/radiation depending on stage.",
+            "Stenting/ERCP to relieve obstruction."
+          ]
+        }
+      },
+
+      cholelithiasis: {
+        title: "Cholelithiasis (Gallstones)",
+        location: "Gallbladder",
+        plain: "Gallstones are hardened particles (often cholesterol) that form in the gallbladder and can cause RUQ pain after fatty meals.",
+        sections: {
+          "Pathophysiology": [
+            "Imbalance in bile components → stones form.",
+            "Stone can intermittently block cystic duct → biliary colic."
+          ],
+          "Symptoms": [
+            "RUQ or epigastric pain after meals, may radiate to right shoulder.",
+            "Nausea/vomiting."
+          ],
+          "Complications": [
+            "Cholecystitis, choledocholithiasis (CBD stone), pancreatitis."
+          ],
+          "Treatment": [
+            "Pain control; elective cholecystectomy if symptomatic.",
+            "If CBD stone suspected: ERCP."
+          ]
+        }
+      },
+
+      cholecystitis: {
+        title: "Cholecystitis",
+        location: "Gallbladder",
+        plain: "Cholecystitis is inflammation of the gallbladder, most often when a gallstone blocks the cystic duct.",
+        sections: {
+          "Pathophysiology": [
+            "Cystic duct obstruction → bile trapped → gallbladder swelling/inflammation and possible infection."
+          ],
+          "Symptoms": [
+            "Persistent RUQ pain, fever, nausea/vomiting.",
+            "Positive Murphy sign (pain with inspiration during RUQ palpation)."
+          ],
+          "Complications": [
+            "Gangrene/perforation; abscess.",
+            "Bile peritonitis."
+          ],
+          "Treatment": [
+            "NPO, IV fluids, pain control; antibiotics if infection suspected.",
+            "Cholecystectomy (often same admission if appropriate)."
+          ]
+        }
+      },
+
+      cholangitis: {
+        title: "Cholangitis",
+        location: "Common bile duct",
+        plain: "Cholangitis is an infection of the bile ducts caused by obstruction (often a stone). It can become septic quickly.",
+        sections: {
+          "Pathophysiology": [
+            "Obstruction causes bile stasis → bacteria ascend from gut → infection in ducts."
+          ],
+          "Symptoms": [
+            "Fever + RUQ pain + jaundice (Charcot triad).",
+            "Can progress to confusion and low blood pressure (severe)."
+          ],
+          "Complications": [
+            "Sepsis and shock; liver abscess."
+          ],
+          "Treatment": [
+            "Urgent: IV antibiotics + fluids.",
+            "Relieve obstruction (ERCP with stone removal/stent)."
+          ]
+        }
+      },
+
+      cholestasis: {
+        title: "Cholestasis",
+        location: "Liver/bile flow",
+        plain: "Cholestasis means bile flow is reduced or stopped. Bile salts build up in blood causing itching and jaundice.",
+        sections: {
+          "Pathophysiology": [
+            "Either intrahepatic (liver cell/bile canal damage) or extrahepatic (duct obstruction).",
+            "Bile pigments and salts accumulate in blood."
+          ],
+          "Symptoms": [
+            "Itching (often intense), jaundice, dark urine.",
+            "Pale/clay stools if obstruction prevents bile reaching gut."
+          ],
+          "Complications": [
+            "Fat-soluble vitamin deficiencies (A, D, E, K) if prolonged.",
+            "Cholangitis if obstruction with infection."
+          ],
+          "Treatment": [
+            "Treat cause (remove obstruction, treat liver disease).",
+            "Symptom control for itch; replace fat-soluble vitamins if needed."
+          ]
+        }
+      },
+
+      "acute-pancreatitis": {
+        title: "Acute Pancreatitis",
+        location: "Pancreas",
+        plain: "Acute pancreatitis is sudden pancreas inflammation when digestive enzymes activate too early and start digesting the pancreas itself.",
+        sections: {
+          "Pathophysiology": [
+            "Gallstones or alcohol commonly trigger premature trypsin activation.",
+            "Autodigestion leads to inflammation and possible systemic response."
+          ],
+          "Symptoms": [
+            "Severe epigastric pain radiating to back, nausea/vomiting.",
+            "Pain often worse after eating; may improve leaning forward."
+          ],
+          "Complications": [
+            "Fluid shifts/shock, ARDS, kidney injury.",
+            "Pancreatic necrosis/infection, pseudocyst."
+          ],
+          "Treatment": [
+            "NPO, aggressive IV fluids, pain control, antiemetics.",
+            "Treat cause: gallstone management (ERCP/cholecystectomy), stop alcohol.",
+            "Monitor/ICU if severe; antibiotics only if infected necrosis."
+          ]
+        }
+      },
+
+      "chronic-pancreatitis": {
+        title: "Chronic Pancreatitis",
+        location: "Pancreas",
+        plain: "Chronic pancreatitis is long-term scarring of the pancreas that causes chronic pain, poor digestion, and eventually diabetes.",
+        sections: {
+          "Pathophysiology": [
+            "Repeated inflammation → fibrosis and loss of exocrine tissue.",
+            "Later endocrine damage → diabetes."
+          ],
+          "Symptoms": [
+            "Chronic or recurrent epigastric pain.",
+            "Steatorrhea (greasy stools) and weight loss from malabsorption."
+          ],
+          "Complications": [
+            "Pancreatic insufficiency (fat malabsorption).",
+            "Diabetes mellitus; pseudocysts."
+          ],
+          "Treatment": [
+            "Stop alcohol/smoking; pain management.",
+            "Pancreatic enzyme replacement; fat-soluble vitamin support.",
+            "Treat diabetes; procedures/surgery for duct obstruction or refractory pain."
+          ]
+        }
+      },
+
+      "pancreatic-cancer": {
+        title: "Pancreatic Cancer",
+        location: "Pancreas (often head)",
+        plain: "Pancreatic cancer is often found late. A tumor in the head of the pancreas can block the bile duct and cause painless jaundice.",
+        sections: {
+          "Pathophysiology": [
+            "Tumor grows and invades nearby structures; head tumors commonly obstruct bile duct."
+          ],
+          "Symptoms": [
+            "Painless jaundice, dark urine, pale stools, itching (head tumors).",
+            "Weight loss, vague abdominal/back pain, new-onset diabetes (sometimes)."
+          ],
+          "Complications": [
+            "Biliary obstruction and cholangitis.",
+            "Metastasis; malnutrition."
+          ],
+          "Treatment": [
+            "Surgery if resectable (Whipple for head lesions).",
+            "Chemo/radiation depending on stage; stenting for jaundice."
+          ]
+        }
+      },
+
+      "inguinal-hernia": {
+        title: "Inguinal Hernia",
+        location: "Groin/inguinal canal",
+        plain: "An inguinal hernia is when bowel/fat pushes through a weak spot in the groin, causing a bulge. It can get stuck or lose blood supply (emergency).",
+        sections: {
+          "Pathophysiology": [
+            "Weak abdominal wall allows tissue to protrude into inguinal canal.",
+            "If trapped: incarceration; if blood supply cut off: strangulation."
+          ],
+          "Symptoms": [
+            "Groin bulge, discomfort with lifting/standing.",
+            "May reduce when lying down."
+          ],
+          "Complications": [
+            "Incarceration → obstruction.",
+            "Strangulation → ischemia/necrosis (surgical emergency)."
+          ],
+          "Treatment": [
+            "Surgical repair (elective if symptomatic).",
+            "Emergency surgery if strangulated (severe pain, redness, systemic symptoms)."
+          ]
+        }
       }
-    },
+    };
 
-    gerd: {
-      title: "GERD",
-      location: "Esophagus / LES",
-      plain: "GERD is when stomach acid flows backward into the esophagus because the LES valve is weak or relaxes at the wrong time.",
-      sections: {
-        "Pathophysiology": [
-          "LES doesn’t stay closed → reflux of acid into the esophagus.",
-          "Acid irritates the lining → inflammation (esophagitis)."
-        ],
-        "Symptoms": [
-          "Heartburn, burning chest discomfort.",
-          "Regurgitation (sour/acid taste), worse after meals or lying down.",
-          "Sometimes cough/hoarseness, throat irritation."
-        ],
-        "Complications": [
-          "Esophagitis and strictures (narrowing).",
-          "Barrett esophagus (precancerous change)."
-        ],
-        "Treatment": [
-          "Lifestyle: smaller meals, avoid triggers, no late meals, elevate head of bed, weight loss.",
-          "Meds: antacids (quick relief), H2 blockers/PPIs (reduce acid).",
-          "Surgery (fundoplication) if severe or not controlled."
-        ]
-      }
-    },
-
-    varices: {
-      title: "Esophageal Varices",
-      location: "Esophagus (veins) due to portal hypertension",
-      plain: "Varices are enlarged veins in the esophagus from portal hypertension (often cirrhosis). They can rupture and cause major bleeding.",
-      sections: {
-        "Pathophysiology": [
-          "Cirrhosis scars the liver → blood can’t flow through easily.",
-          "Pressure builds in portal system → blood reroutes through esophageal veins → veins enlarge and become fragile."
-        ],
-        "Symptoms": [
-          "Often no symptoms until bleeding occurs.",
-          "Bleeding: vomiting blood, black tarry stool, dizziness/fainting."
-        ],
-        "Complications": [
-          "Massive GI hemorrhage (shock).",
-          "Aspiration risk if vomiting blood."
-        ],
-        "Treatment": [
-          "Prevention: non-selective beta blockers; endoscopic banding in some cases.",
-          "Acute bleed: stabilize, urgent endoscopic band ligation; additional therapies if needed (e.g., TIPS in refractory bleeding)."
-        ]
-      }
-    },
-
-    barrett: {
-      title: "Barrett Esophagus",
-      location: "Lower esophagus",
-      plain: "Barrett’s is a lining change from long-term GERD. It protects against acid but increases cancer risk.",
-      sections: {
-        "Pathophysiology": [
-          "Chronic acid exposure triggers metaplasia (cell type change) in lower esophagus."
-        ],
-        "Symptoms": [
-          "Often the same symptoms as GERD, or no symptoms."
-        ],
-        "Complications": [
-          "Higher risk of esophageal adenocarcinoma."
-        ],
-        "Treatment": [
-          "Strong acid control (PPIs + lifestyle).",
-          "Surveillance endoscopy; treat dysplasia if present (e.g., ablation)."
-        ]
-      }
-    },
-
-    esophca: {
-      title: "Esophageal Cancer",
-      location: "Esophagus",
-      plain: "Esophageal cancer often shows up as progressive dysphagia (solids first, then liquids) and weight loss.",
-      sections: {
-        "Pathophysiology": [
-          "Abnormal cells grow in the esophagus and can narrow the tube.",
-          "Squamous cell often linked to smoking/alcohol; adenocarcinoma linked to Barrett/GERD."
-        ],
-        "Symptoms": [
-          "Progressive trouble swallowing, feeling of food sticking.",
-          "Weight loss, chest discomfort, possible anemia."
-        ],
-        "Complications": [
-          "Obstruction and severe malnutrition.",
-          "Spread (metastasis)."
-        ],
-        "Treatment": [
-          "Endoscopy/biopsy for diagnosis; imaging for staging.",
-          "Treatment may include surgery, chemo, radiation; nutrition support is often needed."
-        ]
-      }
-    },
-
-    gastritis: {
-      title: "Gastritis (Acute/Chronic)",
-      location: "Stomach lining",
-      plain: "Gastritis is inflammation of the stomach lining—often from H. pylori, NSAIDs, alcohol, or severe stress.",
-      sections: {
-        "Pathophysiology": [
-          "Protective mucosal barrier is damaged → acid irritates and inflames the stomach lining."
-        ],
-        "Symptoms": [
-          "Epigastric pain/burning, nausea/vomiting, bloating.",
-          "Sometimes no symptoms."
-        ],
-        "Complications": [
-          "Bleeding (black stool/anemia).",
-          "Ulcers; long-term irritation can lead to chronic changes."
-        ],
-        "Treatment": [
-          "Stop irritants (NSAIDs/alcohol).",
-          "PPIs/H2 blockers; treat H. pylori if present."
-        ]
-      }
-    },
-
-    pud: {
-      title: "Peptic Ulcer Disease",
-      location: "Stomach or duodenum",
-      plain: "Peptic ulcers are open sores caused when acid/pepsin overpower protective mucus—most often from H. pylori or NSAIDs.",
-      sections: {
-        "Pathophysiology": [
-          "Acid and pepsin erode the lining → ulcer forms.",
-          "H. pylori weakens defenses; NSAIDs reduce prostaglandins → less mucus/bicarbonate."
-        ],
-        "Symptoms": [
-          "Gnawing/burning epigastric pain (may relate to meals).",
-          "Nausea; possible early satiety or weight loss."
-        ],
-        "Complications": [
-          "Bleeding (vomit blood, black stools, anemia).",
-          "Perforation → sudden severe pain + peritonitis.",
-          "Obstruction from swelling/scarring."
-        ],
-        "Treatment": [
-          "Eradicate H. pylori (combo antibiotics + PPI).",
-          "Stop NSAIDs if possible; PPIs to heal.",
-          "Treat complications urgently."
-        ]
-      }
-    },
-
-    hpylori: {
-      title: "H. pylori Infection",
-      location: "Stomach",
-      plain: "H. pylori is a bacteria that lives in the stomach and damages the protective lining, causing gastritis and ulcers.",
-      sections: {
-        "Pathophysiology": [
-          "Produces urease to survive in stomach acid.",
-          "Triggers inflammation and weakens mucosal defenses."
-        ],
-        "Symptoms": [
-          "Often none, or indigestion/ulcer-type pain."
-        ],
-        "Complications": [
-          "Peptic ulcers and chronic gastritis.",
-          "Increased risk of gastric cancer in long-term infection."
-        ],
-        "Treatment": [
-          "Combination antibiotics + PPI (sometimes bismuth).",
-          "Test-of-cure after treatment (breath or stool test)."
-        ]
-      }
-    },
-
-    stressulcers: {
-      title: "Stress Ulcers",
-      location: "Stomach",
-      plain: "Stress ulcers can form during severe illness because stomach lining blood flow drops and the barrier breaks down.",
-      sections: {
-        "Pathophysiology": [
-          "Low perfusion/ischemia + stress response → weak mucosal barrier → acid injury."
-        ],
-        "Symptoms": [
-          "Often no symptoms until bleeding."
-        ],
-        "Complications": [
-          "GI hemorrhage (can be sudden and severe)."
-        ],
-        "Treatment": [
-          "Prevention in high-risk ICU patients: PPI/H2 blocker.",
-          "Treat underlying shock/illness; manage bleed if present."
-        ]
-      }
-    },
-
-    zes: {
-      title: "Zollinger–Ellison Syndrome",
-      location: "Pancreas/duodenum (gastrinoma)",
-      plain: "A tumor produces too much gastrin, causing extreme stomach acid and repeated hard-to-treat ulcers.",
-      sections: {
-        "Pathophysiology": [
-          "Gastrinoma → very high gastrin → massive acid secretion → multiple/refractory ulcers."
-        ],
-        "Symptoms": [
-          "Severe ulcer pain, reflux, recurrent ulcers.",
-          "Diarrhea can occur due to excess acid."
-        ],
-        "Complications": [
-          "Bleeding, perforation, obstruction from ulcers."
-        ],
-        "Treatment": [
-          "High-dose PPIs to control acid.",
-          "Find and treat/remove tumor when possible."
-        ]
-      }
-    },
-
-    gastricca: {
-      title: "Gastric Cancer",
-      location: "Stomach",
-      plain: "Stomach cancer can be subtle early. Later it can cause weight loss, anemia, vomiting, and early fullness.",
-      sections: {
-        "Pathophysiology": [
-          "Chronic irritation/inflammation can cause abnormal cell changes that become cancer."
-        ],
-        "Symptoms": [
-          "Early: vague indigestion, mild pain, nausea.",
-          "Later: weight loss, early satiety, vomiting, anemia/bleeding."
-        ],
-        "Complications": [
-          "Bleeding, obstruction, malnutrition.",
-          "Spread (metastasis)."
-        ],
-        "Treatment": [
-          "Endoscopy + biopsy for diagnosis; staging imaging.",
-          "Surgery ± chemo/radiation depending on stage."
-        ]
-      }
-    },
-
-    hiatal: {
-      title: "Hiatal Hernia",
-      location: "Diaphragm / stomach",
-      plain: "Part of the stomach slips up through the diaphragm. This can worsen reflux because the LES region is displaced.",
-      sections: {
-        "Pathophysiology": [
-          "GE junction/stomach herniates through diaphragm opening.",
-          "LES pressure zone is disrupted → reflux more likely."
-        ],
-        "Symptoms": [
-          "Often GERD symptoms (heartburn/regurgitation).",
-          "Chest discomfort after meals."
-        ],
-        "Complications": [
-          "Worsened GERD; paraesophageal type can rarely strangulate."
-        ],
-        "Treatment": [
-          "Manage reflux (lifestyle + meds).",
-          "Surgery if severe symptoms or paraesophageal complications."
-        ]
-      }
-    },
-
-    crohn: {
-      title: "Crohn’s Disease",
-      location: "Any GI tract; commonly distal ileum + proximal colon",
-      plain: "Crohn’s is IBD with patchy inflammation that can go through the full bowel wall, causing scarring and tunnels.",
-      sections: {
-        "Pathophysiology": [
-          "Immune-driven chronic inflammation with skip lesions.",
-          "Transmural inflammation → thickened wall, strictures, fistulas/abscesses."
-        ],
-        "Symptoms": [
-          "Crampy abdominal pain, chronic diarrhea (often non-bloody).",
-          "Weight loss, fatigue; sometimes mouth ulcers."
-        ],
-        "Complications": [
-          "Strictures/obstruction, fistulas, abscesses.",
-          "Nutrient deficiencies (B12/iron) if ileum is affected."
-        ],
-        "Treatment": [
-          "Steroids for flares; immunomodulators/biologics for control.",
-          "Nutrition support; smoking cessation is important.",
-          "Surgery for complications (disease can recur)."
-        ]
-      }
-    },
-
-    celiac: {
-      title: "Celiac Disease",
-      location: "Small intestine",
-      plain: "Gluten triggers an autoimmune reaction that damages villi, reducing absorption.",
-      sections: {
-        "Pathophysiology": [
-          "Immune attack on small-intestine villi after gluten exposure → villi flatten → malabsorption."
-        ],
-        "Symptoms": [
-          "Diarrhea, bloating, weight loss.",
-          "Iron-deficiency anemia, fatigue; sometimes skin rash."
-        ],
-        "Complications": [
-          "Vitamin/mineral deficiencies (iron, folate/B12, calcium/vit D).",
-          "Bone loss; poor growth in children."
-        ],
-        "Treatment": [
-          "Strict lifelong gluten-free diet.",
-          "Replace deficiencies; follow-up monitoring."
-        ]
-      }
-    },
-
-    malabsorption: {
-      title: "Intestinal Malabsorption",
-      location: "Small intestine (most often)",
-      plain: "Malabsorption means nutrients aren’t being absorbed properly due to damaged lining, low enzymes, or bile problems.",
-      sections: {
-        "Pathophysiology": [
-          "Reduced digestion/absorption from villi damage, low pancreatic enzymes, or low bile salts."
-        ],
-        "Symptoms": [
-          "Chronic diarrhea, weight loss, fatigue.",
-          "Greasy/floating foul stool (steatorrhea) suggests fat malabsorption."
-        ],
-        "Complications": [
-          "Malnutrition and vitamin deficiencies.",
-          "Electrolyte imbalances and dehydration."
-        ],
-        "Treatment": [
-          "Treat the cause; nutrition support.",
-          "Vitamin/mineral replacement; enzyme replacement if pancreatic cause."
-        ]
-      }
-    },
-
-    uc: {
-      title: "Ulcerative Colitis",
-      location: "Colon + rectum only",
-      plain: "UC is IBD that starts in the rectum and spreads continuously along the colon lining. It tends to cause bloody diarrhea and urgency.",
-      sections: {
-        "Pathophysiology": [
-          "Continuous inflammation and ulceration limited to the mucosal layer of colon/rectum."
-        ],
-        "Symptoms": [
-          "Bloody diarrhea, urgency, tenesmus.",
-          "Cramping, fatigue; may have fever in severe flares."
-        ],
-        "Complications": [
-          "Severe bleeding and dehydration.",
-          "Toxic megacolon (emergency).",
-          "Long-term increased colorectal cancer risk."
-        ],
-        "Treatment": [
-          "5-ASA meds; steroids for flares; immunomodulators/biologics if severe.",
-          "Colectomy can be curative."
-        ]
-      }
-    },
-
-    ibs: {
-      title: "IBS (Irritable Bowel Syndrome)",
-      location: "Intestines (functional)",
-      plain: "IBS is a functional disorder: the bowel looks normal, but its movement and sensitivity are off. Symptoms are real, but there’s no tissue destruction.",
-      sections: {
-        "Pathophysiology": [
-          "Altered gut–brain signaling → bowel moves too fast/slow at times.",
-          "Increased sensitivity of the intestine (normal gas/stretch feels painful).",
-          "Triggers can include stress and certain fermentable foods (FODMAPs)."
-        ],
-        "Symptoms": [
-          "Abdominal pain that is linked to bowel movements.",
-          "Bloating/gas; diarrhea, constipation, or alternating pattern.",
-          "Mucus in stool can occur; symptoms often fluctuate."
-        ],
-        "Complications": [
-          "No tissue destruction or cancer from IBS itself.",
-          "Quality-of-life impact (sleep, anxiety about symptoms)."
-        ],
-        "Treatment": [
-          "Diet: trigger tracking; low-FODMAP trial; fiber for constipation-predominant IBS.",
-          "Stress management; regular meals, hydration, physical activity.",
-          "Meds can be used for symptom control (antispasmodics, laxatives/antidiarrheals as appropriate)."
-        ]
-      }
-    },
-
-    diverticulitis: {
-      title: "Diverticulitis",
-      location: "Usually sigmoid colon",
-      plain: "Diverticula are small pouches in the colon wall. Diverticulitis happens when a pouch gets inflamed or infected.",
-      sections: {
-        "Pathophysiology": [
-          "High pressure in colon + weak wall spots → pouches form (diverticulosis).",
-          "Stool can get trapped → inflammation/infection of a pouch (diverticulitis)."
-        ],
-        "Symptoms": [
-          "Left lower quadrant pain and tenderness.",
-          "Fever; nausea; constipation or diarrhea may occur."
-        ],
-        "Complications": [
-          "Abscess, perforation → peritonitis.",
-          "Fistula, obstruction/stricture."
-        ],
-        "Treatment": [
-          "Mild: bowel rest/fluids, pain control; antibiotics depending on severity and guidance.",
-          "Severe/complicated: IV antibiotics, drainage, surgery if perforation/abscess or recurrent issues."
-        ]
-      }
-    },
-
-    diarrhea: {
-      title: "Diarrhea",
-      location: "Intestines",
-      plain: "Diarrhea happens when too much water stays in the stool. It can be watery (non-inflammatory) or inflammatory (often small volume + blood).",
-      sections: {
-        "Pathophysiology": [
-          "Osmotic: unabsorbed particles pull water into the gut (e.g., lactose intolerance).",
-          "Secretory: toxins/ions push water out into stool (some infections).",
-          "Inflammatory: lining is inflamed/damaged → blood/mucus and urgency (IBD/invasive infection)."
-        ],
-        "Symptoms": [
-          "Frequent loose stools; cramping.",
-          "Watery type: large volume; inflammatory type: smaller volume + blood/mucus, urgency, fever."
-        ],
-        "Complications": [
-          "Dehydration and electrolyte imbalance.",
-          "Kidney injury in severe dehydration; shock in extreme cases."
-        ],
-        "Treatment": [
-          "Oral rehydration first; treat underlying cause.",
-          "Avoid anti-motility meds if bloody stool or fever until assessed.",
-          "Seek care if severe dehydration, persistent blood, high fever, or prolonged duration."
-        ]
-      }
-    },
-
-    constipation: {
-      title: "Constipation",
-      location: "Colon/rectum",
-      plain: "Constipation is hard or infrequent stools, usually from slow movement, dehydration, low fiber, or medications.",
-      sections: {
-        "Pathophysiology": [
-          "Stool stays in colon longer → more water is absorbed → stool becomes hard.",
-          "Often due to low fiber/fluid, inactivity, or meds (especially opioids)."
-        ],
-        "Symptoms": [
-          "Hard stools, straining, feeling not fully emptied.",
-          "Abdominal discomfort and bloating."
-        ],
-        "Complications": [
-          "Hemorrhoids, fissures (tears).",
-          "Fecal impaction; overflow diarrhea can occur around impaction."
-        ],
-        "Treatment": [
-          "Increase fluids, fiber, movement; establish regular toileting routine.",
-          "Stool softeners/laxatives as needed; treat underlying cause.",
-          "If suspected impaction: medical assessment and targeted treatment."
-        ]
-      }
-    },
-
-    crc: {
-      title: "Colorectal Cancer",
-      location: "Colon/rectum",
-      plain: "Colorectal cancer often starts as a polyp. Screening can remove polyps before they turn into cancer.",
-      sections: {
-        "Pathophysiology": [
-          "Abnormal growths (polyps) can slowly become cancer over years.",
-          "Risk rises with age, family history, and long-term inflammation (IBD)."
-        ],
-        "Symptoms": [
-          "Often none early.",
-          "Later: blood in stool, anemia, change in bowel habits, weight loss."
-        ],
-        "Complications": [
-          "Obstruction, bleeding, spread (metastasis)."
-        ],
-        "Treatment": [
-          "Screening (FIT/FOBT) and colonoscopy for diagnosis/removal of polyps.",
-          "Cancer: surgery ± chemo/radiation depending on stage/location."
-        ]
-      }
-    },
-
-    appendicitis: {
-      title: "Appendicitis",
-      location: "Appendix (RLQ)",
-      plain: "Appendicitis is inflammation from blockage of the appendix. If it ruptures, it can cause peritonitis.",
-      sections: {
-        "Pathophysiology": [
-          "Appendix becomes blocked (often stool/lymph swelling) → pressure rises → inflammation and infection.",
-          "Can progress to necrosis and rupture."
-        ],
-        "Symptoms": [
-          "Pain often starts around belly button then moves to RLQ (McBurney’s point).",
-          "Nausea/vomiting, fever, rebound tenderness."
-        ],
-        "Complications": [
-          "Perforation/rupture → peritonitis or abscess.",
-          "Sepsis if untreated."
-        ],
-        "Treatment": [
-          "Urgent medical/surgical management (appendectomy common).",
-          "Antibiotics and supportive care; urgent if rupture suspected."
-        ]
-      }
-    },
-
-    peritonitis: {
-      title: "Peritonitis",
-      location: "Peritoneal cavity",
-      plain: "Peritonitis is inflammation/infection of the abdominal lining, usually after a perforation (ulcer, appendix, diverticulitis). It can lead to sepsis.",
-      sections: {
-        "Pathophysiology": [
-          "Bacteria/irritants enter the peritoneal cavity → massive inflammatory response.",
-          "Fluid shifts into abdomen → low blood pressure and shock risk."
-        ],
-        "Symptoms": [
-          "Severe abdominal pain, guarding, rigid/board-like abdomen.",
-          "Fever; nausea/vomiting; may have rapid heart rate/low BP if septic."
-        ],
-        "Complications": [
-          "Sepsis and shock.",
-          "Abscess formation; organ failure in severe cases."
-        ],
-        "Treatment": [
-          "Emergency care: IV fluids, antibiotics, pain control, NPO.",
-          "Source control (often surgery) to fix perforation/drain infection."
-        ]
-      }
-    },
-
-    ascites: {
-      title: "Ascites",
-      location: "Peritoneal cavity",
-      plain: "Ascites is fluid in the abdomen, most often from cirrhosis causing portal hypertension and low albumin.",
-      sections: {
-        "Pathophysiology": [
-          "Portal hypertension pushes fluid out of vessels into abdomen.",
-          "Low albumin reduces ‘pull’ to keep fluid in blood.",
-          "Kidneys retain sodium/water due to low effective circulating volume."
-        ],
-        "Symptoms": [
-          "Increasing abdominal girth, fullness, weight gain.",
-          "Shortness of breath (pressure on diaphragm)."
-        ],
-        "Complications": [
-          "Spontaneous bacterial peritonitis (SBP).",
-          "Hernias; respiratory compromise."
-        ],
-        "Treatment": [
-          "Salt restriction and diuretics; treat underlying liver disease.",
-          "Paracentesis for large/tense ascites; albumin sometimes used around large taps."
-        ]
-      }
-    },
-
-    jaundice: {
-      title: "Jaundice (3 Types)",
-      location: "Bilirubin pathway (blood → liver → bile → gut)",
-      plain: "Jaundice is yellowing from high bilirubin. The problem can be before the liver (hemolysis), in the liver (hepatitis/cirrhosis), or after the liver (blocked bile ducts).",
-      sections: {
-        "Pathophysiology": [
-          "Prehepatic: too much bilirubin produced (often hemolysis) → mainly unconjugated.",
-          "Intrahepatic: liver can’t process/excrete bilirubin (hepatitis/cirrhosis) → mixed pattern.",
-          "Posthepatic: bile ducts blocked (stones/tumor) → conjugated bilirubin backs up into blood."
-        ],
-        "Symptoms": [
-          "Yellow skin/eyes; dark urine (especially post/intrahepatic).",
-          "Pale/clay stools + itching suggest obstruction."
-        ],
-        "Complications": [
-          "If obstructive: infection risk (cholangitis) and fat-soluble vitamin malabsorption.",
-          "If liver disease: progression to failure."
-        ],
-        "Treatment": [
-          "Treat the cause: stop hemolysis trigger, treat hepatitis/liver disease, relieve obstruction (e.g., ERCP for stones).",
-          "Supportive symptom care for itching; monitor labs."
-        ]
-      }
-    },
-
-    hepa: {
-      title: "Hepatitis A",
-      location: "Liver",
-      plain: "Hepatitis A spreads fecal-oral (contaminated food/water). It is acute only and does not become chronic.",
-      sections: {
-        "Pathophysiology": [
-          "Virus infects liver cells → immune system inflammation causes symptoms and jaundice."
-        ],
-        "Symptoms": [
-          "Fatigue, nausea, abdominal discomfort; jaundice is common in adults.",
-          "Children may have mild or no symptoms."
-        ],
-        "Complications": [
-          "Usually self-limited; rare severe acute liver failure."
-        ],
-        "Treatment": [
-          "Supportive care (rest, fluids, avoid alcohol/hepatotoxic meds).",
-          "Prevention: vaccine + hand hygiene."
-        ]
-      }
-    },
-
-    hepb: {
-      title: "Hepatitis B",
-      location: "Liver",
-      plain: "Hepatitis B spreads through blood/body fluids. Some clear it; some become chronic carriers, raising cirrhosis and liver cancer risk. Vaccine prevents it.",
-      sections: {
-        "Pathophysiology": [
-          "Virus infects liver cells; immune response can cause liver inflammation and damage.",
-          "Persistence of virus leads to chronic inflammation and scarring."
-        ],
-        "Symptoms": [
-          "Can be asymptomatic or flu-like illness; jaundice may occur.",
-          "Chronic infection may be silent for years."
-        ],
-        "Complications": [
-          "Chronic hepatitis → cirrhosis → hepatocellular carcinoma.",
-          "Carrier state with ongoing transmission risk."
-        ],
-        "Treatment": [
-          "Acute: supportive care in many cases.",
-          "Chronic: antivirals in selected cases + monitoring.",
-          "Prevention: vaccination, safe sex, needle safety."
-        ]
-      }
-    },
-
-    hepc: {
-      title: "Hepatitis C",
-      location: "Liver",
-      plain: "Hepatitis C is mainly blood-borne. It often becomes chronic, but modern antiviral tablets can cure most people.",
-      sections: {
-        "Pathophysiology": [
-          "Virus persists in liver cells → chronic inflammation over years → fibrosis/cirrhosis."
-        ],
-        "Symptoms": [
-          "Often none early; fatigue and vague symptoms can appear.",
-          "Later: signs of cirrhosis or liver failure."
-        ],
-        "Complications": [
-          "High chronic rate → cirrhosis and HCC risk.",
-          "Extrahepatic issues can occur (immune-related problems)."
-        ],
-        "Treatment": [
-          "Direct-acting antivirals (DAAs) for weeks-months → very high cure rates.",
-          "No vaccine; prevent blood exposure."
-        ]
-      }
-    },
-
-    alcliver: {
-      title: "Alcohol-Induced Liver Disease",
-      location: "Liver",
-      plain: "Alcohol injures liver cells. Over time it can progress from fatty liver (reversible) to hepatitis and cirrhosis (irreversible).",
-      sections: {
-        "Pathophysiology": [
-          "Alcohol metabolism produces toxic byproducts and free radicals → inflammation and scarring.",
-          "Progression: fatty liver → alcoholic hepatitis → cirrhosis."
-        ],
-        "Symptoms": [
-          "Fatty liver: often none.",
-          "Alcoholic hepatitis: jaundice, fever, tender enlarged liver.",
-          "Cirrhosis: ascites, varices, bruising, confusion."
-        ],
-        "Complications": [
-          "Cirrhosis and liver failure; portal hypertension and variceal bleeding."
-        ],
-        "Treatment": [
-          "Stop alcohol (most important).",
-          "Nutrition support; manage complications; transplant for end-stage."
-        ]
-      }
-    },
-
-    druginduced: {
-      title: "Drug-Induced Liver Disease (Acetaminophen)",
-      location: "Liver",
-      plain: "High acetaminophen doses overwhelm glutathione and create toxic metabolites that kill liver cells. Early NAC can prevent severe damage.",
-      sections: {
-        "Pathophysiology": [
-          "Toxic metabolite builds up when glutathione is depleted → liver cell necrosis.",
-          "Alcohol use can increase risk by altering metabolism and lowering glutathione."
-        ],
-        "Symptoms": [
-          "Early: nausea, sweating, malaise (can seem mild).",
-          "Later: RUQ pain, jaundice, confusion, bleeding (liver failure signs)."
-        ],
-        "Complications": [
-          "Acute liver failure; encephalopathy; death without treatment."
-        ],
-        "Treatment": [
-          "N-acetylcysteine (NAC) ASAP; supportive care and monitoring.",
-          "Prevention: avoid exceeding safe daily dose; avoid overlapping acetaminophen products."
-        ]
-      }
-    },
-
-    cirrhosis: {
-      title: "Cirrhosis",
-      location: "Liver",
-      plain: "Cirrhosis is permanent scarring that distorts the liver and blocks blood flow. The liver compensates until it can’t, then failure happens.",
-      sections: {
-        "Pathophysiology": [
-          "Chronic injury → fibrosis and nodules → reduced liver function and blocked portal flow.",
-          "Leads to portal hypertension and reduced protein/clotting factor production."
-        ],
-        "Symptoms": [
-          "Fatigue, jaundice, easy bruising, itching.",
-          "Ascites, leg swelling; spider angiomas; confusion in encephalopathy."
-        ],
-        "Complications": [
-          "Portal hypertension → varices/bleeding, ascites, splenomegaly.",
-          "Hepatic encephalopathy, hepatorenal syndrome, HCC."
-        ],
-        "Treatment": [
-          "Treat cause (alcohol cessation, antivirals, etc.).",
-          "Manage complications (diuretics, lactulose, banding).",
-          "Transplant for end-stage disease."
-        ]
-      }
-    },
-
-    portalhtn: {
-      title: "Portal Hypertension",
-      location: "Portal vein system",
-      plain: "Portal hypertension is high pressure in the portal vein system because blood can’t pass through a scarred liver easily.",
-      sections: {
-        "Pathophysiology": [
-          "Cirrhosis increases resistance to blood flow through liver → portal pressure rises.",
-          "Blood finds alternate routes (collaterals) → varices; fluid shifts → ascites."
-        ],
-        "Symptoms": [
-          "Often silent until complications.",
-          "Signs include ascites, enlarged spleen, variceal bleeding."
-        ],
-        "Complications": [
-          "Esophageal/gastric varices → life-threatening bleeding.",
-          "Ascites and SBP; low platelets from splenomegaly."
-        ],
-        "Treatment": [
-          "Treat cirrhosis; non-selective beta blockers; endoscopic banding.",
-          "TIPS for refractory bleeding/ascites in selected cases."
-        ]
-      }
-    },
-
-    liverfailure: {
-      title: "Liver Failure",
-      location: "Liver",
-      plain: "Liver failure means the liver can’t detoxify, make proteins, or process bile properly—leading to confusion, bleeding, swelling, and jaundice.",
-      sections: {
-        "Pathophysiology": [
-          "Loss of detoxification → ammonia and toxins accumulate.",
-          "Loss of protein production → low albumin and clotting factors.",
-          "Impaired bile handling → jaundice and itching."
-        ],
-        "Symptoms": [
-          "Confusion/sleepiness, asterixis (hand flapping) in encephalopathy.",
-          "Easy bruising/bleeding; jaundice; swelling/ascites."
-        ],
-        "Complications": [
-          "Hepatorenal syndrome (kidney failure).",
-          "Severe infections; coma in advanced encephalopathy."
-        ],
-        "Treatment": [
-          "Treat cause; manage encephalopathy (lactulose/rifaximin).",
-          "Support circulation/nutrition; transplant evaluation if end-stage."
-        ]
-      }
-    },
-
-    hcc: {
-      title: "Hepatocellular Carcinoma (HCC)",
-      location: "Liver",
-      plain: "HCC is the main primary liver cancer and usually occurs after chronic liver injury (especially cirrhosis from HBV/HCV).",
-      sections: {
-        "Pathophysiology": [
-          "Chronic inflammation and scarring increase DNA damage and abnormal cell growth in liver."
-        ],
-        "Symptoms": [
-          "Often none early; later: weight loss, pain, worsening jaundice/ascites."
-        ],
-        "Complications": [
-          "Liver failure; spread to other organs."
-        ],
-        "Treatment": [
-          "Options depend on stage: resection, ablation, transplant, systemic therapy."
-        ]
-      }
-    },
-
-    cholangioca: {
-      title: "Cholangiocarcinoma",
-      location: "Bile ducts",
-      plain: "Bile duct cancer can block bile flow and cause obstructive jaundice with itching and pale stools.",
-      sections: {
-        "Pathophysiology": [
-          "Tumor narrows/blocks bile ducts → bile can’t drain → bilirubin backs up."
-        ],
-        "Symptoms": [
-          "Jaundice, intense itching, dark urine, pale/clay stools.",
-          "Weight loss and fatigue."
-        ],
-        "Complications": [
-          "Cholangitis (infection) due to obstruction.",
-          "Liver dysfunction and spread (metastasis)."
-        ],
-        "Treatment": [
-          "Relieve obstruction (stent) + surgery when possible.",
-          "Chemo/radiation depending on stage."
-        ]
-      }
-    },
-
-    cholelithiasis: {
-      title: "Cholelithiasis (Gallstones)",
-      location: "Gallbladder",
-      plain: "Gallstones form when bile is out of balance (often too much cholesterol). They can cause biliary colic or block ducts.",
-      sections: {
-        "Pathophysiology": [
-          "Stone forms in gallbladder; if it blocks cystic duct → pain.",
-          "If it blocks common bile duct → jaundice/cholangitis/pancreatitis risk."
-        ],
-        "Symptoms": [
-          "RUQ pain after fatty meals; may radiate to right shoulder/back.",
-          "Nausea/vomiting."
-        ],
-        "Complications": [
-          "Cholecystitis, cholangitis, pancreatitis."
-        ],
-        "Treatment": [
-          "Pain control; cholecystectomy if symptomatic or complications occur.",
-          "Urgent care if fever/jaundice (possible cholangitis)."
-        ]
-      }
-    },
-
-    cholecystitis: {
-      title: "Cholecystitis",
-      location: "Gallbladder",
-      plain: "Cholecystitis is gallbladder inflammation, usually because a stone blocks the cystic duct.",
-      sections: {
-        "Pathophysiology": [
-          "Blocked cystic duct traps bile → gallbladder swelling and inflammation; infection can develop."
-        ],
-        "Symptoms": [
-          "RUQ pain, fever, nausea/vomiting.",
-          "Murphy’s sign (pain with inspiration during RUQ palpation)."
-        ],
-        "Complications": [
-          "Gangrene or perforation of gallbladder in severe cases."
-        ],
-        "Treatment": [
-          "IV fluids, pain control; antibiotics if infection suspected.",
-          "Cholecystectomy often recommended."
-        ]
-      }
-    },
-
-    cholangitis: {
-      title: "Cholangitis",
-      location: "Common bile duct",
-      plain: "Cholangitis is an infected bile duct, typically due to obstruction (like a stone). It can become septic quickly.",
-      sections: {
-        "Pathophysiology": [
-          "Obstruction blocks bile flow → bacteria multiply → infection can spread into bloodstream."
-        ],
-        "Symptoms": [
-          "Charcot triad: fever + RUQ pain + jaundice.",
-          "Severe: low BP and confusion can occur."
-        ],
-        "Complications": [
-          "Sepsis and shock.",
-          "Liver injury."
-        ],
-        "Treatment": [
-          "Urgent antibiotics + urgent relief of obstruction (often ERCP/stent).",
-          "Supportive care (IV fluids, monitoring)."
-        ]
-      }
-    },
-
-    cholestasis: {
-      title: "Cholestasis",
-      location: "Bile flow (liver/bile ducts)",
-      plain: "Cholestasis means bile isn’t flowing normally. Bile components build up in the blood, causing itching and jaundice.",
-      sections: {
-        "Pathophysiology": [
-          "Bile flow slows or stops due to liver cell problems or duct blockage.",
-          "Bile acids accumulate in blood → itching; bilirubin rises → jaundice."
-        ],
-        "Symptoms": [
-          "Itching (pruritus), jaundice, dark urine, pale stools."
-        ],
-        "Complications": [
-          "Fat-soluble vitamin deficiency (A, D, E, K).",
-          "Cholangitis if obstruction leads to infection."
-        ],
-        "Treatment": [
-          "Find and treat cause (remove obstruction if present).",
-          "Symptom relief for itching; monitor labs and nutrition."
-        ]
-      }
-    },
-
-    "acute-pancreatitis": {
-      title: "Acute Pancreatitis",
-      location: "Pancreas",
-      plain: "Acute pancreatitis is sudden inflammation caused by early activation of digestive enzymes, which start digesting the pancreas itself.",
-      sections: {
-        "Pathophysiology": [
-          "Trypsin activates too early inside pancreas → autodigestion, inflammation, edema.",
-          "Most common triggers: gallstones or alcohol."
-        ],
-        "Symptoms": [
-          "Severe epigastric pain radiating to the back.",
-          "Nausea/vomiting; worse after eating; may feel better leaning forward."
-        ],
-        "Complications": [
-          "Shock, ARDS, kidney failure.",
-          "Pseudocysts, infection, necrosis."
-        ],
-        "Treatment": [
-          "NPO, aggressive IV fluids, pain control.",
-          "Treat cause (e.g., remove gallstones, stop alcohol)."
-        ]
-      }
-    },
-
-    "chronic-pancreatitis": {
-      title: "Chronic Pancreatitis",
-      location: "Pancreas",
-      plain: "Chronic pancreatitis is long-term, irreversible scarring and loss of function, often after repeated inflammation.",
-      sections: {
-        "Pathophysiology": [
-          "Repeated inflammation → fibrosis → loss of enzyme production (exocrine).",
-          "Later endocrine loss → diabetes."
-        ],
-        "Symptoms": [
-          "Chronic or recurrent epigastric pain.",
-          "Steatorrhea (fatty stools), weight loss."
-        ],
-        "Complications": [
-          "Malnutrition; diabetes mellitus.",
-          "Chronic pain and reduced quality of life."
-        ],
-        "Treatment": [
-          "Stop alcohol and smoking; pain management.",
-          "Pancreatic enzyme replacement; nutrition support; treat diabetes if present."
-        ]
-      }
-    },
-
-    "pancreatic-cancer": {
-      title: "Pancreatic Cancer",
-      location: "Pancreas",
-      plain: "Pancreatic cancer is aggressive and often detected late. Tumors in the head of pancreas can block bile ducts and cause painless jaundice.",
-      sections: {
-        "Pathophysiology": [
-          "Cancer grows in pancreas and can obstruct bile duct or invade nearby structures.",
-          "Spreads early, which is why prognosis is often poor."
-        ],
-        "Symptoms": [
-          "Painless jaundice (dark urine, pale stools), itching.",
-          "Weight loss, fatigue, back/epigastric pain."
-        ],
-        "Complications": [
-          "Bile obstruction, malnutrition, metastasis."
-        ],
-        "Treatment": [
-          "Surgery if localized; otherwise chemo/radiation; palliative symptom control common."
-        ]
-      }
-    },
-
-    "inguinal-hernia": {
-      title: "Inguinal Hernia",
-      location: "Groin / inguinal canal",
-      plain: "An inguinal hernia occurs when intestine pushes through a weak spot in the abdominal wall in the groin.",
-      sections: {
-        "Pathophysiology": [
-          "Weakness in abdominal wall allows tissue to bulge out, especially with pressure (coughing/lifting)."
-        ],
-        "Symptoms": [
-          "Groin bulge that may ache or burn.",
-          "Worse with coughing, lifting, standing; may reduce when lying down."
-        ],
-        "Complications": [
-          "Incarceration (stuck) and strangulation (cut off blood supply) → surgical emergency."
-        ],
-        "Treatment": [
-          "Surgical repair if symptomatic or high risk; emergency surgery if strangulated."
-        ]
-      }
+    // --- Fallback generator (guarantees every card can open a detail view) ---
+    function generateFallbackDetails(id) {
+      const card = document.querySelector(`.disorder-card[data-id="${id}"]`);
+      const title = card ? (card.querySelector('h3')?.textContent || id) : id;
+      const location = card ? (card.querySelector('.location-badge')?.textContent || "GI Tract") : "GI Tract";
+      const plain = card ? (card.querySelector('p')?.textContent || "No summary available yet.") : "No summary available yet.";
+      return {
+        title,
+        location,
+        plain,
+        sections: {
+          "Pathophysiology": ["Details not added yet for this disorder."],
+          "Symptoms": ["Details not added yet for this disorder."],
+          "Complications": ["Details not added yet for this disorder."],
+          "Treatment": ["Details not added yet for this disorder."]
+        }
+      };
     }
-  };
 
-  // --- Click card → show detail view ---
-  document.querySelectorAll('.disorder-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const id = card.getAttribute('data-id');
-      const data = disorderDetails[id];
-      if (!data) return;
-
-      const detailView = document.getElementById('detailView');
+    // --- Render detail view ---
+    function openDetail(id) {
       const listView = document.getElementById('listView');
+      const detailView = document.getElementById('detailView');
+
+      const data = disorderDetails[id] ? disorderDetails[id] : generateFallbackDetails(id);
 
       let html = `
-        <button class="back-btn" onclick="backToList()">← Back to list</button>
-        <h2 class="detail-title">${data.title}</h2>
-        <div class="mini"><strong>Location:</strong> ${data.location}</div>
-        <p>${data.plain}</p>
-        <div class="pill-row">
-          <span class="pill">Pathophysiology</span>
-          <span class="pill">Symptoms</span>
-          <span class="pill">Complications</span>
-          <span class="pill">Treatment</span>
-        </div>
+        <button class="back-btn" onclick="goBack()">← Back</button>
+        <div class="detail-view">
+          <div class="detail-title">${escapeHtml(data.title)}</div>
+          <div class="mini">${escapeHtml(data.plain || "")}</div>
+          <div class="pill-row">
+            <span class="pill">Location: ${escapeHtml(data.location || "GI")}</span>
+            <span class="pill">Category: Patho • Sx • Comp • Tx</span>
+          </div>
       `;
 
-      for (const section in data.sections) {
+      const sections = data.sections || {};
+      const order = ["Pathophysiology", "Symptoms", "Complications", "Treatment"];
+
+      order.forEach(sec => {
+        const items = Array.isArray(sections[sec]) ? sections[sec] : [];
         html += `
           <div class="detail-section">
-            <h5>${section}</h5>
-            <ul>
-              ${data.sections[section].map(item => `<li>${item}</li>`).join("")}
-            </ul>
+            <h5>${sec}</h5>
+            ${items.length ? `<ul>${items.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>` : `<p>No info yet.</p>`}
           </div>
         `;
-      }
+      });
+
+      html += `</div>`;
 
       detailView.innerHTML = html;
       listView.style.display = 'none';
       detailView.style.display = 'block';
-    });
-  });
+      detailView.scrollTop = 0;
+    }
 
-  function backToList() {
-    document.getElementById('detailView').style.display = 'none';
-    document.getElementById('listView').style.display = 'block';
-  }
-</script>
+    function goBack(){
+      document.getElementById('detailView').style.display = 'none';
+      document.getElementById('listView').style.display = 'block';
+      document.getElementById('searchBox').focus();
+    }
+
+    // --- Click wiring (works even if you add more cards later) ---
+    document.addEventListener('click', function(e){
+      const card = e.target.closest('.disorder-card');
+      if(!card) return;
+      const id = card.getAttribute('data-id');
+      if(id) openDetail(id);
+    });
+
+    // --- Simple HTML escape ---
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+  </script>
+</body>
+</html>
+```
